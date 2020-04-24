@@ -1,0 +1,24 @@
+{
+  "name": "hack-money",
+  "version": "1.0.0",
+  "description": "hack money app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codenamejason/hackmoney.git"
+  },
+  "keywords": [
+    "hackmoney",
+    "defi",
+    "annuity"
+  ],
+  "author": "Jason Romero",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codenamejason/hackmoney/issues"
+  },
+  "homepage": "https://github.com/codenamejason/hackmoney#readme"
+}
