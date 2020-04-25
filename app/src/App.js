@@ -76,11 +76,11 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
 
-  function FormRow() {
+  function FormRow(props) {
     return (
       <React.Fragment>
         <Grid item xs={4}>
-          <Paper className={classes.paper}>item</Paper>
+          <Paper className={classes.paper}>{props.name}</Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>item</Paper>
@@ -97,7 +97,7 @@ function App() {
       <SearchAppBar />
       <Grid container spacing={1} className='app-content'>
         <Grid container item xs={12} spacing={3}>
-          <FormRow />
+          <FormRow name='Jason'/>
         </Grid>
         <Grid container item xs={12} spacing={3}>
           <FormRow />
