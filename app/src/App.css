@@ -1,13 +1,11 @@
 body {
-  background-color: black;
+  background-color: #000000;
   padding: 5px;
   margin: 5px;
 }
 
 .app-container {
   padding: 5px;
-
-
 }
 
 .app-content {
