@@ -12,11 +12,15 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import TextField from '@material-ui/core/TextField';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
@@ -40,10 +44,39 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     backgroundColor: '#282c34',
+    '& label.Mui-focused': {
+      color: 'green',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'green',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'yellow',
+      },
+      '&:hover fieldset': {
+        borderColor: 'black',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'green',
+      },
+    },
+  },
+  cardHeader: {
+    padding: theme.spacing(1, 2),
+  },
+  list: {
+    width: 200,
+    height: 230,
+    backgroundColor: theme.palette.background.paper,
+    overflow: 'auto',
+  },
+  button: {
+    margin: theme.spacing(0.5, 0),
   },
   paper: {
     padding: '15px',
-    backgroundColor: '#530a85',
+    backgroundColor: '#a73ee4',
   },
   fab: {
     position: 'absolute',
@@ -82,7 +115,6 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-    backgroundColor: '#282c34',
   },
   drawerOpen: {
     width: drawerWidth,
@@ -114,6 +146,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     backgroundColor: '#282c34',
+    minHeight: '900px'
   },
 }));
 
@@ -190,28 +223,35 @@ function App() {
             <React.Fragment>
               <Grid item xs={12}>
                   <Paper className={classes.paper}>
-                      <form>
-                      <Grid container spacing={3}>
-                            <Grid item xs>
-                              <Paper className={classes.paper}>xs</Paper>
-                            </Grid>
-                            <Grid item xs>
-                              <Paper className={classes.paper}>xs</Paper>
-                            </Grid>
-                            <Grid item xs>
-                              <Paper className={classes.paper}>xs</Paper>
-                            </Grid>
-                          </Grid>
+                      <form noValidate autoComplete="off">
                           <Grid container spacing={3}>
-                            <Grid item xs>
-                              <Paper className={classes.paper}>xs</Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                              <Paper className={classes.paper}>xs=6</Paper>
-                            </Grid>
-                            <Grid item xs>
-                              <Paper className={classes.paper}>xs</Paper>
-                            </Grid>
+                              <Grid item xs>
+                                <Paper className={classes.paper}>
+                                  <TextField id="first-name" label="First Name" variant="outlined" />
+                                </Paper>
+                              </Grid>
+                              {/* <Grid item xs>
+                                <Paper className={classes.paper}>
+                                  <TextField id="filled-basic" label="First Name" variant="outlined" />
+                                </Paper>
+                              </Grid> */}
+                              <Grid item xs>
+                                <Paper className={classes.paper}>
+                                  <TextField id="last-name" label="Last Name" variant="outlined" />
+                                </Paper>
+                              </Grid>
+                          </Grid>
+
+                          <Grid container spacing={3}>
+                              <Grid item xs>
+                                <Paper className={classes.paper}>xs</Paper>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <Paper className={classes.paper}>xs=6</Paper>
+                              </Grid>
+                              <Grid item xs>
+                                <Paper className={classes.paper}>xs</Paper>
+                              </Grid>
                           </Grid>
                           {/* <Grid container justify="center" spacing={3}>
                             {labels.map((value) => (
@@ -223,17 +263,69 @@ function App() {
                           </Grid> */}
                       </form>
                   </Paper>
-                  <FloatingActionButtonZoom />
+                  
               </Grid>
             </React.Fragment>
 
           </Paper>
-            
-           
+          <FloatingActionButtonZoom /><br />
+          <MultilineTextFields />
       </main>
     </div>
   );
 }
+
+function MultilineTextFields() {
+  const classes = useStyles();
+  const [currency, setCurrency] = React.useState('EUR');
+
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
+  };
+
+  return (
+    <form className={classes.root} noValidate autoComplete="off">
+
+      <div>
+        <TextField
+          id="filled-select-currency"
+          select
+          label="Select"
+          value={currency}
+          onChange={handleChange}
+          helperText="Please select your currency"
+          variant="filled"
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
+      </div>&nbsp;
+      <div>
+        <TextField
+          id="filled-select-currency"
+          select
+          label="Select"
+          value={currency}
+          onChange={handleChange}
+          helperText="Please select your currency"
+          variant="filled"
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>        
+      </div>
+      
+    </form>
+  );
+}
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -355,5 +447,24 @@ function FloatingActionButtonZoom() {
 }
 
 const labels = [{ id: 0, name: 'label 1' }, { id: 1, name: 'label 2' }, { id: 2, name: 'label 3' }]
+const currencies = [
+  {
+    value: 'USD',
+    label: '$',
+  },
+  {
+    value: 'EUR',
+    label: '€',
+  },
+  {
+    value: 'BTC',
+    label: '฿',
+  },
+  {
+    value: 'JPY',
+    label: '¥',
+  },
+];
+
 
 export default App
