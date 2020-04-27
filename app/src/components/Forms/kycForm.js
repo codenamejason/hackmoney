@@ -9,37 +9,22 @@ import { Toolbar, Paper, Grid, Box, Button } from '@material-ui/core';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import TextField from '@material-ui/core/TextField';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Card, CardHeader } from '@material-ui/core';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-import AppsIcon from '@material-ui/icons/Apps';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import AccountBalanceRoundedIcon from '@material-ui/icons/AccountBalanceRounded';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@material-ui/core/colors';
-import { ThemeProvider } from '@material-ui/core/styles';
-import './App.css'
-import KycForm from './components/Forms/kycForm';
-
-const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    backgroundColor: '#554463',
     '& label.Mui-focused': {
       color: 'green',
     },
@@ -64,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 200,
     height: 230,
-    backgroundColor: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
   },
   button: {
@@ -86,146 +71,127 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: green[600],
     },
   },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
   hide: {
     display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
     backgroundColor: '#554463',
-    minHeight: '800px',
-    minWidth: '280px',
+    minHeight: '900px'
   },
 }));
 
-function App() {
+
+function KycForm() {
   const classes = useStyles();
-  const theme = {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-  };
-  
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  //const theme = useTheme();
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar style={{ backgroundColor: '#530a85'}}>
-          <AppsIcon
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </AppsIcon>
-          <Typography variant="h6" noWrap>
-            Income Stream
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ArrowBackIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {[ 'dashboard', 'buy stream'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <AccountBalanceRoundedIcon /> : <AttachMoneyIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
       <main className={classes.content} >
         <div className={classes.toolbar} />
-          {/* todo: check if they are verified and either hide/show */}
-          {/* kyc is just here to test */}
-          <KycForm />         
-          {/* <Theming /> */}
+          <Paper elevation={3}>
+            <React.Fragment>
+              <Grid item xs={12} lg={12} md={12}>
+                  <Paper className={classes.paper}>
+                      <form Validate autoComplete="off">
+                          <Grid spacing={1} item xs={12} lg={12} md={12}>
+                              <Grid item xs={12} lg={6} md={6}>
+                                  <TextField id="first-name" label="First Name" variant="filled" />                                
+                              </Grid>
+                              <Grid item xs={12} lg={6} md={6}>
+                                  <TextField id="last-name" label="Last Name" variant="filled" />                             
+                              </Grid>
+                          </Grid>
+                          <Grid spacing={1}>
+                              <Grid item xs>
+                                    <TextField id="address" label="Address" variant="filled" />                            
+                              </Grid>                            
+                          </Grid>
+                          <Grid spacing={1}>
+                            <Grid item xs>
+                                    <TextField id="city" label="City" variant="filled" />                            
+                              </Grid>   
+                              <Grid item xs>
+                                    <TextField id="state" label="State" variant="filled" />                        
+                              </Grid>
+                              <Grid item xs>
+                                  <TextField id="postal-code" label="Postal Code" variant="filled" />                               
+                              </Grid>
+                          </Grid>
+                          <Grid spacing={1}>
+                            <Grid item xs>                               
+                            </Grid>   
+                            <Grid item xs>                              
+                            </Grid>
+                            <Grid item xs>
+                                <Button variant="contained" color="secondary">
+                                    Next
+                                </Button>
+                            </Grid>
+                          </Grid>
+                      </form>
+                  </Paper>                  
+              </Grid>
+            </React.Fragment>
+          </Paper>
+          {/* <FloatingActionButtonZoom /><br /> */}
+          {/* <MultilineTextFields /> */}
       </main>
-      
     </div>
+  );
+}
+
+function MultilineTextFields() {
+  const classes = useStyles();
+  const [currency, setCurrency] = React.useState('EUR');
+
+  const handleChange = (event) => {
+    setCurrency(event.target.value);
+  };
+
+  return (
+    <form className={classes.root} noValidate autoComplete="off">
+
+      <div>
+        <TextField
+          id="filled-select-currency"
+          select
+          label="Select"
+          value={currency}
+          onChange={handleChange}
+          helperText="Please select your currency"
+          variant="filled"
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
+      </div>&nbsp;
+      <div>
+        <TextField
+          id="filled-select-currency"
+          select
+          label="Select"
+          value={currency}
+          onChange={handleChange}
+          helperText="Please select your currency"
+          variant="filled"
+        >
+          {currencies.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>        
+      </div>
+      
+    </form>
   );
 }
 
@@ -349,5 +315,24 @@ function FloatingActionButtonZoom() {
 }
 
 const labels = [{ id: 0, name: 'label 1' }, { id: 1, name: 'label 2' }, { id: 2, name: 'label 3' }]
+const currencies = [
+  {
+    value: 'USD',
+    label: '$',
+  },
+  {
+    value: 'EUR',
+    label: '€',
+  },
+  {
+    value: 'BTC',
+    label: '฿',
+  },
+  {
+    value: 'JPY',
+    label: '¥',
+  },
+];
 
-export default App
+
+export default KycForm
