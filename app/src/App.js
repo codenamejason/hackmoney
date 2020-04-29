@@ -55,7 +55,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    backgroundColor: 'purple',
     '& label.Mui-focused': {
       color: 'green',
     },
