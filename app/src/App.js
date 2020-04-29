@@ -31,8 +31,24 @@ import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/core/styles';
+import WalletTest from './components/Main/index.js'
 import './App.css'
-import KycForm from './components/Forms/kycForm';
+//import KycForm from './components/Forms/kycForm';
+import Web3 from "web3";
+import Onboard from 'bnc-onboard'
+
+let web3
+
+const onboard = Onboard({
+    dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
+    networkId: 5777,
+    subscriptions: {
+        wallet: wallet => {
+            web3 = new Web3(wallet.provider)
+            console.log(`${wallet.name} is now connected!`)
+        }
+    }
+})
 
 const drawerWidth = 240;
 
@@ -147,6 +163,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+async function login() {
+  await onboard.walletSelect();
+  await onboard.walletCheck(); 
+}
+
 function App() {
   const classes = useStyles();
   const theme = {
@@ -187,6 +209,9 @@ function App() {
           <Typography variant="h6" noWrap>
             Income Stream
           </Typography>
+          
+          <Button variant='contained' onClick={login} style={{ marginLeft: '25px' }}>Connect Wallet</Button>
+          
         </Toolbar>
       </AppBar>
       <Drawer
@@ -221,7 +246,7 @@ function App() {
         <div className={classes.toolbar} />
           {/* todo: check if they are verified and either hide/show */}
           {/* kyc is just here to test */}
-          <KycForm />         
+                  <WalletTest />
           {/* <Theming /> */}
       </main>
       
