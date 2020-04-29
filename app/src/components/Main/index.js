@@ -47,14 +47,22 @@ let web3
 
 const onboard = Onboard({
     dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
-    networkId: 5777,
+    networkId: 5777, // 4 = Rinkeby, 3 = Ropsten, 1 = Main
+    darkMode: true,
     subscriptions: {
         wallet: wallet => {
             web3 = new Web3(wallet.provider)
             console.log(`${wallet.name} is now connected!`)
+        },
+        balance: balance => {
+
+            console.log(balance)
         }
     }
 })
+
+const currentState = onboard.getState()
+console.log(currentState)
 
 
 const useStyles = makeStyles((theme) => ({
@@ -69,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     paper: {
       padding: theme.spacing(1),
       textAlign: 'center',
-      color: '',
       color: '#9400d3',
       backgroundColor: '#282c34'
     },
@@ -122,6 +129,9 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
+    tabPanel: {
+        backgroundColor: '#282c34',
+    }
   }));
   
 /**
@@ -193,11 +203,11 @@ function ScrollableTabsButtonPrevent() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: 'rgb(83, 10, 133)' }}>
         <Tabs
           value={value}
           onChange={handleChange}
-          variant="scrollable"
+          variant="fullWidth"
           scrollButtons="off"
           aria-label="scrollable prevent tabs example"
         >
@@ -210,7 +220,7 @@ function ScrollableTabsButtonPrevent() {
           <Tab icon={<Tooltip title='Help'><HelpIcon /></Tooltip>} aria-label="help" {...a11yProps(6)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0}  style={{ backgroundColor: 'rgb(83, 10, 133)' }}>
         <FormPanel data={{ name: 'Jason Romero', x: '5000' }}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -321,7 +331,7 @@ function FormPanel({data}) {
                             <option value={3}>Three</option>
                             <option value={5}>Five</option>
                         </Select>
-                        <FormHelperText style={{ color: '#9400d3' }}>helper text</FormHelperText> 
+                        <FormHelperText style={{ color: '#FE6B8B' }}>helper text</FormHelperText> 
                         </React.Fragment>  
     }
     
@@ -331,8 +341,6 @@ function FormPanel({data}) {
               <Grid item xs={12}>
               <Paper className={classes.paper}>
                   {data.name} | {data.x}
-                  <hr />
-                  <form>
                     {/* first row */}
                       <Grid container spacing={3}>
                           <Grid item xs>
@@ -355,7 +363,7 @@ function FormPanel({data}) {
                                   <option value={'IMMEDIATE'}>Immediate</option>
                                   <option value={'DEFERRED'}>Deferred</option>
                               </Select>
-                              <FormHelperText style={{ color: '#9400d3' }}>
+                              <FormHelperText style={{ color: '#FE6B8B' }}>
                                   *Deferred gains are generally higher  
                               </FormHelperText>
                           </Grid>
@@ -381,7 +389,7 @@ function FormPanel({data}) {
                                 <option value={3}>Three</option>
                                 <option value={5}>Five</option>
                               </Select>
-                              <FormHelperText style={{ color: '#9400d3' }}>helper text</FormHelperText>                         
+                              <FormHelperText style={{ color: '#FE6B8B' }}>helper text</FormHelperText>                         
                           </Grid>
                       </Grid>
                       {/* second row */}
@@ -404,7 +412,6 @@ function FormPanel({data}) {
                               </Tooltip>
                           </Grid>
                     </Grid>
-                    </form>
                 </Paper>
               </Grid>
                 
