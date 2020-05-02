@@ -12,12 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import TextField from '@material-ui/core/TextField';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Card, CardHeader } from '@material-ui/core';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import AppsIcon from '@material-ui/icons/Apps';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Tabs from '@material-ui/core/Tabs';
@@ -30,7 +25,6 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@material-ui/core/colors';
-import { ThemeProvider } from '@material-ui/core/styles';
 import WalletTest from './components/Main/index.js'
 import './App.css'
 //import KycForm from './components/Forms/kycForm';
