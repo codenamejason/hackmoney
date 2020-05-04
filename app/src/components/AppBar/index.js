@@ -116,32 +116,34 @@ function ScrollableTabsButtonPrevent() {
           <Tab icon={<Tooltip title='Transfer Stream'><ImportExportIcon /></Tooltip>} aria-label="transfer-stream" {...a11yProps(1)} />
           <Tab icon={<Tooltip title='Renew Stream'><AutorenewIcon /></Tooltip>} aria-label="renew-stream" {...a11yProps(2)} />
           <Tab icon={<Tooltip title='Backup Stream'><BackupIcon /></Tooltip>} aria-label="backup-stream" {...a11yProps(3)} />
-          <Tab icon={<Tooltip title='?'><ThumbDown /></Tooltip>} aria-label="" {...a11yProps(4)} />
-          <Tab icon={<Tooltip title='?'><ThumbUp /></Tooltip>} aria-label="" {...a11yProps(5)} />
-          <Tab icon={<Tooltip title='Help'><HelpIcon /></Tooltip>} aria-label="help" {...a11yProps(6)} />
+          {/* <Tab icon={<Tooltip title='?'><ThumbDown /></Tooltip>} aria-label="" {...a11yProps(4)} />
+          <Tab icon={<Tooltip title='?'><ThumbUp /></Tooltip>} aria-label="" {...a11yProps(5)} /> */}
+          <Tab icon={<Tooltip title='Help'><HelpIcon /></Tooltip>} aria-label="help" {...a11yProps(4)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}  style={{ backgroundColor: 'rgb(83, 10, 133)' }}>
-        <CreateStreamForm data={{ name: 'Jason Romero', x: '5000' }}/>
+        <CreateStreamForm 
+            data={{ name: 'Jason Romero', x: '5000' }
+        }/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+          Transfer my stream
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+          Renew/AddMoney to Stream
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+          Backup my stream??
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+            Help Section
       </TabPanel>
-      <TabPanel value={value} index={5}>
+      {/* <TabPanel value={value} index={5}>
         Item Six
       </TabPanel>
       <TabPanel value={value} index={6}>
         Item Seven
-      </TabPanel>
+      </TabPanel> */}
     </div>
   );
 }
