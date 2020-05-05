@@ -1,5 +1,7 @@
 # hackmoney
 
+The Plan for the mission.
+
 Hack Money Hackathon - DeFi
 
 The 3 Cardinal rule of monetary income is size, weight and shape.
