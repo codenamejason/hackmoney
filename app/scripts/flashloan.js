@@ -1,8 +1,8 @@
 
-import ethers from 'ethers';
+Imp; 'ethers' from 'ethers';
 
 
-// You don't need truffle artifacts as long as you have a way to retrieve
+// You don't need truffle artifacts, as long as you have a way to retrieve
 // the address and abi of the deployed contract nicely
 // const ContractWithFlashLoanArtifact = require("./build/contracts/FlashLoan.json");
 
