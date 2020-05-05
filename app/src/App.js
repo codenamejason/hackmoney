@@ -12,12 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import TextField from '@material-ui/core/TextField';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Card, CardHeader } from '@material-ui/core';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import AppsIcon from '@material-ui/icons/Apps';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Tabs from '@material-ui/core/Tabs';
@@ -30,8 +25,7 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@material-ui/core/colors';
-import { ThemeProvider } from '@material-ui/core/styles';
-import WalletTest from './components/Main/index.js'
+import IncomeStreamPanel from './components/IncomeStream/index.js'
 import './App.css'
 //import KycForm from './components/Forms/kycForm';
 import Web3 from "web3";
@@ -41,7 +35,8 @@ let web3
 
 const onboard = Onboard({
     dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
-    networkId: 5777,
+    networkId: 1,
+    darkMode: true,
     subscriptions: {
         wallet: wallet => {
             web3 = new Web3(wallet.provider)
@@ -208,10 +203,8 @@ function App() {
           </AppsIcon>
           <Typography variant="h6" noWrap>
             Income Stream
-          </Typography>
-          
-          <Button variant='contained' onClick={login} style={{ marginLeft: '25px' }}>Connect Wallet</Button>
-          
+          </Typography>          
+          <Button variant='contained' onClick={login} style={{ marginLeft: '25px' }}>Connect Wallet</Button>          
         </Toolbar>
       </AppBar>
       <Drawer
@@ -234,20 +227,60 @@ function App() {
         </div>
         <Divider />
         <List>
-          {[ 'dashboard', 'buy stream'].map((text, index) => (
+            <ListItem button key={0}>
+                <ListItemIcon>
+                    <AccountBalanceRoundedIcon /> 
+                    Dashboard
+                </ListItemIcon>
+            </ListItem>
+            <ListItem button key={1}>
+                <ListItemIcon>
+                    <AddIcon />
+                    Create Stream                    
+                </ListItemIcon>
+            </ListItem>
+            <ListItem button key={3}>
+                <ListItemIcon>
+                    
+                    Security
+                </ListItemIcon>
+            </ListItem>
+            <ListItem button key={4}>
+                <ListItemIcon>
+                    
+                    Use Cases
+                </ListItemIcon>
+            </ListItem>
+            <ListItem button key={5}>
+                <ListItemIcon>
+                    
+                    How it Works / Videos
+                </ListItemIcon>
+            </ListItem>
+            <ListItem button key={6}>
+                <ListItemIcon>
+                    About Us / Our Team
+                </ListItemIcon>
+            </ListItem>
+            <ListItem button key={7}>
+                <ListItemIcon>
+                    Support
+                </ListItemIcon>
+            </ListItem>
+          {/* {[ 'dashboard', 'buy stream'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <AccountBalanceRoundedIcon /> : <AttachMoneyIcon />}</ListItemIcon>
+              <ListItemIcon>
+                  {index % 2 === 0 ? <AccountBalanceRoundedIcon /> : <AttachMoneyIcon />}
+              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
         </List>
       </Drawer>
       <main className={classes.content} >
         <div className={classes.toolbar} />
-          {/* todo: check if they are verified and either hide/show */}
-          {/* kyc is just here to test */}
-                  <WalletTest />
-          {/* <Theming /> */}
+            {/* todo: check if they are verified and either hide/show */}         
+            <IncomeStreamPanel />
       </main>
       
     </div>
