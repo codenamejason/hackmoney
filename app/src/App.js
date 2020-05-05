@@ -175,7 +175,7 @@ function App() {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
   };
   
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
