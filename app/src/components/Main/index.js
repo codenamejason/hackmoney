@@ -360,9 +360,11 @@ function FormPanel({data}) {
     
     let userPayment = 0;
     if(amount == NaN || amount == undefined){
-      userPayment = <React.Fragment>{userPayment}</React.Fragment>       
+      userPayment = 0
+      //return userPayment    
     } else {
-      userPayment = <React.Fragment>{amount / (frequency * duration)}</React.Fragment>      
+      userPayment = amount / (frequency * duration)
+      //return userPayment
     }
 
 
@@ -406,9 +408,28 @@ function FormPanel({data}) {
                                 
                               </Grid>
                               <Grid item xs={6}>
-                                    <FormControl>
-                                         
-                                    </FormControl>                              
+                              <FormControl>
+                                          <InputLabel htmlFor="frequency" style={{ color: '#009be5' }} >
+                                              Frequency
+                                          </InputLabel>
+                                          <Select style={{ color: '#009be5' }}
+                                              native
+                                              value={frequency}
+                                              onChange={handleFrequencyChange}
+                                              inputProps={{
+                                                name: 'frequency',
+                                                id: 'frequency',
+                                              }}
+                                          >
+                                              <option aria-label="None" value="" />
+                                              <option value={'12'}>Monthly</option>
+                                              <option value={'04'}>Quarterly</option>
+                                              <option value={'01'}>Annualy</option>
+                                          </Select>
+                                          <FormHelperText style={{ color: '#FE6B8B' }}>
+                                          How often do you want paid
+                                          </FormHelperText>
+                                    </FormControl>                             
                               </Grid>
                               <Grid item xs>
                                   <FormControl>
@@ -438,46 +459,37 @@ function FormPanel({data}) {
                         </Grid>
                         <Grid container spacing={3}>
                               <Grid item xs>
+                                  <FormControl>
+                                      <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
+                                              Amount in USD
+                                      </InputLabel>
+                                      <Input
+                                          id="amount"
+                                          value={amount}
+                                          onChange={handleAmountChange}
+                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                      />
+                                      
+                                      <FormHelperText style={{ color: '#FE6B8B' }}>
+                                          Enter amount to contribute
+                                      </FormHelperText>
+                                    </FormControl>                                
+                              </Grid>
+                              <Grid item xs={6}>
                               <FormControl>
-                                        <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
+                                        <InputLabel htmlFor="userPayment" style={{ color: '#009be5' }}>
                                                 Amount in USD
                                         </InputLabel>
                                         <Input
-                                            id="amount"
-                                            value={amount}
-                                            onChange={handleAmountChange}
+                                            id="userPayment"
+                                            value={userPayment}
                                             startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                         />
                                         
                                         <FormHelperText style={{ color: '#FE6B8B' }}>
-                                            Enter amount to contribute
+                                            Your payout amount
                                         </FormHelperText>
-                                    </FormControl>  
-                                
-                              </Grid>
-                              <Grid item xs={6}>
-                                    <FormControl>
-                                          <InputLabel htmlFor="frequency" style={{ color: '#009be5' }} >
-                                              Frequency
-                                          </InputLabel>
-                                          <Select style={{ color: '#009be5' }}
-                                              native
-                                              value={frequency}
-                                              onChange={handleFrequencyChange}
-                                              inputProps={{
-                                                name: 'frequency',
-                                                id: 'frequency',
-                                              }}
-                                          >
-                                              <option aria-label="None" value="" />
-                                              <option value={'12'}>Monthly</option>
-                                              <option value={'04'}>Quarterly</option>
-                                              <option value={'01'}>Annualy</option>
-                                          </Select>
-                                          <FormHelperText style={{ color: '#FE6B8B' }}>
-                                          How often do you want paid
-                                          </FormHelperText>
-                                    </FormControl>                              
+                                    </FormControl> 
                               </Grid>
                               <Grid item xs>
                                 
@@ -511,13 +523,7 @@ function FormPanel({data}) {
                               </Grid>
                               <Grid item xs={6}>
                                     <FormControl>
-                                          <InputLabel htmlFor="frequency" style={{ color: '#009be5' }} >
-                                              
-                                          </InputLabel>
-                                         
-                                          <FormHelperText style={{ color: '#FE6B8B' }}>
-                                          Your Payment {userPayment}
-                                          </FormHelperText>
+                                          
                                     </FormControl>                              
                               </Grid>
                               <Grid item xs>

@@ -160,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-async function login() {
+async function connectWallet() {
   await onboard.walletSelect();
   await onboard.walletCheck(); 
 }
@@ -205,7 +205,7 @@ function App() {
           <Typography variant="h6" noWrap>
             Income Stream
           </Typography>          
-          <Button variant='contained' onClick={login} style={{ marginLeft: '25px' }}>Connect Wallet</Button>          
+          <Button variant='contained' onClick={connectWallet} style={{ marginLeft: '25px' }}>Connect Wallet</Button>          
         </Toolbar>
       </AppBar>
       <Drawer
@@ -228,7 +228,7 @@ function App() {
         </div>
         <Divider />
         <List>
-            <ListItem button key={0}>
+            {/* <ListItem button key={0}>
                 <ListItemIcon>
                     <AccountBalanceRoundedIcon /> 
                     Dashboard
@@ -267,26 +267,20 @@ function App() {
                 <ListItemIcon>
                     Support
                 </ListItemIcon>
-            </ListItem>
-          {/* {[ 'dashboard', 'buy stream'].map((text, index) => (
+            </ListItem> */}
+          {[ 'dashboard', 'buy stream'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                   {index % 2 === 0 ? <AccountBalanceRoundedIcon /> : <AttachMoneyIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))} */}
+          ))}
         </List>
       </Drawer>
       <main className={classes.content} >
         <div className={classes.toolbar} />
-          {/* todo: check if they are verified and either hide/show */}
-          {/* kyc is just here to test */}
           <IncomeStreamHome />
-          {/* <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="0rlSPxJaU" data-description="Support me on Buy me a coffee!" 
-          data-message="Thank you for visiting. You can now buy me a coffee!" data-color="#5F7FFF" data-position="right" data-x_margin="18" data-y_margin="18"></script> */}
-
-          {/* <Theming /> */}
       </main>
       
     </div>
@@ -323,94 +317,6 @@ function a11yProps(index) {
   };
 }
 
-function FloatingActionButtonZoom() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
-  const transitionDuration = {
-    enter: theme.transitions.duration.enteringScreen,
-    exit: theme.transitions.duration.leavingScreen,
-  };
-
-  const fabs = [
-    {
-      color: 'primary',
-      className: classes.fab,
-      icon: <AddIcon />,
-      label: 'Add',
-    },
-    {
-      color: 'secondary',
-      className: classes.fab,
-      icon: <EditIcon />,
-      label: 'Edit',
-    },
-    {
-      color: 'inherit',
-      className: clsx(classes.fab, classes.fabGreen),
-      icon: <UpIcon />,
-      label: 'Expand',
-    },
-  ];
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="action tabs example"
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          Item One
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
-      </SwipeableViews>
-      {fabs.map((fab, index) => (
-        <Zoom
-          key={fab.color}
-          in={value === index}
-          timeout={transitionDuration}
-          style={{
-            transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
-          }}
-          unmountOnExit
-        >
-          <Fab aria-label={fab.label} className={fab.className} color={fab.color}>
-            {fab.icon}
-          </Fab>
-        </Zoom>
-      ))}
-    </div>
-  );
-}
 
 const labels = [{ id: 0, name: 'label 1' }, { id: 1, name: 'label 2' }, { id: 2, name: 'label 3' }]
 
