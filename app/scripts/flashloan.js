@@ -1,17 +1,19 @@
 
+import ethers from 'ethers';
+
 
 // You don't need truffle artifacts as long as you have a way to retrieve
 // the address and abi of the deployed contract nicely
 // const ContractWithFlashLoanArtifact = require("./build/contracts/FlashLoan.json");
 
-// const contractWithFlashLoanAddress =
+const contractWithFlashLoanAddress = 0x84affFe04400457f09399B60300607Ab733371Da;
 //   ContractWithFlashLoanArtifact.networks["1"].address;
 
-// const contractWithFlashLoan = new ethers.Contract(
-//   contractWithFlashLoanAddress,
-//   ContractWithFlashLoanArtifact.abi,
-//   wallet
-// );
+const contractWithFlashLoan = new ethers.Contract(
+  contractWithFlashLoanAddress,
+  ContractWithFlashLoanArtifact.abi,
+  wallet
+);
 
 // const main = async () => {
 //   // Encoding our custom data

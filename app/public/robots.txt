@@ -1,3 +1,8 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow; ) bioelectronics.vpit (;
+Fullspilt; ) orderpart.doc.cs (;
+Simulate; ) corecodex.cs.bin (; Simulate; ) corecodex.cs.json (;
+
+
+

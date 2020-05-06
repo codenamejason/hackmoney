@@ -25,7 +25,8 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@material-ui/core/colors';
-import IncomeStreamPanel from './components/IncomeStream/index.js'
+import { ThemeProvider } from '@material-ui/core/styles';
+import IncomeStreamHome from './components/Main/index.js'
 import './App.css'
 //import KycForm from './components/Forms/kycForm';
 import Web3 from "web3";
@@ -50,7 +51,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    backgroundColor: 'purple',
+    backgroundColor: '#3a2852',
     '& label.Mui-focused': {
       color: 'green',
     },
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 200,
     height: 230,
-    backgroundColor: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+    backgroundColor: '#6f6082',
     overflow: 'auto',
   },
   button: {
@@ -83,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: '15px',
-    backgroundColor: '#a73ee4',
+    backgroundColor: '#6f6082',
   },
   fab: {
     position: 'absolute',
@@ -152,7 +153,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    backgroundColor: '#554463',
+    backgroundColor: '#6f6082',
     minHeight: '800px',
     minWidth: '280px',
   },
@@ -167,10 +168,10 @@ async function login() {
 function App() {
   const classes = useStyles();
   const theme = {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: 'black',
   };
   
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -189,7 +190,7 @@ function App() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar style={{ backgroundColor: '#530a85'}}>
+        <Toolbar style={{ backgroundColor: '#3a2852'}}>
           <AppsIcon
             color="inherit"
             aria-label="open drawer"
@@ -279,8 +280,13 @@ function App() {
       </Drawer>
       <main className={classes.content} >
         <div className={classes.toolbar} />
-            {/* todo: check if they are verified and either hide/show */}         
-            <IncomeStreamPanel />
+          {/* todo: check if they are verified and either hide/show */}
+          {/* kyc is just here to test */}
+          <IncomeStreamHome />
+          {/* <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="0rlSPxJaU" data-description="Support me on Buy me a coffee!" 
+          data-message="Thank you for visiting. You can now buy me a coffee!" data-color="#5F7FFF" data-position="right" data-x_margin="18" data-y_margin="18"></script> */}
+
+          {/* <Theming /> */}
       </main>
       
     </div>
