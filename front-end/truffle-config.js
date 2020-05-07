@@ -1,13 +1,15 @@
 require('babel-register');
 require('babel-polyfill');
+const HDWalletProvider = require("truffle-hdwallet-provider");
 
 // Locan Ganache Mnemonic
-const mnemonic = 'outside bridge shrimp above piece myth acquire doll void filter fit reject';
+const mnemonic = 'evoke club entry catalog unveil truly run lyrics melt property main noise';
+//'outside bridge shrimp above piece myth acquire doll void filter fit reject';
 
-//require('dotenv').config();
-// const mnemonic = process.env.MNEMONIC;
-// const HDWalletProvider = require("truffle-hdwallet-provider");
-// // // Create your own key for Production environments (https://infura.io/)
+// Infura MainNet
+//https://mainnet.infura.io/v3/1ad03ac212da4523b6c8337eace81a14
+//ganache-cli --fork https://mainnet.infura.io/v3/1ad03ac212da4523b6c8337eace81a14 -i 1
+
 // const INFURA_ID = process.env.INFURA_ID || 'e8cc7c8e245b46b482873ce9382a542b';
 
 // const configNetwok = (network, networkId, path = "m/44'/60'/0'/0/", gas = 4465030, gasPrice = 1e10) => ({
@@ -34,6 +36,22 @@ module.exports = {
       accounts: 5,
       defaultEtherBalance: 500,
       blockTime: 3
+    },
+    ropsten: {
+      provider: () => new HDWalletProvider(
+        mnemonic,
+        "https://ropsten.infura.io/v3/e8cc7c8e245b46b482873ce9382a542b"
+      ),
+      network_id: 3,
+      gas: 4700000
+    },
+    main: {
+      provider: () => new HDWalletProvider(
+        mnemonic,
+        "https://mainnet.infura.io/v3/e8cc7c8e245b46b482873ce9382a542b",
+      ),
+      network_id: 5,
+      gas: 4700000
     }
     // ropsten: configNetwok('ropsten', 3),
     // kovan: configNetwok('kovan', 42),
