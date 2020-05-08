@@ -1,8 +1,13 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import Web3 from "web3";
 import Onboard from 'bnc-onboard'
 import { Toolbar, Paper, Grid, Box, Button } from '@material-ui/core';
 import './App.css';
+import TabPanel from './components/TabPanel/index';
+import AppBar from './components/AppBar/index';
 
 let web3
 
@@ -19,17 +24,23 @@ const onboard = Onboard({
 })
 
 async function connectWallet() {
-
     await onboard.walletSelect();
-    await onboard.walletCheck();
-    
+    await onboard.walletCheck();    
 }
 
 function App() {
   return (
-    <div className="App">
-        <Button onClick={connectWallet}>Connect Wallet</Button>
-    </div>
+        <React.Fragment>
+            <Container className="App">
+                <AppBar />
+
+                
+    
+                <TabPanel />
+
+
+            </Container>            
+        </React.Fragment>
   );
 }
 
