@@ -44,14 +44,14 @@
     "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc20/iNETToken.sol",
     "exportedSymbols": {
       "iNETToken": [
-        741
+        743
       ]
     },
-    "id": 742,
+    "id": 744,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 728,
+        "id": 730,
         "literals": [
           "solidity",
           ">=",
@@ -67,10 +67,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 729,
+        "id": 731,
         "nodeType": "ImportDirective",
-        "scope": 742,
-        "sourceUnit": 1893,
+        "scope": 744,
+        "sourceUnit": 1895,
         "src": "37:55:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -82,9 +82,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 741,
+        "id": 743,
         "linearizedBaseContracts": [
-          741
+          743
         ],
         "name": "iNETToken",
         "nodeType": "ContractDefinition",
@@ -92,11 +92,11 @@
           {
             "constant": false,
             "functionSelector": "a0e2cc8c",
-            "id": 732,
+            "id": 734,
             "name": "defaultOperators",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 741,
+            "scope": 743,
             "src": "124:33:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -106,7 +106,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 730,
+                "id": 732,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "124:7:8",
@@ -116,7 +116,7 @@
                   "typeString": "address"
                 }
               },
-              "id": 731,
+              "id": 733,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "124:9:8",
@@ -130,14 +130,14 @@
           },
           {
             "body": {
-              "id": 735,
+              "id": 737,
               "nodeType": "Block",
               "src": "200:48:8",
               "statements": []
             },
             "documentation": null,
             "functionSelector": "d63c88a6",
-            "id": 736,
+            "id": 738,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -145,18 +145,18 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 733,
+              "id": 735,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "190:2:8"
             },
             "returnParameters": {
-              "id": 734,
+              "id": 736,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "200:0:8"
             },
-            "scope": 741,
+            "scope": 743,
             "src": "166:82:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -164,13 +164,13 @@
           },
           {
             "body": {
-              "id": 739,
+              "id": 741,
               "nodeType": "Block",
               "src": "277:116:8",
               "statements": []
             },
             "documentation": null,
-            "id": 740,
+            "id": 742,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -178,25 +178,25 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 737,
+              "id": 739,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "267:2:8"
             },
             "returnParameters": {
-              "id": 738,
+              "id": 740,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "277:0:8"
             },
-            "scope": 741,
+            "scope": 743,
             "src": "256:137:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 742,
+        "scope": 744,
         "src": "98:304:8"
       }
     ],
@@ -206,14 +206,14 @@
     "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc20/iNETToken.sol",
     "exportedSymbols": {
       "iNETToken": [
-        741
+        743
       ]
     },
-    "id": 742,
+    "id": 744,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 728,
+        "id": 730,
         "literals": [
           "solidity",
           ">=",
@@ -229,10 +229,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 729,
+        "id": 731,
         "nodeType": "ImportDirective",
-        "scope": 742,
-        "sourceUnit": 1893,
+        "scope": 744,
+        "sourceUnit": 1895,
         "src": "37:55:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -244,9 +244,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 741,
+        "id": 743,
         "linearizedBaseContracts": [
-          741
+          743
         ],
         "name": "iNETToken",
         "nodeType": "ContractDefinition",
@@ -254,11 +254,11 @@
           {
             "constant": false,
             "functionSelector": "a0e2cc8c",
-            "id": 732,
+            "id": 734,
             "name": "defaultOperators",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 741,
+            "scope": 743,
             "src": "124:33:8",
             "stateVariable": true,
             "storageLocation": "default",
@@ -268,7 +268,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 730,
+                "id": 732,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "124:7:8",
@@ -278,7 +278,7 @@
                   "typeString": "address"
                 }
               },
-              "id": 731,
+              "id": 733,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "124:9:8",
@@ -292,14 +292,14 @@
           },
           {
             "body": {
-              "id": 735,
+              "id": 737,
               "nodeType": "Block",
               "src": "200:48:8",
               "statements": []
             },
             "documentation": null,
             "functionSelector": "d63c88a6",
-            "id": 736,
+            "id": 738,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -307,18 +307,18 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 733,
+              "id": 735,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "190:2:8"
             },
             "returnParameters": {
-              "id": 734,
+              "id": 736,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "200:0:8"
             },
-            "scope": 741,
+            "scope": 743,
             "src": "166:82:8",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -326,13 +326,13 @@
           },
           {
             "body": {
-              "id": 739,
+              "id": 741,
               "nodeType": "Block",
               "src": "277:116:8",
               "statements": []
             },
             "documentation": null,
-            "id": 740,
+            "id": 742,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -340,25 +340,25 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 737,
+              "id": 739,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "267:2:8"
             },
             "returnParameters": {
-              "id": 738,
+              "id": 740,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "277:0:8"
             },
-            "scope": 741,
+            "scope": 743,
             "src": "256:137:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 742,
+        "scope": 744,
         "src": "98:304:8"
       }
     ],
@@ -370,7 +370,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-08T17:12:55.049Z",
+  "updatedAt": "2020-05-08T22:40:20.006Z",
   "devdoc": {
     "methods": {}
   },

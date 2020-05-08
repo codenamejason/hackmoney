@@ -6,8 +6,8 @@ import Web3 from "web3";
 import Onboard from 'bnc-onboard'
 import { Toolbar, Paper, Grid, Box, Button } from '@material-ui/core';
 import './App.css';
-import TabPanel from './components/TabPanel/index';
 import AppBar from './components/AppBar/index';
+import Home from './components/Home/index';
 
 let web3
 
@@ -33,12 +33,7 @@ function App() {
         <React.Fragment>
             <Container className="App">
                 <AppBar />
-
-                
-    
-                <TabPanel />
-
-
+                <Home />    
             </Container>            
         </React.Fragment>
   );
