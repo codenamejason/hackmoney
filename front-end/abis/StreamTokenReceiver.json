@@ -2809,7 +2809,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-08T14:58:02.013Z",
+  "updatedAt": "2020-05-08T17:12:55.053Z",
   "devdoc": {
     "details": "Very simple ERC777 Recipient",
     "methods": {},

@@ -41,18 +41,26 @@ module.exports = {
       defaultEtherBalance: 500,
       blockTime: 3
     },
+    kovan: {
+	    provider: new HDWalletProvider(mnemonic, "https://kovan.infura.io/v3/1ad03ac212da4523b6c8337eace81a14"),
+	    network_id: 42,
+	    gas: 5000000,
+		gasPrice: 5000000000, // 5 Gwei
+		skipDryRun: true
+	  },
     ropsten: {
       provider: () => new HDWalletProvider(
         rop,
-        "https://ropsten.infura.io/v3/e8cc7c8e245b46b482873ce9382a542b"
+        "https://ropsten.infura.io/v3/1ad03ac212da4523b6c8337eace81a14"
       ),
       network_id: 3,
-      gas: 4700000
+      gas: 5000000,
+      gasPrice: 5000000000 // 5 Gwei
     },
     main: {
       provider: () => new HDWalletProvider(
         mnemonic,
-        "https://mainnet.infura.io/v3/e8cc7c8e245b46b482873ce9382a542b",
+        "https://mainnet.infura.io/v3/1ad03ac212da4523b6c8337eace81a14",
       ),
       network_id: 5,
       gas: 4700000
