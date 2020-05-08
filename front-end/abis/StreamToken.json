@@ -573,14 +573,14 @@
     "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc777/StreamToken.sol",
     "exportedSymbols": {
       "StreamToken": [
-        771
+        773
       ]
     },
-    "id": 772,
+    "id": 774,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 743,
+        "id": 745,
         "literals": [
           "solidity",
           ">=",
@@ -596,10 +596,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC777/ERC777.sol",
         "file": "@openzeppelin/contracts/token/ERC777/ERC777.sol",
-        "id": 744,
+        "id": 746,
         "nodeType": "ImportDirective",
-        "scope": 772,
-        "sourceUnit": 3261,
+        "scope": 774,
+        "sourceUnit": 3263,
         "src": "37:57:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -611,44 +611,44 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 745,
+              "id": 747,
               "name": "ERC777",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3260,
+              "referencedDeclaration": 3262,
               "src": "122:6:9",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC777_$3260",
+                "typeIdentifier": "t_contract$_ERC777_$3262",
                 "typeString": "contract ERC777"
               }
             },
-            "id": 746,
+            "id": 748,
             "nodeType": "InheritanceSpecifier",
             "src": "122:6:9"
           }
         ],
         "contractDependencies": [
-          962,
-          1961,
-          3260,
-          3405
+          964,
+          1963,
+          3262,
+          3407
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 771,
+        "id": 773,
         "linearizedBaseContracts": [
-          771,
-          3260,
-          1961,
-          3405,
-          962
+          773,
+          3262,
+          1963,
+          3407,
+          964
         ],
         "name": "StreamToken",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 769,
+              "id": 771,
               "nodeType": "Block",
               "src": "239:74:9",
               "statements": [
@@ -660,7 +660,7 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 759,
+                          "id": 761,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -671,7 +671,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 760,
+                        "id": 762,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -691,7 +691,7 @@
                           "typeIdentifier": "t_rational_10000000000000000000000_by_1",
                           "typeString": "int_const 10000000000000000000000"
                         },
-                        "id": 765,
+                        "id": 767,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -699,7 +699,7 @@
                         "leftExpression": {
                           "argumentTypes": null,
                           "hexValue": "3130303030",
-                          "id": 761,
+                          "id": 763,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -722,7 +722,7 @@
                             "typeIdentifier": "t_rational_1000000000000000000_by_1",
                             "typeString": "int_const 1000000000000000000"
                           },
-                          "id": 764,
+                          "id": 766,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -730,7 +730,7 @@
                           "leftExpression": {
                             "argumentTypes": null,
                             "hexValue": "3130",
-                            "id": 762,
+                            "id": 764,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -750,7 +750,7 @@
                           "rightExpression": {
                             "argumentTypes": null,
                             "hexValue": "3138",
-                            "id": 763,
+                            "id": 765,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -780,7 +780,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "496e697469616c20537570706c79205478",
-                        "id": 766,
+                        "id": 768,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -811,18 +811,18 @@
                           "typeString": "literal_string \"Initial Supply Tx\""
                         }
                       ],
-                      "id": 758,
+                      "id": 760,
                       "name": "send",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2413,
+                      "referencedDeclaration": 2415,
                       "src": "250:4:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,uint256,bytes memory)"
                       }
                     },
-                    "id": 767,
+                    "id": 769,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -837,14 +837,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 768,
+                  "id": 770,
                   "nodeType": "ExpressionStatement",
                   "src": "250:55:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 770,
+            "id": 772,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -853,7 +853,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "53747265616d20546f6b656e",
-                    "id": 749,
+                    "id": 751,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -871,7 +871,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "694e455473",
-                    "id": 750,
+                    "id": 752,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -892,7 +892,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "30",
-                        "id": 754,
+                        "id": 756,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -915,7 +915,7 @@
                           "typeString": "int_const 0"
                         }
                       ],
-                      "id": 753,
+                      "id": 755,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -928,7 +928,7 @@
                       },
                       "typeName": {
                         "baseType": {
-                          "id": 751,
+                          "id": 753,
                           "name": "address",
                           "nodeType": "ElementaryTypeName",
                           "src": "220:7:9",
@@ -938,7 +938,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 752,
+                        "id": 754,
                         "length": null,
                         "nodeType": "ArrayTypeName",
                         "src": "220:9:9",
@@ -948,7 +948,7 @@
                         }
                       }
                     },
-                    "id": 755,
+                    "id": 757,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -964,17 +964,17 @@
                     }
                   }
                 ],
-                "id": 756,
+                "id": 758,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 748,
+                  "id": 750,
                   "name": "ERC777",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3260,
+                  "referencedDeclaration": 3262,
                   "src": "184:6:9",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC777_$3260_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC777_$3262_$",
                     "typeString": "type(contract ERC777)"
                   }
                 },
@@ -986,25 +986,25 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 747,
+              "id": 749,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "165:2:9"
             },
             "returnParameters": {
-              "id": 757,
+              "id": 759,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "239:0:9"
             },
-            "scope": 771,
+            "scope": 773,
             "src": "154:159:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 772,
+        "scope": 774,
         "src": "98:230:9"
       }
     ],
@@ -1014,14 +1014,14 @@
     "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc777/StreamToken.sol",
     "exportedSymbols": {
       "StreamToken": [
-        771
+        773
       ]
     },
-    "id": 772,
+    "id": 774,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 743,
+        "id": 745,
         "literals": [
           "solidity",
           ">=",
@@ -1037,10 +1037,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC777/ERC777.sol",
         "file": "@openzeppelin/contracts/token/ERC777/ERC777.sol",
-        "id": 744,
+        "id": 746,
         "nodeType": "ImportDirective",
-        "scope": 772,
-        "sourceUnit": 3261,
+        "scope": 774,
+        "sourceUnit": 3263,
         "src": "37:57:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1052,44 +1052,44 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 745,
+              "id": 747,
               "name": "ERC777",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3260,
+              "referencedDeclaration": 3262,
               "src": "122:6:9",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC777_$3260",
+                "typeIdentifier": "t_contract$_ERC777_$3262",
                 "typeString": "contract ERC777"
               }
             },
-            "id": 746,
+            "id": 748,
             "nodeType": "InheritanceSpecifier",
             "src": "122:6:9"
           }
         ],
         "contractDependencies": [
-          962,
-          1961,
-          3260,
-          3405
+          964,
+          1963,
+          3262,
+          3407
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 771,
+        "id": 773,
         "linearizedBaseContracts": [
-          771,
-          3260,
-          1961,
-          3405,
-          962
+          773,
+          3262,
+          1963,
+          3407,
+          964
         ],
         "name": "StreamToken",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 769,
+              "id": 771,
               "nodeType": "Block",
               "src": "239:74:9",
               "statements": [
@@ -1101,7 +1101,7 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 759,
+                          "id": 761,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -1112,7 +1112,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 760,
+                        "id": 762,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1132,7 +1132,7 @@
                           "typeIdentifier": "t_rational_10000000000000000000000_by_1",
                           "typeString": "int_const 10000000000000000000000"
                         },
-                        "id": 765,
+                        "id": 767,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1140,7 +1140,7 @@
                         "leftExpression": {
                           "argumentTypes": null,
                           "hexValue": "3130303030",
-                          "id": 761,
+                          "id": 763,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1163,7 +1163,7 @@
                             "typeIdentifier": "t_rational_1000000000000000000_by_1",
                             "typeString": "int_const 1000000000000000000"
                           },
-                          "id": 764,
+                          "id": 766,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1171,7 +1171,7 @@
                           "leftExpression": {
                             "argumentTypes": null,
                             "hexValue": "3130",
-                            "id": 762,
+                            "id": 764,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1191,7 +1191,7 @@
                           "rightExpression": {
                             "argumentTypes": null,
                             "hexValue": "3138",
-                            "id": 763,
+                            "id": 765,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1221,7 +1221,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "496e697469616c20537570706c79205478",
-                        "id": 766,
+                        "id": 768,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1252,18 +1252,18 @@
                           "typeString": "literal_string \"Initial Supply Tx\""
                         }
                       ],
-                      "id": 758,
+                      "id": 760,
                       "name": "send",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2413,
+                      "referencedDeclaration": 2415,
                       "src": "250:4:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$_t_bytes_memory_ptr_$returns$__$",
                         "typeString": "function (address,uint256,bytes memory)"
                       }
                     },
-                    "id": 767,
+                    "id": 769,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1278,14 +1278,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 768,
+                  "id": 770,
                   "nodeType": "ExpressionStatement",
                   "src": "250:55:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 770,
+            "id": 772,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -1294,7 +1294,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "53747265616d20546f6b656e",
-                    "id": 749,
+                    "id": 751,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -1312,7 +1312,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "694e455473",
-                    "id": 750,
+                    "id": 752,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -1333,7 +1333,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "30",
-                        "id": 754,
+                        "id": 756,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1356,7 +1356,7 @@
                           "typeString": "int_const 0"
                         }
                       ],
-                      "id": 753,
+                      "id": 755,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1369,7 +1369,7 @@
                       },
                       "typeName": {
                         "baseType": {
-                          "id": 751,
+                          "id": 753,
                           "name": "address",
                           "nodeType": "ElementaryTypeName",
                           "src": "220:7:9",
@@ -1379,7 +1379,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 752,
+                        "id": 754,
                         "length": null,
                         "nodeType": "ArrayTypeName",
                         "src": "220:9:9",
@@ -1389,7 +1389,7 @@
                         }
                       }
                     },
-                    "id": 755,
+                    "id": 757,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -1405,17 +1405,17 @@
                     }
                   }
                 ],
-                "id": 756,
+                "id": 758,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 748,
+                  "id": 750,
                   "name": "ERC777",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3260,
+                  "referencedDeclaration": 3262,
                   "src": "184:6:9",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC777_$3260_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC777_$3262_$",
                     "typeString": "type(contract ERC777)"
                   }
                 },
@@ -1427,25 +1427,25 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 747,
+              "id": 749,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "165:2:9"
             },
             "returnParameters": {
-              "id": 757,
+              "id": 759,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "239:0:9"
             },
-            "scope": 771,
+            "scope": 773,
             "src": "154:159:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 772,
+        "scope": 774,
         "src": "98:230:9"
       }
     ],
@@ -1457,7 +1457,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-08T21:24:26.248Z",
+  "updatedAt": "2020-05-08T22:40:20.007Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

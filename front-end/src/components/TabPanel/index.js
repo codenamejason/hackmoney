@@ -8,8 +8,9 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-function TabPanel(props) {
+function TabPanel(props, home) {
   const { children, value, index, ...other } = props;
+
 
   return (
     <div

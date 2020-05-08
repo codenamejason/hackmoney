@@ -27,6 +27,7 @@ contract Flashloan is FlashLoanReceiverBase {
         // !! Ensure that *this contract* has enough of `_reserve` funds to payback the `_fee` !!
         //
 
+        // Pay back the loan plus the fee
         uint totalDebt = _amount.add(_fee);
         transferFundsBackToPoolInternal(_reserve, totalDebt);
     }
@@ -35,10 +36,12 @@ contract Flashloan is FlashLoanReceiverBase {
         Flash loan 1000000000000000000 wei (1 ether) worth of `_asset`
      */
     function flashloan(address _asset) public onlyOwner {
-        bytes memory data = "";
-        uint amount = 1;
+        //address receiver = address(this); // Can also be a separate contract
+        //address asset = 0x6b175474e89094c44da98b954eedeac495271d0f; // Dai
+        uint amount = 100 * 1e18; // 100 DAI
+        bytes memory params = "";
 
         ILendingPool lendingPool = ILendingPool(addressesProvider.getLendingPool());
-        lendingPool.flashLoan(address(this), _asset, amount, data);
+        lendingPool.flashLoan(address(this), _asset, amount, params);
     }
 }

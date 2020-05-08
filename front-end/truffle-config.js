@@ -42,7 +42,7 @@ module.exports = {
       blockTime: 3
     },
     kovan: {
-	    provider: new HDWalletProvider(mnemonic, "https://kovan.infura.io/v3/1ad03ac212da4523b6c8337eace81a14"),
+	    provider: new HDWalletProvider(mnemonic, "https://kovan.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382"),
 	    network_id: 42,
 	    gas: 5000000,
 		gasPrice: 5000000000, // 5 Gwei
@@ -50,8 +50,8 @@ module.exports = {
 	  },
     ropsten: {
       provider: () => new HDWalletProvider(
-        rop,
-        "https://ropsten.infura.io/v3/1ad03ac212da4523b6c8337eace81a14"
+        mnemonic,
+        "https://ropsten.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382"
       ),
       network_id: 3,
       gas: 5000000,
@@ -60,13 +60,13 @@ module.exports = {
     main: {
       provider: () => new HDWalletProvider(
         mnemonic,
-        "https://mainnet.infura.io/v3/1ad03ac212da4523b6c8337eace81a14",
+        "https://mainnet.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382",
       ),
       network_id: 5,
       gas: 4700000
     },
     kovan: {
-	    provider: new HDWalletProvider(rop, "https://kovan.infura.io/v3/1ad03ac212da4523b6c8337eace81a14"),
+	    provider: new HDWalletProvider(rop, "https://kovan.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382"),
 	    network_id: 42,
 	    gas: 5000000,
       gasPrice: 5000000000, // 5 Gwei
