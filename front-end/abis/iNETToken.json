@@ -33,25 +33,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"defaultOperators\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintMinerReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/iNETToken.sol\":\"iNETToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/iNETToken.sol\":{\"keccak256\":\"0x0dabc33abe8e84947dfcf88d196f79fd309d4b4b52ced7f569d3826a3277e466\",\"urls\":[\"bzz-raw://b88678df320d5e5ab746720ad198c51c2a4592c41d6031f0b20487a0021a27bb\",\"dweb:/ipfs/QmcqtMu5rovD2dDpvvzXfuVf36kjYNLAHYznHvdYqC5NkC\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x0de74dfa6b37943c1b834cbd8fb7a8d052e5ff80c7adb33692102dd6cd2985e9\",\"urls\":[\"bzz-raw://9d2d827fcf4a838f5821732c0acd6a40d21c2a5a2cfe2563feec91465f47bb60\",\"dweb:/ipfs/Qmex3wMKf5Sghbfvr288RUg1kP2uAyTMf11w83WbMbpQQc\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x04d34b3cd5677bea25f8dfceb6dec0eaa071d4d4b789a43f13fe0c415ba4c296\",\"urls\":[\"bzz-raw://e7e8b526a6839e5ba14f0d23a830387fec47f7043ce01d42c9f285b709a9d080\",\"dweb:/ipfs/QmXmhhFmX5gcAvVzNiDPAGA35iHMPNaYtQkACswRHBVTNw\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x3211de52f707a62a356a34fdea9d6a7bed46402d5ce45f1891a16fe2132fbb47\",\"urls\":[\"bzz-raw://45dfe794ad43a3674fab38a378c57eb6ed3353949f6529ccad4a4cbc91d45fc5\",\"dweb:/ipfs/QmReFGciE9fgsb6Nas1Fx593pzKWMjaDa1VQg4CEJQaD6U\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x6cc1cb934a3ac2137a7dcaed018af9e235392236ceecfd3687259702b9c767ad\",\"urls\":[\"bzz-raw://0055fa88138cd1c3c6440370f8580f85857f8fe9dec41c99af9eafbeb8d9c3ce\",\"dweb:/ipfs/QmX1xDh8vwGLLCH8ti45eXjQ7Wcxv1FEGTR3jkFnd5Nv6F\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x5f7da58ee3d9faa9b8999a93d49c8ff978f1afc88ae9bcfc6f9cbb44da011c2b\",\"urls\":[\"bzz-raw://4f089d954b3ecaa26949412fe63e9a184b056562c6c13dd4a0529a5d9a2e685a\",\"dweb:/ipfs/QmVK5iCNAMcEJQxT59bsC5E53JQASDQPU6khHox3d5ZXCn\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5061011d806100206000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c8063a0e2cc8c146037578063d63c88a61460a2575b600080fd5b606060048036036020811015604b57600080fd5b810190808035906020019092919050505060aa565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60a860e5565b005b6000818154811060b657fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b56fea26469706673582212209e0ec4bf72b5466c4a3c810c3c01719345fd29c1cb62b1085b73c621846056ea64736f6c63430006020033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c8063a0e2cc8c146037578063d63c88a61460a2575b600080fd5b606060048036036020811015604b57600080fd5b810190808035906020019092919050505060aa565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60a860e5565b005b6000818154811060b657fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b56fea26469706673582212209e0ec4bf72b5466c4a3c810c3c01719345fd29c1cb62b1085b73c621846056ea64736f6c63430006020033",
-  "sourceMap": "98:304:2:-:0;;;256:137;8:9:-1;5:2;;;30:1;27;20:12;5:2;256:137:2;98:304;;;;;;",
-  "deployedSourceMap": "98:304:2:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;98:304:2;;;;;;;;;;;;;;;;;;;;;;;;124:33;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;124:33:2;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;166:82;;;:::i;:::-;;124:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;166:82::-;:::o",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"defaultOperators\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"mintMinerReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc20/iNETToken.sol\":\"iNETToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc20/iNETToken.sol\":{\"keccak256\":\"0x0dabc33abe8e84947dfcf88d196f79fd309d4b4b52ced7f569d3826a3277e466\",\"urls\":[\"bzz-raw://b88678df320d5e5ab746720ad198c51c2a4592c41d6031f0b20487a0021a27bb\",\"dweb:/ipfs/QmcqtMu5rovD2dDpvvzXfuVf36kjYNLAHYznHvdYqC5NkC\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x0de74dfa6b37943c1b834cbd8fb7a8d052e5ff80c7adb33692102dd6cd2985e9\",\"urls\":[\"bzz-raw://9d2d827fcf4a838f5821732c0acd6a40d21c2a5a2cfe2563feec91465f47bb60\",\"dweb:/ipfs/Qmex3wMKf5Sghbfvr288RUg1kP2uAyTMf11w83WbMbpQQc\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x04d34b3cd5677bea25f8dfceb6dec0eaa071d4d4b789a43f13fe0c415ba4c296\",\"urls\":[\"bzz-raw://e7e8b526a6839e5ba14f0d23a830387fec47f7043ce01d42c9f285b709a9d080\",\"dweb:/ipfs/QmXmhhFmX5gcAvVzNiDPAGA35iHMPNaYtQkACswRHBVTNw\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x3211de52f707a62a356a34fdea9d6a7bed46402d5ce45f1891a16fe2132fbb47\",\"urls\":[\"bzz-raw://45dfe794ad43a3674fab38a378c57eb6ed3353949f6529ccad4a4cbc91d45fc5\",\"dweb:/ipfs/QmReFGciE9fgsb6Nas1Fx593pzKWMjaDa1VQg4CEJQaD6U\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x6cc1cb934a3ac2137a7dcaed018af9e235392236ceecfd3687259702b9c767ad\",\"urls\":[\"bzz-raw://0055fa88138cd1c3c6440370f8580f85857f8fe9dec41c99af9eafbeb8d9c3ce\",\"dweb:/ipfs/QmX1xDh8vwGLLCH8ti45eXjQ7Wcxv1FEGTR3jkFnd5Nv6F\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x5f7da58ee3d9faa9b8999a93d49c8ff978f1afc88ae9bcfc6f9cbb44da011c2b\",\"urls\":[\"bzz-raw://4f089d954b3ecaa26949412fe63e9a184b056562c6c13dd4a0529a5d9a2e685a\",\"dweb:/ipfs/QmVK5iCNAMcEJQxT59bsC5E53JQASDQPU6khHox3d5ZXCn\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061011d806100206000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c8063a0e2cc8c146037578063d63c88a61460a2575b600080fd5b606060048036036020811015604b57600080fd5b810190808035906020019092919050505060aa565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60a860e5565b005b6000818154811060b657fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b56fea26469706673582212209b778da7b21ec803b150a6ea944e1df7704203930c93dc72ced5c20f7ad6808464736f6c63430006020033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c8063a0e2cc8c146037578063d63c88a61460a2575b600080fd5b606060048036036020811015604b57600080fd5b810190808035906020019092919050505060aa565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60a860e5565b005b6000818154811060b657fe5b906000526020600020016000915054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b56fea26469706673582212209b778da7b21ec803b150a6ea944e1df7704203930c93dc72ced5c20f7ad6808464736f6c63430006020033",
+  "sourceMap": "98:304:8:-:0;;;256:137;8:9:-1;5:2;;;30:1;27;20:12;5:2;256:137:8;98:304;;;;;;",
+  "deployedSourceMap": "98:304:8:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;98:304:8;;;;;;;;;;;;;;;;;;;;;;;;124:33;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;124:33:8;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;166:82;;;:::i;:::-;;124:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;166:82::-;:::o",
   "source": "pragma solidity  >=0.4.22 <0.7.0;\r\n\r\nimport \"@openzeppelin/contracts/token/ERC20/ERC20.sol\";\r\n\r\n\r\ncontract iNETToken {\r\n    address[] public defaultOperators;\r\n\r\n    function mintMinerReward() public {\r\n        //_mint(block.coinbase, 1000);\r\n    }\r\n\r\n    constructor() public {\r\n        // 1 Billion Tokens minted at creation\r\n        //_mint(msg.sender, 1000000000000000000000000000);\r\n    }\r\n\r\n\r\n\r\n}",
-  "sourcePath": "C:\\Projects\\Hackathons\\HackMoney\\dev\\front-end\\contracts\\token\\iNETToken.sol",
+  "sourcePath": "C:\\Projects\\Hackathons\\HackMoney\\dev\\front-end\\contracts\\token\\erc20\\iNETToken.sol",
   "ast": {
-    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/iNETToken.sol",
+    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc20/iNETToken.sol",
     "exportedSymbols": {
       "iNETToken": [
-        124
+        741
       ]
     },
-    "id": 125,
+    "id": 742,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 111,
+        "id": 728,
         "literals": [
           "solidity",
           ">=",
@@ -62,16 +62,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:33:2"
+        "src": "0:33:8"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 112,
+        "id": 729,
         "nodeType": "ImportDirective",
-        "scope": 125,
-        "sourceUnit": 890,
-        "src": "37:55:2",
+        "scope": 742,
+        "sourceUnit": 1893,
+        "src": "37:55:8",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -82,9 +82,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 124,
+        "id": 741,
         "linearizedBaseContracts": [
-          124
+          741
         ],
         "name": "iNETToken",
         "nodeType": "ContractDefinition",
@@ -92,12 +92,12 @@
           {
             "constant": false,
             "functionSelector": "a0e2cc8c",
-            "id": 115,
+            "id": 732,
             "name": "defaultOperators",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 124,
-            "src": "124:33:2",
+            "scope": 741,
+            "src": "124:33:8",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -106,20 +106,20 @@
             },
             "typeName": {
               "baseType": {
-                "id": 113,
+                "id": 730,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "124:7:2",
+                "src": "124:7:8",
                 "stateMutability": "nonpayable",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
-              "id": 114,
+              "id": 731,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "124:9:2",
+              "src": "124:9:8",
               "typeDescriptions": {
                 "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                 "typeString": "address[]"
@@ -130,14 +130,14 @@
           },
           {
             "body": {
-              "id": 118,
+              "id": 735,
               "nodeType": "Block",
-              "src": "200:48:2",
+              "src": "200:48:8",
               "statements": []
             },
             "documentation": null,
             "functionSelector": "d63c88a6",
-            "id": 119,
+            "id": 736,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -145,32 +145,32 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 116,
+              "id": 733,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "190:2:2"
+              "src": "190:2:8"
             },
             "returnParameters": {
-              "id": 117,
+              "id": 734,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "200:0:2"
+              "src": "200:0:8"
             },
-            "scope": 124,
-            "src": "166:82:2",
+            "scope": 741,
+            "src": "166:82:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 122,
+              "id": 739,
               "nodeType": "Block",
-              "src": "277:116:2",
+              "src": "277:116:8",
               "statements": []
             },
             "documentation": null,
-            "id": 123,
+            "id": 740,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -178,42 +178,42 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 120,
+              "id": 737,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "267:2:2"
+              "src": "267:2:8"
             },
             "returnParameters": {
-              "id": 121,
+              "id": 738,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "277:0:2"
+              "src": "277:0:8"
             },
-            "scope": 124,
-            "src": "256:137:2",
+            "scope": 741,
+            "src": "256:137:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 125,
-        "src": "98:304:2"
+        "scope": 742,
+        "src": "98:304:8"
       }
     ],
-    "src": "0:402:2"
+    "src": "0:402:8"
   },
   "legacyAST": {
-    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/iNETToken.sol",
+    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/token/erc20/iNETToken.sol",
     "exportedSymbols": {
       "iNETToken": [
-        124
+        741
       ]
     },
-    "id": 125,
+    "id": 742,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 111,
+        "id": 728,
         "literals": [
           "solidity",
           ">=",
@@ -224,16 +224,16 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:33:2"
+        "src": "0:33:8"
       },
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "id": 112,
+        "id": 729,
         "nodeType": "ImportDirective",
-        "scope": 125,
-        "sourceUnit": 890,
-        "src": "37:55:2",
+        "scope": 742,
+        "sourceUnit": 1893,
+        "src": "37:55:8",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -244,9 +244,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 124,
+        "id": 741,
         "linearizedBaseContracts": [
-          124
+          741
         ],
         "name": "iNETToken",
         "nodeType": "ContractDefinition",
@@ -254,12 +254,12 @@
           {
             "constant": false,
             "functionSelector": "a0e2cc8c",
-            "id": 115,
+            "id": 732,
             "name": "defaultOperators",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 124,
-            "src": "124:33:2",
+            "scope": 741,
+            "src": "124:33:8",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -268,20 +268,20 @@
             },
             "typeName": {
               "baseType": {
-                "id": 113,
+                "id": 730,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "124:7:2",
+                "src": "124:7:8",
                 "stateMutability": "nonpayable",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
-              "id": 114,
+              "id": 731,
               "length": null,
               "nodeType": "ArrayTypeName",
-              "src": "124:9:2",
+              "src": "124:9:8",
               "typeDescriptions": {
                 "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                 "typeString": "address[]"
@@ -292,14 +292,14 @@
           },
           {
             "body": {
-              "id": 118,
+              "id": 735,
               "nodeType": "Block",
-              "src": "200:48:2",
+              "src": "200:48:8",
               "statements": []
             },
             "documentation": null,
             "functionSelector": "d63c88a6",
-            "id": 119,
+            "id": 736,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -307,32 +307,32 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 116,
+              "id": 733,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "190:2:2"
+              "src": "190:2:8"
             },
             "returnParameters": {
-              "id": 117,
+              "id": 734,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "200:0:2"
+              "src": "200:0:8"
             },
-            "scope": 124,
-            "src": "166:82:2",
+            "scope": 741,
+            "src": "166:82:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 122,
+              "id": 739,
               "nodeType": "Block",
-              "src": "277:116:2",
+              "src": "277:116:8",
               "statements": []
             },
             "documentation": null,
-            "id": 123,
+            "id": 740,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -340,29 +340,29 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 120,
+              "id": 737,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "267:2:2"
+              "src": "267:2:8"
             },
             "returnParameters": {
-              "id": 121,
+              "id": 738,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "277:0:2"
+              "src": "277:0:8"
             },
-            "scope": 124,
-            "src": "256:137:2",
+            "scope": 741,
+            "src": "256:137:8",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 125,
-        "src": "98:304:2"
+        "scope": 742,
+        "src": "98:304:8"
       }
     ],
-    "src": "0:402:2"
+    "src": "0:402:8"
   },
   "compiler": {
     "name": "solc",
@@ -370,7 +370,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-06T13:25:10.931Z",
+  "updatedAt": "2020-05-08T17:12:55.049Z",
   "devdoc": {
     "methods": {}
   },
