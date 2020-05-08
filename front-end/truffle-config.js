@@ -3,7 +3,11 @@ require('babel-polyfill');
 const HDWalletProvider = require("truffle-hdwallet-provider");
 
 // Locan Ganache Mnemonic
-const mnemonic = 'evoke club entry catalog unveil truly run lyrics melt property main noise';
+const mnemonic = 'evoke club entry catalog unveil truly run lyrics melt property main noise'; // funded accounts[0]
+const maintest = 'gap cage shrug cake general simple cable air raw vessel dignity reduce'; // funded accounts[0]
+const ganache = 'outside bridge shrimp above piece myth acquire doll void filter fit reject';
+const rop = 'process eternal ill spawn purpose replace solve humble mimic nothing element portion';
+
 //'outside bridge shrimp above piece myth acquire doll void filter fit reject';
 
 // Infura MainNet
@@ -25,7 +29,7 @@ const mnemonic = 'evoke club entry catalog unveil truly run lyrics melt property
 module.exports = {
   networks: {
     development: {
-      mnemonic: mnemonic,
+      mnemonic: ganache,
       host: "127.0.0.1",
       port: 8545,
       network_id: "*" // Match any network id
@@ -39,7 +43,7 @@ module.exports = {
     },
     ropsten: {
       provider: () => new HDWalletProvider(
-        mnemonic,
+        rop,
         "https://ropsten.infura.io/v3/e8cc7c8e245b46b482873ce9382a542b"
       ),
       network_id: 3,
@@ -52,7 +56,14 @@ module.exports = {
       ),
       network_id: 5,
       gas: 4700000
-    }
+    },
+    kovan: {
+	    provider: new HDWalletProvider(rop, "https://kovan.infura.io/v3/1ad03ac212da4523b6c8337eace81a14"),
+	    network_id: 42,
+	    gas: 5000000,
+      gasPrice: 5000000000, // 5 Gwei
+      skipDryRun: true
+	  },
     // ropsten: configNetwok('ropsten', 3),
     // kovan: configNetwok('kovan', 42),
     // rinkeby: configNetwok('rinkeby', 4),
