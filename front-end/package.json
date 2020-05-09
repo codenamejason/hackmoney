@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^7.1.2",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
+    "bnc-notify": "^1.2.0",
     "bnc-onboard": "^1.7.8",
     "chalk": "^4.0.0",
     "moment": "^2.25.3",
@@ -20,7 +21,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-swipeable-views": "^0.13.9",
-    "truffle-hdwallet-provider": "1.0.6"
+    "truffle-hdwallet-provider": "1.0.6",
+    "web3": "1.2.7"
   },
   "scripts": {
     "start": "react-scripts start",
