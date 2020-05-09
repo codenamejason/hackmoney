@@ -24,19 +24,22 @@ const onboard = Onboard({
 })
 
 async function connectWallet() {
+    //await authenticateThreeBox();
     await onboard.walletSelect();
     await onboard.walletCheck();    
 }
 
 function App() {
-  return (
-        <React.Fragment>
-            <Container className="App">
-                <AppBar />
-                <Home />    
-            </Container>            
-        </React.Fragment>
-  );
+    //getProfileData3Box()
+
+    return (
+            <React.Fragment>
+                <Container className="App">
+                    <AppBar />
+                    <Home />    
+                </Container>            
+            </React.Fragment>
+    );
 }
 
 export default App;
