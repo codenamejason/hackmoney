@@ -410,8 +410,8 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-08T22:40:19.992Z",
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-10T16:37:11.570Z",
   "devdoc": {
     "author": "Aave",
     "details": "implement this interface to develop a flashloan-compatible flashLoanReceiver contract*",

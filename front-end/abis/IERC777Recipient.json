@@ -51,14 +51,14 @@
     "absolutePath": "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol",
     "exportedSymbols": {
       "IERC777Recipient": [
-        3425
+        3464
       ]
     },
-    "id": 3426,
+    "id": 3465,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3409,
+        "id": 3448,
         "literals": [
           "solidity",
           "^",
@@ -66,7 +66,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:23"
+        "src": "0:23:24"
       },
       {
         "abstract": false,
@@ -75,9 +75,9 @@
         "contractKind": "interface",
         "documentation": "@dev Interface of the ERC777TokensRecipient standard as defined in the EIP.\n * Accounts can be notified of {IERC777} tokens being sent to them by having a\ncontract implement this interface (contract holders can be their own\nimplementer) and registering it on the\nhttps://eips.ethereum.org/EIPS/eip-1820[ERC1820 global registry].\n * See {IERC1820Registry} and {ERC1820Implementer}.",
         "fullyImplemented": false,
-        "id": 3425,
+        "id": 3464,
         "linearizedBaseContracts": [
-          3425
+          3464
         ],
         "name": "IERC777Recipient",
         "nodeType": "ContractDefinition",
@@ -86,7 +86,7 @@
             "body": null,
             "documentation": "@dev Called by an {IERC777} token contract whenever tokens are being\nmoved or created into a registered account (`to`). The type of operation\nis conveyed by `from` being the zero address or not.\n     * This call occurs _after_ the token contract's state is updated, so\n{IERC777-balanceOf}, etc., can be used to query the post-operation state.\n     * This function may revert to prevent the operation from being executed.",
             "functionSelector": "0023de29",
-            "id": 3424,
+            "id": 3463,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -94,17 +94,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3422,
+              "id": 3461,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3411,
+                  "id": 3450,
                   "name": "operator",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "977:16:23",
+                  "scope": 3463,
+                  "src": "977:16:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -112,10 +112,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3410,
+                    "id": 3449,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "977:7:23",
+                    "src": "977:7:24",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -127,12 +127,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3413,
+                  "id": 3452,
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1003:12:23",
+                  "scope": 3463,
+                  "src": "1003:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -140,10 +140,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3412,
+                    "id": 3451,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1003:7:23",
+                    "src": "1003:7:24",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -155,12 +155,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3415,
+                  "id": 3454,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1025:10:23",
+                  "scope": 3463,
+                  "src": "1025:10:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -168,10 +168,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3414,
+                    "id": 3453,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1025:7:23",
+                    "src": "1025:7:24",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -183,12 +183,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3417,
+                  "id": 3456,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1045:14:23",
+                  "scope": 3463,
+                  "src": "1045:14:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -196,10 +196,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3416,
+                    "id": 3455,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1045:7:23",
+                    "src": "1045:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -210,12 +210,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3419,
+                  "id": 3458,
                   "name": "userData",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1069:23:23",
+                  "scope": 3463,
+                  "src": "1069:23:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -223,10 +223,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 3418,
+                    "id": 3457,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1069:5:23",
+                    "src": "1069:5:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -237,12 +237,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3421,
+                  "id": 3460,
                   "name": "operatorData",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1102:27:23",
+                  "scope": 3463,
+                  "src": "1102:27:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -250,10 +250,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 3420,
+                    "id": 3459,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1102:5:23",
+                    "src": "1102:5:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -263,39 +263,39 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "967:168:23"
+              "src": "967:168:24"
             },
             "returnParameters": {
-              "id": 3423,
+              "id": 3462,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1144:0:23"
+              "src": "1144:0:24"
             },
-            "scope": 3425,
-            "src": "944:201:23",
+            "scope": 3464,
+            "src": "944:201:24",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3426,
-        "src": "432:715:23"
+        "scope": 3465,
+        "src": "432:715:24"
       }
     ],
-    "src": "0:1148:23"
+    "src": "0:1148:24"
   },
   "legacyAST": {
     "absolutePath": "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol",
     "exportedSymbols": {
       "IERC777Recipient": [
-        3425
+        3464
       ]
     },
-    "id": 3426,
+    "id": 3465,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3409,
+        "id": 3448,
         "literals": [
           "solidity",
           "^",
@@ -303,7 +303,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:23"
+        "src": "0:23:24"
       },
       {
         "abstract": false,
@@ -312,9 +312,9 @@
         "contractKind": "interface",
         "documentation": "@dev Interface of the ERC777TokensRecipient standard as defined in the EIP.\n * Accounts can be notified of {IERC777} tokens being sent to them by having a\ncontract implement this interface (contract holders can be their own\nimplementer) and registering it on the\nhttps://eips.ethereum.org/EIPS/eip-1820[ERC1820 global registry].\n * See {IERC1820Registry} and {ERC1820Implementer}.",
         "fullyImplemented": false,
-        "id": 3425,
+        "id": 3464,
         "linearizedBaseContracts": [
-          3425
+          3464
         ],
         "name": "IERC777Recipient",
         "nodeType": "ContractDefinition",
@@ -323,7 +323,7 @@
             "body": null,
             "documentation": "@dev Called by an {IERC777} token contract whenever tokens are being\nmoved or created into a registered account (`to`). The type of operation\nis conveyed by `from` being the zero address or not.\n     * This call occurs _after_ the token contract's state is updated, so\n{IERC777-balanceOf}, etc., can be used to query the post-operation state.\n     * This function may revert to prevent the operation from being executed.",
             "functionSelector": "0023de29",
-            "id": 3424,
+            "id": 3463,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -331,17 +331,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3422,
+              "id": 3461,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3411,
+                  "id": 3450,
                   "name": "operator",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "977:16:23",
+                  "scope": 3463,
+                  "src": "977:16:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -349,10 +349,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3410,
+                    "id": 3449,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "977:7:23",
+                    "src": "977:7:24",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -364,12 +364,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3413,
+                  "id": 3452,
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1003:12:23",
+                  "scope": 3463,
+                  "src": "1003:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -377,10 +377,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3412,
+                    "id": 3451,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1003:7:23",
+                    "src": "1003:7:24",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -392,12 +392,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3415,
+                  "id": 3454,
                   "name": "to",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1025:10:23",
+                  "scope": 3463,
+                  "src": "1025:10:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -405,10 +405,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3414,
+                    "id": 3453,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1025:7:23",
+                    "src": "1025:7:24",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -420,12 +420,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3417,
+                  "id": 3456,
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1045:14:23",
+                  "scope": 3463,
+                  "src": "1045:14:24",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -433,10 +433,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3416,
+                    "id": 3455,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1045:7:23",
+                    "src": "1045:7:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -447,12 +447,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3419,
+                  "id": 3458,
                   "name": "userData",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1069:23:23",
+                  "scope": 3463,
+                  "src": "1069:23:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -460,10 +460,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 3418,
+                    "id": 3457,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1069:5:23",
+                    "src": "1069:5:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -474,12 +474,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 3421,
+                  "id": 3460,
                   "name": "operatorData",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3424,
-                  "src": "1102:27:23",
+                  "scope": 3463,
+                  "src": "1102:27:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -487,10 +487,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 3420,
+                    "id": 3459,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1102:5:23",
+                    "src": "1102:5:24",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -500,34 +500,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "967:168:23"
+              "src": "967:168:24"
             },
             "returnParameters": {
-              "id": 3423,
+              "id": 3462,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1144:0:23"
+              "src": "1144:0:24"
             },
-            "scope": 3425,
-            "src": "944:201:23",
+            "scope": 3464,
+            "src": "944:201:24",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3426,
-        "src": "432:715:23"
+        "scope": 3465,
+        "src": "432:715:24"
       }
     ],
-    "src": "0:1148:23"
+    "src": "0:1148:24"
   },
   "compiler": {
     "name": "solc",
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-08T22:40:20.046Z",
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-10T16:37:11.646Z",
   "devdoc": {
     "details": "Interface of the ERC777TokensRecipient standard as defined in the EIP. * Accounts can be notified of {IERC777} tokens being sent to them by having a contract implement this interface (contract holders can be their own implementer) and registering it on the https://eips.ethereum.org/EIPS/eip-1820[ERC1820 global registry]. * See {IERC1820Registry} and {ERC1820Implementer}.",
     "methods": {
