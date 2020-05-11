@@ -6,7 +6,6 @@ import Home from './components/Home/index';
 //import { Drizzle } from 'dirzzle';
 import web3 from 'web3';
 //import SetProtocol from 'setprotocol.js';
-
 // import contract(s) for drizzle or whatever...
 import IncomeStreamCreator from "./abis/IncomeStreamCreator.json";
 
@@ -15,7 +14,6 @@ const options = {
         IncomeStreamCreator
     ]
 }
-
 
 // Kovan Network config for Set Protocol
 const config = {
@@ -102,16 +100,16 @@ provider.getTransactionReceipt(transactionHash).then((receipt) => {
     console.log(receipt);
 });
 
-provider.resolveName("registrar.firefly.eth").then(function(address) {
-    console.log("Address: " + address);
-    // "0x6fC21092DA55B392b045eD78F4732bff3C580e2c"
-});
+// provider.resolveName("registrar.firefly.eth").then(function(address) {
+//     console.log("Address: " + address);
+//     // "0x6fC21092DA55B392b045eD78F4732bff3C580e2c"
+// });
 
-address = "0x6fC21092DA55B392b045eD78F4732bff3C580e2c";
-provider.lookupAddress(address).then(function(address) {
-    console.log("Name: " + address);
-    // "registrar.firefly.eth"
-});
+// address = "0x6fC21092DA55B392b045eD78F4732bff3C580e2c";
+// provider.lookupAddress(address).then(function(address) {
+//     console.log("Name: " + address);
+//     // "registrar.firefly.eth"
+// });
 
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -118,19 +118,19 @@ function FullWidthTabs() {
   );
 }
 
-const CreateStreamForm = ({data}) => {
-  
+const CreateStreamForm = ({data}) => {  
     const classes = useStyles();
-    const [duration, setDuration] = React.useState(0);
-    const [productType, setProductType] = React.useState(0);
-    const [amount, setAmount] = React.useState(0);
-    const [deferredDuration, setDeferredDuration] = React.useState(0);
-    const [frequecny, setFrequency] = React.useState(0);
-    const [formValues, setFormValues] = React.useState({
+    const [duration, setDuration] = useState(0);
+    const [productType, setProductType] = useState(0);
+    const [amount, setAmount] = useState(0);
+    const [deferredDuration, setDeferredDuration] = useState(0);
+    const [frequecny, setFrequency] = useState(0);
+    const [formValues, setFormValues] = useState({
         productType: '',
         duration: '',
         frequency: '',
         amount: '',
+        payment: '',
     });
 
     //myflashloancontract();
@@ -176,6 +176,14 @@ const CreateStreamForm = ({data}) => {
         console.log(productType, ' ', duration, ' ', amount, '', frequecny)
         alert(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequecny}`)
     };
+
+    useEffect(() => {
+      //
+      return () => {
+        //
+      }
+    }, [])
+
   
     // ToDo: Impliment in future
     let deferredTime
