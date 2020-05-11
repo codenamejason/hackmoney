@@ -2,6 +2,8 @@ const StreamToken = artifacts.require('StreamToken')
 const iNETToken = artifacts.require('iNETToken')
 const Flashloan = artifacts.require('FlashLoan')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
+const PriceOracle = artifacts.require('OracleExample')
+
 require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider, environment: 'truffle' });
 const { singletons } = require('@openzeppelin/test-helpers');
 
@@ -48,6 +50,9 @@ module.exports = async function (deployer, network, accounts) {
 
         // Stream token testing
         await deployer.deploy(IncomeStreamCreator);
+
+        // Bandchain ETH oracle
+        await deployer.deploy(PriceOracle);
 
     } catch (e) {
             console.log(`Error in migration: ${e.message}`)

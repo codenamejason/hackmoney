@@ -8,6 +8,55 @@ import web3 from 'web3';
 //import SetProtocol from 'setprotocol.js';
 // import contract(s) for drizzle or whatever...
 import IncomeStreamCreator from "./abis/IncomeStreamCreator.json";
+let PriceOracle = web3.eth.contract([
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "bytes",
+				"name": "input",
+				"type": "bytes"
+			}
+		],
+		"name": "query",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "output",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "updatedAt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum Oracle.QueryStatus",
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "queryPrice",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]);
+
 
 const options = {
     contracts: [
