@@ -42,7 +42,7 @@ module.exports = {
       blockTime: 3
     },
     kovan: {
-	    provider: new HDWalletProvider(mnemonic, "https://kovan.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382"),
+	    provider: new HDWalletProvider(ganache, "https://kovan.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382"),
 	    network_id: 42,
 	    gas: 5000000,
 		gasPrice: 5000000000, // 5 Gwei
@@ -81,7 +81,7 @@ module.exports = {
     useColors: true,
   },
   contracts_directory: './contracts/',
-  contracts_build_directory: './abis/',
+  contracts_build_directory: './src/abis/',
   migrations_directory: './migratons/',
   compilers: {
     solc: {

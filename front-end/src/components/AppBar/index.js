@@ -10,8 +10,10 @@ import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
 import Web3 from "web3";
 import Onboard from 'bnc-onboard'
+import Notify from 'bnc-notify'
 import { Paper, Grid, Button } from '@material-ui/core';
 
+const HDWalletProvider = require("truffle-hdwallet-provider");
 let web3
 
 const onboard = Onboard({
@@ -24,12 +26,34 @@ const onboard = Onboard({
             console.log(`${wallet.name} is now connected!`)
         }
     }
-})
+});
+
+const notify = Notify({
+    dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
+    networkId: 1,
+});
 
 async function connectWallet() {
     await onboard.walletSelect();
     await onboard.walletCheck();    
 }
+
+
+async function getAccounts () {
+    const accounts = await web3.eth.getAccounts();
+    const address = accounts[0];
+
+    web3.eth.sendTransaction({
+        from: '',
+        to: '',
+        value: ''
+    }).on('transactionHash', (hash) => {
+        notify.hash(hash);
+    });
+}
+
+
+
 function HideOnScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger

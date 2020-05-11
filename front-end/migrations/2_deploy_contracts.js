@@ -1,6 +1,7 @@
 const StreamToken = artifacts.require('StreamToken')
 const iNETToken = artifacts.require('iNETToken')
 const Flashloan = artifacts.require('FlashLoan')
+const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
 require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider, environment: 'truffle' });
 const { singletons } = require('@openzeppelin/test-helpers');
 
@@ -31,26 +32,24 @@ module.exports = async function (deployer, network, accounts) {
                 throw Error(`Are you deploying to the current network? (network selected: ${network})`)                
         } 
 
-        await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)
+        /**
+        * @dev deployments
+        */
+        await deployer.deploy(StreamToken);
+        // const streamToken = await StreamToken.deployed()
+        // console.log(streamToken)
+
+        // await deployer.deploy(iNETToken)
+        // const iNetToken = await iNETToken.deployed()
+        // console.log(iNetToken)
+    
+        // Flashloan testing
+        //await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)
+
+        // Stream token testing
+        await deployer.deploy(IncomeStreamCreator);
 
     } catch (e) {
             console.log(`Error in migration: ${e.message}`)
     }
-
-    /**
-     * @dev deployments
-     */
-    // await deployer.deploy(StreamToken)
-    // const streamToken = await StreamToken.deployed()
-    // console.log(streamToken)
-
-    // await deployer.deploy(iNETToken)
-    // const iNetToken = await iNETToken.deployed()
-    // console.log(iNetToken)
-
-    //await deployer.deploy(FlashLoan)
-    //const flashloan = await FlashLoan.deployed()
-    
-
-
 }

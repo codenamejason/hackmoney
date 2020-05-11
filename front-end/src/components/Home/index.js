@@ -6,7 +6,7 @@ const Home = (props) => {
 
     return (
         <React.Fragment>
-           <TabPanel />
+           <TabPanel other='test'/>
         </React.Fragment>
     )
 }
