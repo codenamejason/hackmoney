@@ -81,7 +81,7 @@ module.exports = {
     useColors: true,
   },
   contracts_directory: './contracts/',
-  contracts_build_directory: './abis/',
+  contracts_build_directory: './src/abis/',
   migrations_directory: './migratons/',
   compilers: {
     solc: {

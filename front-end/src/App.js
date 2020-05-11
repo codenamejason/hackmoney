@@ -3,8 +3,19 @@ import Container from '@material-ui/core/Container';
 import './App.css';
 import AppBar from './components/AppBar/index';
 import Home from './components/Home/index';
+//import { Drizzle } from 'dirzzle';
 import web3 from 'web3';
 //import SetProtocol from 'setprotocol.js';
+
+// import contract(s) for drizzle or whatever...
+import IncomeStreamCreator from "./abis/IncomeStreamCreator.json";
+
+const options = {
+    contracts: [
+        IncomeStreamCreator
+    ]
+}
+
 
 // Kovan Network config for Set Protocol
 const config = {
