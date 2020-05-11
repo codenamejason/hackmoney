@@ -18,14 +18,14 @@
     "absolutePath": "@openzeppelin/contracts/GSN/Context.sol",
     "exportedSymbols": {
       "Context": [
-        1232
+        1288
       ]
     },
-    "id": 1233,
+    "id": 1289,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1207,
+        "id": 1263,
         "literals": [
           "solidity",
           "^",
@@ -33,7 +33,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:13"
+        "src": "0:23:14"
       },
       {
         "abstract": false,
@@ -42,22 +42,22 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1232,
+        "id": 1288,
         "linearizedBaseContracts": [
-          1232
+          1288
         ],
         "name": "Context",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1210,
+              "id": 1266,
               "nodeType": "Block",
-              "src": "726:3:13",
+              "src": "726:3:14",
               "statements": []
             },
             "documentation": null,
-            "id": 1211,
+            "id": 1267,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -65,46 +65,46 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1208,
+              "id": 1264,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "714:2:13"
+              "src": "714:2:14"
             },
             "returnParameters": {
-              "id": 1209,
+              "id": 1265,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "726:0:13"
+              "src": "726:0:14"
             },
-            "scope": 1232,
-            "src": "702:27:13",
+            "scope": 1288,
+            "src": "702:27:14",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1219,
+              "id": 1275,
               "nodeType": "Block",
-              "src": "805:34:13",
+              "src": "805:34:14",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1216,
+                      "id": 1272,
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": -15,
-                      "src": "822:3:13",
+                      "src": "822:3:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
                         "typeString": "msg"
                       }
                     },
-                    "id": 1217,
+                    "id": 1273,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -112,21 +112,21 @@
                     "memberName": "sender",
                     "nodeType": "MemberAccess",
                     "referencedDeclaration": null,
-                    "src": "822:10:13",
+                    "src": "822:10:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
                       "typeString": "address payable"
                     }
                   },
-                  "functionReturnParameters": 1215,
-                  "id": 1218,
+                  "functionReturnParameters": 1271,
+                  "id": 1274,
                   "nodeType": "Return",
-                  "src": "815:17:13"
+                  "src": "815:17:14"
                 }
               ]
             },
             "documentation": null,
-            "id": 1220,
+            "id": 1276,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -134,23 +134,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1212,
+              "id": 1268,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "754:2:13"
+              "src": "754:2:14"
             },
             "returnParameters": {
-              "id": 1215,
+              "id": 1271,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1214,
+                  "id": 1270,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1220,
-                  "src": "788:15:13",
+                  "scope": 1276,
+                  "src": "788:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -158,10 +158,10 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 1213,
+                    "id": 1269,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "788:15:13",
+                    "src": "788:15:14",
                     "stateMutability": "payable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
@@ -172,55 +172,55 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "787:17:13"
+              "src": "787:17:14"
             },
-            "scope": 1232,
-            "src": "735:104:13",
+            "scope": 1288,
+            "src": "735:104:14",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1230,
+              "id": 1286,
               "nodeType": "Block",
-              "src": "910:165:13",
+              "src": "910:165:14",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1225,
+                    "id": 1281,
                     "name": "this",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": -28,
-                    "src": "920:4:13",
+                    "src": "920:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Context_$1232",
+                      "typeIdentifier": "t_contract$_Context_$1288",
                       "typeString": "contract Context"
                     }
                   },
-                  "id": 1226,
+                  "id": 1282,
                   "nodeType": "ExpressionStatement",
-                  "src": "920:4:13"
+                  "src": "920:4:14"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1227,
+                      "id": 1283,
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": -15,
-                      "src": "1060:3:13",
+                      "src": "1060:3:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
                         "typeString": "msg"
                       }
                     },
-                    "id": 1228,
+                    "id": 1284,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -228,21 +228,21 @@
                     "memberName": "data",
                     "nodeType": "MemberAccess",
                     "referencedDeclaration": null,
-                    "src": "1060:8:13",
+                    "src": "1060:8:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_calldata_ptr",
                       "typeString": "bytes calldata"
                     }
                   },
-                  "functionReturnParameters": 1224,
-                  "id": 1229,
+                  "functionReturnParameters": 1280,
+                  "id": 1285,
                   "nodeType": "Return",
-                  "src": "1053:15:13"
+                  "src": "1053:15:14"
                 }
               ]
             },
             "documentation": null,
-            "id": 1231,
+            "id": 1287,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -250,23 +250,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1221,
+              "id": 1277,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "862:2:13"
+              "src": "862:2:14"
             },
             "returnParameters": {
-              "id": 1224,
+              "id": 1280,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1223,
+                  "id": 1279,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1231,
-                  "src": "896:12:13",
+                  "scope": 1287,
+                  "src": "896:12:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -274,10 +274,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 1222,
+                    "id": 1278,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "896:5:13",
+                    "src": "896:5:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -287,33 +287,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "895:14:13"
+              "src": "895:14:14"
             },
-            "scope": 1232,
-            "src": "845:230:13",
+            "scope": 1288,
+            "src": "845:230:14",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 1233,
-        "src": "525:552:13"
+        "scope": 1289,
+        "src": "525:552:14"
       }
     ],
-    "src": "0:1078:13"
+    "src": "0:1078:14"
   },
   "legacyAST": {
     "absolutePath": "@openzeppelin/contracts/GSN/Context.sol",
     "exportedSymbols": {
       "Context": [
-        1232
+        1288
       ]
     },
-    "id": 1233,
+    "id": 1289,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1207,
+        "id": 1263,
         "literals": [
           "solidity",
           "^",
@@ -321,7 +321,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:13"
+        "src": "0:23:14"
       },
       {
         "abstract": false,
@@ -330,22 +330,22 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1232,
+        "id": 1288,
         "linearizedBaseContracts": [
-          1232
+          1288
         ],
         "name": "Context",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1210,
+              "id": 1266,
               "nodeType": "Block",
-              "src": "726:3:13",
+              "src": "726:3:14",
               "statements": []
             },
             "documentation": null,
-            "id": 1211,
+            "id": 1267,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -353,46 +353,46 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1208,
+              "id": 1264,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "714:2:13"
+              "src": "714:2:14"
             },
             "returnParameters": {
-              "id": 1209,
+              "id": 1265,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "726:0:13"
+              "src": "726:0:14"
             },
-            "scope": 1232,
-            "src": "702:27:13",
+            "scope": 1288,
+            "src": "702:27:14",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1219,
+              "id": 1275,
               "nodeType": "Block",
-              "src": "805:34:13",
+              "src": "805:34:14",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1216,
+                      "id": 1272,
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": -15,
-                      "src": "822:3:13",
+                      "src": "822:3:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
                         "typeString": "msg"
                       }
                     },
-                    "id": 1217,
+                    "id": 1273,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -400,21 +400,21 @@
                     "memberName": "sender",
                     "nodeType": "MemberAccess",
                     "referencedDeclaration": null,
-                    "src": "822:10:13",
+                    "src": "822:10:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
                       "typeString": "address payable"
                     }
                   },
-                  "functionReturnParameters": 1215,
-                  "id": 1218,
+                  "functionReturnParameters": 1271,
+                  "id": 1274,
                   "nodeType": "Return",
-                  "src": "815:17:13"
+                  "src": "815:17:14"
                 }
               ]
             },
             "documentation": null,
-            "id": 1220,
+            "id": 1276,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -422,23 +422,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1212,
+              "id": 1268,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "754:2:13"
+              "src": "754:2:14"
             },
             "returnParameters": {
-              "id": 1215,
+              "id": 1271,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1214,
+                  "id": 1270,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1220,
-                  "src": "788:15:13",
+                  "scope": 1276,
+                  "src": "788:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -446,10 +446,10 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 1213,
+                    "id": 1269,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "788:15:13",
+                    "src": "788:15:14",
                     "stateMutability": "payable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address_payable",
@@ -460,55 +460,55 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "787:17:13"
+              "src": "787:17:14"
             },
-            "scope": 1232,
-            "src": "735:104:13",
+            "scope": 1288,
+            "src": "735:104:14",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1230,
+              "id": 1286,
               "nodeType": "Block",
-              "src": "910:165:13",
+              "src": "910:165:14",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1225,
+                    "id": 1281,
                     "name": "this",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": -28,
-                    "src": "920:4:13",
+                    "src": "920:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Context_$1232",
+                      "typeIdentifier": "t_contract$_Context_$1288",
                       "typeString": "contract Context"
                     }
                   },
-                  "id": 1226,
+                  "id": 1282,
                   "nodeType": "ExpressionStatement",
-                  "src": "920:4:13"
+                  "src": "920:4:14"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1227,
+                      "id": 1283,
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": -15,
-                      "src": "1060:3:13",
+                      "src": "1060:3:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
                         "typeString": "msg"
                       }
                     },
-                    "id": 1228,
+                    "id": 1284,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -516,21 +516,21 @@
                     "memberName": "data",
                     "nodeType": "MemberAccess",
                     "referencedDeclaration": null,
-                    "src": "1060:8:13",
+                    "src": "1060:8:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_calldata_ptr",
                       "typeString": "bytes calldata"
                     }
                   },
-                  "functionReturnParameters": 1224,
-                  "id": 1229,
+                  "functionReturnParameters": 1280,
+                  "id": 1285,
                   "nodeType": "Return",
-                  "src": "1053:15:13"
+                  "src": "1053:15:14"
                 }
               ]
             },
             "documentation": null,
-            "id": 1231,
+            "id": 1287,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -538,23 +538,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1221,
+              "id": 1277,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "862:2:13"
+              "src": "862:2:14"
             },
             "returnParameters": {
-              "id": 1224,
+              "id": 1280,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1223,
+                  "id": 1279,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1231,
-                  "src": "896:12:13",
+                  "scope": 1287,
+                  "src": "896:12:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -562,10 +562,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 1222,
+                    "id": 1278,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "896:5:13",
+                    "src": "896:5:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -575,20 +575,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "895:14:13"
+              "src": "895:14:14"
             },
-            "scope": 1232,
-            "src": "845:230:13",
+            "scope": 1288,
+            "src": "845:230:14",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 1233,
-        "src": "525:552:13"
+        "scope": 1289,
+        "src": "525:552:14"
       }
     ],
-    "src": "0:1078:13"
+    "src": "0:1078:14"
   },
   "compiler": {
     "name": "solc",
@@ -596,7 +596,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-11T14:46:35.347Z",
+  "updatedAt": "2020-05-11T18:21:43.159Z",
   "devdoc": {
     "methods": {}
   },

@@ -8,6 +8,8 @@ import web3 from 'web3';
 //import SetProtocol from 'setprotocol.js';
 // import contract(s) for drizzle or whatever...
 import IncomeStreamCreator from "./abis/IncomeStreamCreator.json";
+const PriceOracle = './abis/OracleExample.json'
+
 
 const options = {
     contracts: [
