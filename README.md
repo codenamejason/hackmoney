@@ -1,5 +1,7 @@
 # IncomeStream.io
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a0f71ae7-2334-4fdf-aa2c-75fb70e85bc2/deploy-status)](https://app.netlify.com/sites/hack-money/deploys)
+
 The Plan for the future ...
 
 Hack Money Hackathon - DeFi and Eth Global
