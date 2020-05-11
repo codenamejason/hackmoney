@@ -11,7 +11,8 @@ const PriceOracle = artifacts.require('OracleExample')
 
 //const { singletons } = require('@openzeppelin/test-helpers');
 
-module.exports = async function (deployer) {
+module.exports = async function (deployer
+) {
 
     /**
         * @dev deployments
