@@ -1563,7 +1563,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-11T15:50:46.698Z",
+  "updatedAt": "2020-05-11T18:21:43.164Z",
   "devdoc": {
     "details": "Implementation of the {IERC1820Implementer} interface. * Contracts may inherit from this and call {_registerInterfaceForAddress} to declare their willingness to be implementers. {IERC1820Registry-setInterfaceImplementer} should then be called for the registration to be complete.",
     "methods": {}
