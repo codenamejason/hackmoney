@@ -80,7 +80,7 @@ module.exports = {
   mocha: {
     useColors: true,
   },
-  contracts_directory: './contracts/',
+  contracts_directory: './contracts/incomestream',
   contracts_build_directory: './src/abis/',
   migrations_directory: './migratons/',
   compilers: {
