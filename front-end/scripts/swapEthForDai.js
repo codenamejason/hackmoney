@@ -42,6 +42,7 @@ const SETTINGS = {
     from: '0x783ABd013a6D41334BCa711CDE577A5211487883', // Use your account here
     value: web3.utils.toWei('0.01', 'Ether') // Amount of Ether to Swap
 }
+
 console.log("Settings", SETTINGS)
 
 module.exports = async function(callback) {

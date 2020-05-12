@@ -10,7 +10,6 @@ import web3 from 'web3';
 import IncomeStreamCreator from "./abis/IncomeStreamCreator.json";
 const PriceOracle = './abis/OracleExample.json'
 
-
 const options = {
     contracts: [
         IncomeStreamCreator
