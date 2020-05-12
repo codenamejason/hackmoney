@@ -11,7 +11,7 @@ log(chalk.blue('Factory Address: ', factoryAddress))
 
 // Ropsten DAI Token: https://ropsten.etherscan.io/token/0xaD6D458402F60fD3Bd25163575031ACDce07538D
 const DAI_ABI = legos.erc20.dai.abi
-const DAI_ADDRESS = '0xaD6D458402F60fD3Bd25163575031ACDce07538D'
+const DAI_ADDRESS = '0xf80A32A835F79D7787E8a8ee5721D0fEaFd78108'; //'0xaD6D458402F60fD3Bd25163575031ACDce07538D'
 const daiContract = new web3.eth.Contract(DAI_ABI, DAI_ADDRESS);
 
 // erc20 tokens
@@ -20,7 +20,7 @@ legos.erc20.address;
 
 // Ropsten Uniswap Dai Exchange: https://ropsten.etherscan.io/address/0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0
 const EXCHANGE_ABI = legos.uniswap.exchange.abi
-const EXCHANGE_ADDRESS = '0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0'
+const EXCHANGE_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'; //'0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0'
 const exchangeContract = new web3.eth.Contract(EXCHANGE_ABI, EXCHANGE_ADDRESS);
 
 
@@ -39,7 +39,7 @@ console.log("Deadline", DEADLINE)
 const SETTINGS = {
     gasLimit: 6000000, // Override gas settings: https://github.com/ethers-io/ethers.js/issues/469
     gasPrice: web3.utils.toWei('50', 'Gwei'),
-    from: '0x783ABd013a6D41334BCa711CDE577A5211487883', // Use your account here
+    from: '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e', // Use your account here
     value: web3.utils.toWei('0.01', 'Ether') // Amount of Ether to Swap
 }
 
