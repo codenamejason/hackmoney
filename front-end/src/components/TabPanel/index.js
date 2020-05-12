@@ -143,7 +143,7 @@ const MyStreams = ({data}) => {
               <Paper className={classes.paper} elevation={6}>                  
                     <Grid container spacing={3}>
                         <Grid item xs={12} xl={12}>
-                          
+                          test
                                       
                         </Grid>
                     </Grid>                       
@@ -175,7 +175,7 @@ const TransferStreamForm = ({props}) => {
               <Paper className={classes.paperHeading} elevation={3}>
                 
               </Paper>
-              <Paper className={classes.paper} elevation={6}>                  
+              <Paper className={classes.paper} elevation={6}>              
                         <Grid container spacing={3}>
                             <Grid item xs>
                                 <FormControl className={classes.formControl}>
@@ -183,38 +183,40 @@ const TransferStreamForm = ({props}) => {
                                 </FormControl>
                             </Grid>
                             <Grid item xs>
-                               <FormControl className={classes.formControl}>
+                                <FormControl className={classes.formControl}>
                              
-                              </FormControl>  
+                                </FormControl>
                             </Grid>
                             <Grid item xs>
-                            <FormControl className={classes.formControl}>                                    
+                                <FormControl className={classes.formControl}>                                    
                                     
-                                </FormControl>              
+                                </FormControl>       
                             </Grid>
-                        </Grid>                        
+                        </Grid>               
                         <div><br/></div>
                         {/* second row */}
                         <Grid container spacing={3}>
                             <Grid item xs>
                                 <FormControl className={classes.formControl}>
                                  
-                                </FormControl>                 
+                                </FormControl>
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl>
 
-                                </FormControl>                            
+                                </FormControl>                      
                             </Grid>
-                            <Grid item xs><br />                   
-                                <Tooltip title='coming soon'>                                    
+                            <Grid item xs><br />               
+                                <Tooltip title='coming soon'>                                
                                     <Button
                                         variant='contained'
                                         size='large'
                                         color='primary'
                                         onClick={handleFormSubmit}
                                         startIcon={<TransformIcon />}
-                                    >Transfer Now</Button>
+                                    >
+                                      Transfer Now
+                                    </Button>
                                 </Tooltip>
                             </Grid>
                     </Grid>
@@ -222,9 +224,6 @@ const TransferStreamForm = ({props}) => {
               </Grid>
         </React.Fragment>
     )
-
-
-
 }
 
 const CreateStreamForm = ({data}) => {  
@@ -234,7 +233,7 @@ const CreateStreamForm = ({data}) => {
     const [amount, setAmount] = useState(0);
     const [deferredDuration, setDeferredDuration] = useState(0);
     const [frequecny, setFrequency] = useState(0);
-    const [payment, setPayment] = useState((amount/duration)/frequecny);
+    const [payment, setPayment] = useState(0);
     const [formValues, setFormValues] = useState({
         productType: '',
         duration: '',
@@ -244,26 +243,34 @@ const CreateStreamForm = ({data}) => {
         payment: '',
     });
 
+
     //myflashloancontract();
 
     const handleFrequencyChange = (event, newValue) => {
         const frequency = event.target.name;        
-        setFrequency(event.target.value)
-        console.log(event.target.value)
+        setFrequency(event.target.value);
+        console.log(event.target.value);
     };
+
     
     const handleAmountChange = (event, newValue) => {
-        const amount = event.target;        
-        setAmount(event.target.value)
-        console.log(event.target.value)
+        const amount = event.target;
+        setAmount(event.target.value);
+
+        let pmt = (amount / duration) / frequecny;
+        setPayment(pmt);
+
+        console.log(event.target.value);
     };
+
 
     const handleDurationChange = (event, newValue) => {
         const duration = event.target.name;
         
-        setDuration(event.target.value)
-        console.log(event.target.value)
+        setDuration(event.target.value);
+        console.log(event.target.value);
     };
+
   
     const handleProductTypeChange = (event, newValue) => {
         const product = event.target.name;
@@ -302,7 +309,7 @@ const CreateStreamForm = ({data}) => {
       return () => {
         //
       }
-    }, [])
+    }, []);
 
   
     // ToDo: Impliment in future
@@ -341,8 +348,6 @@ const CreateStreamForm = ({data}) => {
                 
               </Paper>
               <Paper className={classes.paper} elevation={6}>
-                  
-
                     {/* first row */}
                         <Grid container spacing={3}>
                             <Grid item xs>
@@ -393,10 +398,10 @@ const CreateStreamForm = ({data}) => {
                                             }}
                                     >
                                             <option aria-label="None" value="" />
-                                            <option value={'WW'}>Weekly</option>
-                                            <option value={'MM'}>Monthly</option>.
-                                            <option value={'QQ'}>Quarterly</option>
-                                            <option value={'YY'}>Anually</option>
+                                            <option value={'52'}>Weekly</option>
+                                            <option value={'12'}>Monthly</option>.
+                                            <option value={'4'}>Quarterly</option>
+                                            <option value={'1'}>Anually</option>
                                     </Select>
                                     <FormHelperText style={{ color: '#FE6B8B' }}>
                                         How often do you want your payments?
