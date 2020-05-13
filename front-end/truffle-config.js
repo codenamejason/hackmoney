@@ -51,7 +51,7 @@ module.exports = {
     ropsten: {
       provider: () => new HDWalletProvider(
         rop,
-        "https://ropsten.infura.io/v3/1ad03ac212da4523b6c8337eace81a14"
+        "https://ropsten.infura.io/v3/e8cc7c8e245b46b482873ce9382a542b"
       ),
       network_id: 3,
       gas: 5000000,
@@ -80,9 +80,9 @@ module.exports = {
   mocha: {
     useColors: true,
   },
-  contracts_directory: './contracts/incomestream',
+  contracts_directory: './src/contracts/',
   contracts_build_directory: './src/abis/',
-  migrations_directory: './migratons/',
+  migrations_directory: './src/migratons/',
   compilers: {
     solc: {
       version: '0.6.2',
