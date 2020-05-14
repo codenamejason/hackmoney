@@ -1825,8 +1825,13 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
+<<<<<<< HEAD
   "schemaVersion": "3.1.0",
   "updatedAt": "2020-05-14T17:51:49.985Z",
+=======
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-05-14T02:21:01.509Z",
+>>>>>>> origin/master
   "devdoc": {
     "details": "Collection of functions related to the address type",
     "methods": {}
