@@ -44,15 +44,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"input\",\"type\":\"bytes\"}],\"name\":\"query\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"output\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"enum Oracle.QueryStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"queryPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/bandprotocol/Oracle.sol\":\"Oracle\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/bandprotocol/Oracle.sol\":{\"keccak256\":\"0x0852afeaf8c0fd28b1541dbee3cb6fff9809f52b1ca2414a2dfc58bfbb087652\",\"urls\":[\"bzz-raw://81eec9acf51f9cf8782c1059696e4e483312b6c879886d8247a3a23ce4ae91dc\",\"dweb:/ipfs/QmUM7kHHnun8Ru5UUJrXrxomq8FaKJkujGiuJqHjXULALV\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"input\",\"type\":\"bytes\"}],\"name\":\"query\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"output\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"enum Oracle.QueryStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"queryPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol\":\"Oracle\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol\":{\"keccak256\":\"0x0852afeaf8c0fd28b1541dbee3cb6fff9809f52b1ca2414a2dfc58bfbb087652\",\"urls\":[\"bzz-raw://81eec9acf51f9cf8782c1059696e4e483312b6c879886d8247a3a23ce4ae91dc\",\"dweb:/ipfs/QmUM7kHHnun8Ru5UUJrXrxomq8FaKJkujGiuJqHjXULALV\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity  >=0.4.22 <0.7.0;\r\n\r\ninterface Oracle {\r\n    enum QueryStatus { INVALID, OK, NOT_AVAILABLE, DISAGREEMENT }\r\n    function query (bytes calldata input)\r\n        external payable returns (bytes32 output, uint256 updatedAt, QueryStatus status);\r\n    function queryPrice() external view returns (uint256);\r\n}\r\n\r\ncontract OracleExample {\r\n    uint256 public ethusd;\r\n\r\n    function update() public payable {\r\n        Oracle oracle = Oracle(0xa24dF0420dE1f3b8d740A52AAEB9d55d6D64478e);\r\n        (bytes32 raw,,) = oracle.query.value(oracle.queryPrice())(\"SPOTPX/ETH-USD\");\r\n        ethusd = uint256(raw);\r\n    }\r\n}",
-  "sourcePath": "C:\\Projects\\Hackathons\\HackMoney\\dev\\front-end\\contracts\\bandprotocol\\Oracle.sol",
+  "sourcePath": "C:\\Projects\\Hackathons\\HackMoney\\dev\\front-end\\src\\contracts\\bandprotocol\\Oracle.sol",
   "ast": {
-    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/bandprotocol/Oracle.sol",
+    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol",
     "exportedSymbols": {
       "Oracle": [
         80
@@ -799,7 +799,7 @@
     "src": "0:622:1"
   },
   "legacyAST": {
-    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/contracts/bandprotocol/Oracle.sol",
+    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol",
     "exportedSymbols": {
       "Oracle": [
         80
@@ -1551,7 +1551,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-11T18:21:43.074Z",
+  "updatedAt": "2020-05-13T00:11:25.542Z",
   "devdoc": {
     "methods": {}
   },

@@ -37,14 +37,14 @@
     "absolutePath": "@openzeppelin/contracts/introspection/IERC1820Implementer.sol",
     "exportedSymbols": {
       "IERC1820Implementer": [
-        1462
+        1376
       ]
     },
-    "id": 1463,
+    "id": 1377,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1452,
+        "id": 1366,
         "literals": [
           "solidity",
           "^",
@@ -52,7 +52,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:17"
+        "src": "0:23:18"
       },
       {
         "abstract": false,
@@ -61,9 +61,9 @@
         "contractKind": "interface",
         "documentation": "@dev Interface for an ERC1820 implementer, as defined in the\nhttps://eips.ethereum.org/EIPS/eip-1820#interface-implementation-erc1820implementerinterface[EIP].\nUsed by contracts that will be registered as implementers in the\n{IERC1820Registry}.",
         "fullyImplemented": false,
-        "id": 1462,
+        "id": 1376,
         "linearizedBaseContracts": [
-          1462
+          1376
         ],
         "name": "IERC1820Implementer",
         "nodeType": "ContractDefinition",
@@ -72,7 +72,7 @@
             "body": null,
             "documentation": "@dev Returns a special value (`ERC1820_ACCEPT_MAGIC`) if this contract\nimplements `interfaceHash` for `account`.\n     * See {IERC1820Registry-setInterfaceImplementer}.",
             "functionSelector": "249cb3fa",
-            "id": 1461,
+            "id": 1375,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -80,17 +80,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1457,
+              "id": 1371,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1454,
+                  "id": 1368,
                   "name": "interfaceHash",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1461,
-                  "src": "572:21:17",
+                  "scope": 1375,
+                  "src": "572:21:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -98,10 +98,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1453,
+                    "id": 1367,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "572:7:17",
+                    "src": "572:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -112,12 +112,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1456,
+                  "id": 1370,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1461,
-                  "src": "595:15:17",
+                  "scope": 1375,
+                  "src": "595:15:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -125,10 +125,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1455,
+                    "id": 1369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "595:7:17",
+                    "src": "595:7:18",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -139,20 +139,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "571:40:17"
+              "src": "571:40:18"
             },
             "returnParameters": {
-              "id": 1460,
+              "id": 1374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1459,
+                  "id": 1373,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1461,
-                  "src": "635:7:17",
+                  "scope": 1375,
+                  "src": "635:7:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -160,10 +160,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1458,
+                    "id": 1372,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "635:7:17",
+                    "src": "635:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -173,33 +173,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "634:9:17"
+              "src": "634:9:18"
             },
-            "scope": 1462,
-            "src": "531:113:17",
+            "scope": 1376,
+            "src": "531:113:18",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1463,
-        "src": "290:356:17"
+        "scope": 1377,
+        "src": "290:356:18"
       }
     ],
-    "src": "0:647:17"
+    "src": "0:647:18"
   },
   "legacyAST": {
     "absolutePath": "@openzeppelin/contracts/introspection/IERC1820Implementer.sol",
     "exportedSymbols": {
       "IERC1820Implementer": [
-        1462
+        1376
       ]
     },
-    "id": 1463,
+    "id": 1377,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1452,
+        "id": 1366,
         "literals": [
           "solidity",
           "^",
@@ -207,7 +207,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:17"
+        "src": "0:23:18"
       },
       {
         "abstract": false,
@@ -216,9 +216,9 @@
         "contractKind": "interface",
         "documentation": "@dev Interface for an ERC1820 implementer, as defined in the\nhttps://eips.ethereum.org/EIPS/eip-1820#interface-implementation-erc1820implementerinterface[EIP].\nUsed by contracts that will be registered as implementers in the\n{IERC1820Registry}.",
         "fullyImplemented": false,
-        "id": 1462,
+        "id": 1376,
         "linearizedBaseContracts": [
-          1462
+          1376
         ],
         "name": "IERC1820Implementer",
         "nodeType": "ContractDefinition",
@@ -227,7 +227,7 @@
             "body": null,
             "documentation": "@dev Returns a special value (`ERC1820_ACCEPT_MAGIC`) if this contract\nimplements `interfaceHash` for `account`.\n     * See {IERC1820Registry-setInterfaceImplementer}.",
             "functionSelector": "249cb3fa",
-            "id": 1461,
+            "id": 1375,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -235,17 +235,17 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1457,
+              "id": 1371,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1454,
+                  "id": 1368,
                   "name": "interfaceHash",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1461,
-                  "src": "572:21:17",
+                  "scope": 1375,
+                  "src": "572:21:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -253,10 +253,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1453,
+                    "id": 1367,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "572:7:17",
+                    "src": "572:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -267,12 +267,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1456,
+                  "id": 1370,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1461,
-                  "src": "595:15:17",
+                  "scope": 1375,
+                  "src": "595:15:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -280,10 +280,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1455,
+                    "id": 1369,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "595:7:17",
+                    "src": "595:7:18",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -294,20 +294,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "571:40:17"
+              "src": "571:40:18"
             },
             "returnParameters": {
-              "id": 1460,
+              "id": 1374,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1459,
+                  "id": 1373,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1461,
-                  "src": "635:7:17",
+                  "scope": 1375,
+                  "src": "635:7:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -315,10 +315,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1458,
+                    "id": 1372,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "635:7:17",
+                    "src": "635:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -328,20 +328,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "634:9:17"
+              "src": "634:9:18"
             },
-            "scope": 1462,
-            "src": "531:113:17",
+            "scope": 1376,
+            "src": "531:113:18",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1463,
-        "src": "290:356:17"
+        "scope": 1377,
+        "src": "290:356:18"
       }
     ],
-    "src": "0:647:17"
+    "src": "0:647:18"
   },
   "compiler": {
     "name": "solc",
@@ -349,7 +349,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-11T18:21:43.166Z",
+  "updatedAt": "2020-05-13T00:11:25.588Z",
   "devdoc": {
     "details": "Interface for an ERC1820 implementer, as defined in the https://eips.ethereum.org/EIPS/eip-1820#interface-implementation-erc1820implementerinterface[EIP]. Used by contracts that will be registered as implementers in the {IERC1820Registry}.",
     "methods": {

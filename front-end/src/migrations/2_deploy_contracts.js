@@ -1,8 +1,9 @@
 const StreamToken = artifacts.require('StreamToken')
-const iNETToken = artifacts.require('iNETToken')
-const Flashloan = artifacts.require('FlashLoan')
+//const iNETToken = artifacts.require('iNETToken')
+//const Flashloan = artifacts.require('FlashLoan')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
 const PriceOracle = artifacts.require('OracleExample')
+//const DaiFaucet = artifacts.require('DaiFaucet');
 
 // require('@openzeppelin/test-helpers/configure')({ 
 //     provider: web3.currentProvider,
@@ -17,22 +18,24 @@ module.exports = async function (deployer
     /**
         * @dev deployments
         */
-       await deployer.deploy(StreamToken);
-       // const streamToken = await StreamToken.deployed()
-       // console.log(streamToken)
+    //await deployer.deploy(DaiFaucet);
 
-       await deployer.deploy(iNETToken)
-       // const iNetToken = await iNETToken.deployed()
-       // console.log(iNetToken)
-   
-       // Flashloan testing
-       //await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)
+    await deployer.deploy(StreamToken);
+    // const streamToken = await StreamToken.deployed()
+    // console.log(streamToken)
 
-       // Stream token testing
-       await deployer.deploy(IncomeStreamCreator);
+    //await deployer.deploy(iNETToken)
+    // const iNetToken = await iNETToken.deployed()
+    // console.log(iNetToken)
 
-       // Bandchain ETH oracle
-       await deployer.deploy(PriceOracle);
+    // Flashloan testing
+    //await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)
+
+    // Stream token testing
+    await deployer.deploy(IncomeStreamCreator);
+
+    // Bandchain ETH oracle
+    await deployer.deploy(PriceOracle);
 
 
     //try {
