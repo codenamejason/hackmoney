@@ -4009,8 +4009,13 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
+<<<<<<< HEAD
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-14T17:51:49.978Z",
+=======
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-05-14T02:21:01.497Z",
+>>>>>>> origin/master
   "devdoc": {
     "details": "Interface of the ERC777Token standard as defined in the EIP. * This contract uses the https://eips.ethereum.org/EIPS/eip-1820[ERC1820 registry standard] to let token holders and recipients react to token movements by using setting implementers for the associated interfaces in said registry. See {IERC1820Registry} and {ERC1820Implementer}.",
     "methods": {

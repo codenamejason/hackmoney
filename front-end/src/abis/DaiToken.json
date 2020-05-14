@@ -45,15 +45,25 @@
       "type": "function"
     }
   ],
+<<<<<<< HEAD
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"guy\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"dst\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"wad\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol\":\"DaiToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol\":{\"keccak256\":\"0x34a1cc396487d02e7a93345b81ce0b4eeb734b770fa284b9ce7ad786904a67ce\",\"urls\":[\"bzz-raw://7813c29aff87b2cbcf5894ee763d42fce0d7f1924e991a55dbc34d3a68792fa8\",\"dweb:/ipfs/QmdR119kWZyvDXuNTivGtRD7d11JwUGwfZreKkQJqa8C3v\"]}},\"version\":1}",
+=======
   "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"guy\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"dst\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"wad\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/DaiFaucet2.sol\":\"DaiToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/DaiFaucet2.sol\":{\"keccak256\":\"0x34a1cc396487d02e7a93345b81ce0b4eeb734b770fa284b9ce7ad786904a67ce\",\"urls\":[\"bzz-raw://7813c29aff87b2cbcf5894ee763d42fce0d7f1924e991a55dbc34d3a68792fa8\",\"dweb:/ipfs/QmdR119kWZyvDXuNTivGtRD7d11JwUGwfZreKkQJqa8C3v\"]}},\"version\":1}",
+>>>>>>> origin/master
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.4.22 <0.7.0;\n\ninterface DaiToken {\n    function transfer(address dst, uint wad) external returns(bool);\n    function balanceOf(address guy) external view returns(uint);\n}\n\n\ncontract owned {\n    DaiToken daitoken;\n\taddress owner;\n\n\tconstructor() public{\n\t\towner = msg.sender;\n\t\tdaitoken = DaiToken(0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa);\n\t}\n\n\tmodifier onlyOwner {\n\t\trequire(msg.sender == owner, \"Only the contract owner can call this function\");\n\t\t_;\n\t}\n}\n\n\ncontract mortal is owned {\n\t// Only owner can shutdown this contract.\n\tfunction destroy() public onlyOwner {\n\t    daitoken.transfer(owner, daitoken.balanceOf(address(this)));\n\t    selfdestruct(msg.sender);\n\t}\n}\n\n\ncontract DaiFaucet is mortal {\n\n\tevent Withdrawal(address indexed to, uint amount);\n\tevent Deposit(address indexed from, uint amount);\n\n\n\t// Give out Dai to anyone who asks\n\tfunction withdraw(uint withdraw_amount) public {\n\t\t// Limit withdrawal amount\n\t\trequire(withdraw_amount <= 0.1 ether);\n\t\trequire(daitoken.balanceOf(address(this)) >= withdraw_amount,\n\t\t\t\"Insufficient balance in faucet for withdrawal request\");\n\t\t// Send the amount to the address that requested it\n\t\tdaitoken.transfer(msg.sender, withdraw_amount);\n\t\temit Withdrawal(msg.sender, withdraw_amount);\n\t}\n\n\t// Accept any incoming amount\n\tfunction accetpIncoming() external payable onlyOwner {\n\t\temit Deposit(msg.sender, msg.value);\n\t}\n}\n\n\n\n\n\n\n\n\n\n",
+<<<<<<< HEAD
+  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol",
+  "ast": {
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol",
+=======
   "sourcePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/DaiFaucet2.sol",
   "ast": {
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/DaiFaucet2.sol",
+>>>>>>> origin/master
     "exportedSymbols": {
       "DaiFaucet": [
         1085
@@ -1984,7 +1994,11 @@
     "src": "0:1409:13"
   },
   "legacyAST": {
+<<<<<<< HEAD
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol",
+=======
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/DaiFaucet2.sol",
+>>>>>>> origin/master
     "exportedSymbols": {
       "DaiFaucet": [
         1085
@@ -3919,8 +3933,13 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
+<<<<<<< HEAD
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-14T17:51:49.866Z",
+=======
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-05-14T02:21:01.317Z",
+>>>>>>> origin/master
   "devdoc": {
     "methods": {}
   },

@@ -1562,8 +1562,13 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
+<<<<<<< HEAD
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-14T17:51:49.913Z",
+=======
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-05-14T02:21:01.353Z",
+>>>>>>> origin/master
   "devdoc": {
     "details": "Implementation of the {IERC1820Implementer} interface. * Contracts may inherit from this and call {_registerInterfaceForAddress} to declare their willingness to be implementers. {IERC1820Registry-setInterfaceImplementer} should then be called for the registration to be complete.",
     "methods": {}

@@ -160,7 +160,7 @@ const TransferStreamForm = ({props}) => {
         ownerAddress: '',
         newOperator: '',
         stream: {
-          id: 0,
+          id: '0x',
         },
 
     })
@@ -280,7 +280,7 @@ const CreateStreamForm = ({data}) => {
         pmt = pmt + interest;
         setPayment(pmt);
 
-        console.log(event.target.value);
+        console.log(amount);
     };
 
 
@@ -288,7 +288,7 @@ const CreateStreamForm = ({data}) => {
         const duration = event.target.name;
         
         setDuration(event.target.value);
-        console.log(event.target.value);
+        console.log(duration);
     };
 
   
@@ -296,7 +296,7 @@ const CreateStreamForm = ({data}) => {
         const product = event.target.name;
         
         setProductType(event.target.value)
-        console.log(event.target.value)
+        console.log(product)
     };
 
 
@@ -304,7 +304,7 @@ const CreateStreamForm = ({data}) => {
         const deferredDuration = event.target.name;
 
         setDeferredDuration(event.target.value)
-        console.log(event.target.value)
+        console.log(deferredDuration)
     };
 
 
