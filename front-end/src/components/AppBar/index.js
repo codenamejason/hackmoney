@@ -84,7 +84,7 @@ export default function HideAppBar(props) {
         <AppBar>
           <Toolbar>
             <Typography variant="h6">
-                Income Jar
+                Amazing Annuity
             </Typography>
              
             <Button onClick={connectWallet}>

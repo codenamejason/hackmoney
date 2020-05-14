@@ -30,15 +30,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aave\",\"details\":\"implement this interface to develop a flashloan-compatible flashLoanReceiver contract*\",\"methods\":{},\"title\":\"IFlashLoanReceiver interface\"},\"userdoc\":{\"methods\":{},\"notice\":\"Interface for the Aave fee IFlashLoanReceiver.\"}},\"settings\":{\"compilationTarget\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":\"IFlashLoanReceiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":{\"keccak256\":\"0x6c39fd6efc3892fc0b870a2e97553a1a77bf3497bd5b924076086588b9cd2ba4\",\"urls\":[\"bzz-raw://3d5f191c5025c97bfef4f200c15345587d75f83e0796cf8145f1572dbdb3d28e\",\"dweb:/ipfs/QmeumjXign1cCEpkDbHnoCWtfRG6UC5VozqQiRUprZTBgP\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aave\",\"details\":\"implement this interface to develop a flashloan-compatible flashLoanReceiver contract*\",\"methods\":{},\"title\":\"IFlashLoanReceiver interface\"},\"userdoc\":{\"methods\":{},\"notice\":\"Interface for the Aave fee IFlashLoanReceiver.\"}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":\"IFlashLoanReceiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":{\"keccak256\":\"0xfd9a5313e59c8502c9d378c054aef67c81f7e390d979e636f8b4993bca2f3510\",\"urls\":[\"bzz-raw://8b216a28b287cd5a18672372b659ba7d16c7c16d174388c4c457a1bececd4893\",\"dweb:/ipfs/QmNdqZ8tzGpWcige75fdfTtpygXupePVS6obm8ms2PXJSS\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity >=0.4.22 <0.7.0;\r\n\r\n/**\r\n* @title IFlashLoanReceiver interface\r\n* @notice Interface for the Aave fee IFlashLoanReceiver.\r\n* @author Aave\r\n* @dev implement this interface to develop a flashloan-compatible flashLoanReceiver contract\r\n**/\r\ninterface IFlashLoanReceiver {\r\n    function executeOperation(address _reserve, uint256 _amount, uint256 _fee, bytes calldata _params) external;\r\n}",
-  "sourcePath": "C:\\Projects\\Hackathons\\HackMoney\\dev\\front-end\\src\\contracts\\flashloan\\aave\\IFlashLoanReceiver.sol",
+  "source": "pragma solidity >=0.4.22 <0.7.0;\n\n/**\n* @title IFlashLoanReceiver interface\n* @notice Interface for the Aave fee IFlashLoanReceiver.\n* @author Aave\n* @dev implement this interface to develop a flashloan-compatible flashLoanReceiver contract\n**/\ninterface IFlashLoanReceiver {\n    function executeOperation(address _reserve, uint256 _amount, uint256 _fee, bytes calldata _params) external;\n}",
+  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
   "ast": {
-    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
     "exportedSymbols": {
       "IFlashLoanReceiver": [
         353
@@ -97,7 +97,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "315:16:4",
+                  "src": "306:16:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -108,7 +108,7 @@
                     "id": 342,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "315:7:4",
+                    "src": "306:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -125,7 +125,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "333:15:4",
+                  "src": "324:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -136,7 +136,7 @@
                     "id": 344,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "333:7:4",
+                    "src": "324:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -152,7 +152,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "350:12:4",
+                  "src": "341:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -163,7 +163,7 @@
                     "id": 346,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "350:7:4",
+                    "src": "341:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -179,7 +179,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "364:22:4",
+                  "src": "355:22:4",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -190,7 +190,7 @@
                     "id": 348,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "364:5:4",
+                    "src": "355:5:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -200,29 +200,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "314:73:4"
+              "src": "305:73:4"
             },
             "returnParameters": {
               "id": 351,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "396:0:4"
+              "src": "387:0:4"
             },
             "scope": 353,
-            "src": "289:108:4",
+            "src": "280:108:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
         "scope": 354,
-        "src": "253:147:4"
+        "src": "245:145:4"
       }
     ],
-    "src": "0:400:4"
+    "src": "0:390:4"
   },
   "legacyAST": {
-    "absolutePath": "/C/Projects/Hackathons/HackMoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
     "exportedSymbols": {
       "IFlashLoanReceiver": [
         353
@@ -281,7 +281,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "315:16:4",
+                  "src": "306:16:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -292,7 +292,7 @@
                     "id": 342,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "315:7:4",
+                    "src": "306:7:4",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -309,7 +309,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "333:15:4",
+                  "src": "324:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -320,7 +320,7 @@
                     "id": 344,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "333:7:4",
+                    "src": "324:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -336,7 +336,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "350:12:4",
+                  "src": "341:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -347,7 +347,7 @@
                     "id": 346,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "350:7:4",
+                    "src": "341:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -363,7 +363,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 352,
-                  "src": "364:22:4",
+                  "src": "355:22:4",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -374,7 +374,7 @@
                     "id": 348,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "364:5:4",
+                    "src": "355:5:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -384,26 +384,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "314:73:4"
+              "src": "305:73:4"
             },
             "returnParameters": {
               "id": 351,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "396:0:4"
+              "src": "387:0:4"
             },
             "scope": 353,
-            "src": "289:108:4",
+            "src": "280:108:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
         "scope": 354,
-        "src": "253:147:4"
+        "src": "245:145:4"
       }
     ],
-    "src": "0:400:4"
+    "src": "0:390:4"
   },
   "compiler": {
     "name": "solc",
@@ -411,7 +411,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-13T00:11:25.550Z",
+  "updatedAt": "2020-05-14T17:51:49.819Z",
   "devdoc": {
     "author": "Aave",
     "details": "implement this interface to develop a flashloan-compatible flashLoanReceiver contract*",
