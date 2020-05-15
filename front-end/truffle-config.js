@@ -59,10 +59,10 @@ module.exports = {
     },
     main: {
       provider: () => new HDWalletProvider(
-        mnemonic,
+        ganache,
         "https://mainnet.infura.io/v3/1ad03ac212da4523b6c8337eace81a14",
       ),
-      network_id: 5,
+      network_id: 1,
       gas: 4700000
     },
     kovan: {

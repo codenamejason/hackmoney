@@ -14,7 +14,78 @@ import { Paper, Typography, FormControl, InputLabel, Select,
 import { Grid } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import BlurLinearIcon from '@material-ui/icons/BlurLinear';
+import Web3 from 'web3';
 
+//const web3 = new Web3(window.ethereum);
+
+async function runSetup() {
+  console.group('Run Setup:')
+  // Detect MetaMask
+  if(typeof web3 !== 'undefined') {
+    // continue execution
+    console.log('Welcome!')
+    //await loadBlockchainData()
+
+    // test account
+    //const account = "0x6F7d7d68c3Eed4Df81CF5F97582deef8ABC51533";
+    
+    const web3 = await loadWeb3()
+    //const account = await loadAccount(web3)
+    const account = await web3.eth.getAccounts()
+    console.log(account)
+    //this.checkAuthorization(account)
+  } else {
+    console.log('User does not have MetaMask installed')
+    window.alert('Please install MetaMask!')
+    // todo: don't show page content here...
+
+  }
+  console.groupEnd()
+}
+
+async function loadWeb3() {
+  console.group('Web3');
+  console.info('Loading Web3');
+  if (window.ethereum) {
+    window.web3 = new Web3(window.ethereum)
+    await window.ethereum.enable()
+    console.groupEnd();
+  }
+  else if (window.web3) {
+    window.web3 = new Web3(window.web3.currentProvider)
+    console.groupEnd();
+  }
+  else {
+    window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    console.groupEnd();
+  }
+}
+
+
+async function checkAuthorization(account){
+  // ToTo: check against actual token holders
+  // Call a smart contract to fetch token holders
+  // Test accounts from Ganache
+  const tokenHolders = [
+    "0xb6498080D032a5cede8d03feA95b693596b87580"
+  ]
+
+  const authorized = tokenHolders.includes(account)
+  if(authorized) {
+    // todo: show website content
+    //window.alert("You're Authorized! :)")
+    console.log("You're Authorized! :)")
+  } else {
+    // todo: show login content
+    window.alert("You're not Authorized! :(")
+  }
+}
+
+/**
+ * TabPanel
+ * @param {props} props 
+ * @param {home} home 
+ */
 function TabPanel(props, home) {
   const { children, value, index, ...other } = props;
 
@@ -69,6 +140,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * Full width tabs
+ */
 function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
@@ -119,6 +193,10 @@ function FullWidthTabs() {
   );
 }
 
+/**
+ * My Streams
+ * @param {object} data
+ */
 const MyStreams = ({data}) => {
     const classes = useStyles();
     const [formValues, setFormValues] = useState({
@@ -153,6 +231,10 @@ const MyStreams = ({data}) => {
     )
 }
 
+/**
+ * Transfer stream form
+ * @param {object} param0 
+ */
 const TransferStreamForm = ({props}) => {
     const classes = useStyles();
 
@@ -226,7 +308,8 @@ const TransferStreamForm = ({props}) => {
     )
 }
 
-const CreateStreamForm = ({data}) => {  
+const CreateStreamForm = ({data}) => {
+    loadWeb3();
     const classes = useStyles();
     const [duration, setDuration] = useState(0);
     const [productType, setProductType] = useState(0);
@@ -254,10 +337,13 @@ const CreateStreamForm = ({data}) => {
 
     
     const handleAmountChange = (event, newValue) => {
-        const amount = event.target;
+        const amount = event.target.value;
         setAmount(event.target.value);
 
         let pmt = (amount / duration) / frequecny;
+        // todo: add interest 
+        
+
         setPayment(pmt);
 
         console.log(event.target.value);
@@ -398,7 +484,7 @@ const CreateStreamForm = ({data}) => {
                                             }}
                                     >
                                             <option aria-label="None" value="" />
-                                            <option value={'52'}>Weekly</option>
+                                            {/* <option value={'52'}>Weekly</option> */}
                                             <option value={'12'}>Monthly</option>.
                                             <option value={'4'}>Quarterly</option>
                                             <option value={'1'}>Anually</option>

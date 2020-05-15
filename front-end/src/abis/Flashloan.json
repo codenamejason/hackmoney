@@ -250,9 +250,9 @@
         "contractDependencies": [
           339,
           353,
-          1175,
-          1202,
-          1305
+          1281,
+          1308,
+          1411
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -261,9 +261,9 @@
         "linearizedBaseContracts": [
           214,
           339,
-          1175,
-          1305,
-          1202,
+          1281,
+          1411,
+          1308,
           353
         ],
         "name": "Flashloan",
@@ -795,7 +795,7 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1484,
+                      "referencedDeclaration": 1590,
                       "src": "1188:11:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -1499,7 +1499,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1256,
+                  "referencedDeclaration": 1362,
                   "src": "2222:9:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1649,9 +1649,9 @@
         "contractDependencies": [
           339,
           353,
-          1175,
-          1202,
-          1305
+          1281,
+          1308,
+          1411
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -1660,9 +1660,9 @@
         "linearizedBaseContracts": [
           214,
           339,
-          1175,
-          1305,
-          1202,
+          1281,
+          1411,
+          1308,
           353
         ],
         "name": "Flashloan",
@@ -2194,7 +2194,7 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1484,
+                      "referencedDeclaration": 1590,
                       "src": "1188:11:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -2898,7 +2898,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1256,
+                  "referencedDeclaration": 1362,
                   "src": "2222:9:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2972,7 +2972,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-13T00:11:25.545Z",
+  "updatedAt": "2020-05-15T19:48:46.230Z",
   "devdoc": {
     "methods": {
       "owner()": {

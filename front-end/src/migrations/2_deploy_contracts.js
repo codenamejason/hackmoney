@@ -16,8 +16,8 @@ module.exports = async function (deployer
 ) {
 
     /**
-        * @dev deployments
-        */
+    * @dev deployments
+    */
     //await deployer.deploy(DaiFaucet);
 
     await deployer.deploy(StreamToken);
