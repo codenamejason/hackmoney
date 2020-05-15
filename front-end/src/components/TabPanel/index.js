@@ -242,7 +242,7 @@ const TransferStreamForm = ({props}) => {
         ownerAddress: '',
         newOperator: '',
         stream: {
-          id: 0,
+          id: '0x',
         },
 
     })
@@ -315,7 +315,7 @@ const CreateStreamForm = ({data}) => {
     const [productType, setProductType] = useState(0);
     const [amount, setAmount] = useState(0);
     const [deferredDuration, setDeferredDuration] = useState(0);
-    const [frequecny, setFrequency] = useState(0);
+    const [frequency, setFrequency] = useState(0);
     const [payment, setPayment] = useState(0);
     const [formValues, setFormValues] = useState({
         productType: '',
@@ -340,13 +340,37 @@ const CreateStreamForm = ({data}) => {
         const amount = event.target.value;
         setAmount(event.target.value);
 
+<<<<<<< HEAD
         let pmt = (amount / duration) / frequecny;
         // todo: add interest 
         
 
+=======
+        let pmt = (amount / duration) / frequency;
+        switch (frequency) {
+          case 1:
+              // if one payment the duration has to be 3 years
+
+              break;  
+          case 4:
+              // quarterly payments
+
+              break;
+          case 12:
+              // monthly payments
+
+              break;
+          default:
+              // default shit here
+              break;
+        }
+
+        let interest = pmt * .065;
+        pmt = pmt + interest;
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
         setPayment(pmt);
 
-        console.log(event.target.value);
+        console.log(amount);
     };
 
 
@@ -354,7 +378,7 @@ const CreateStreamForm = ({data}) => {
         const duration = event.target.name;
         
         setDuration(event.target.value);
-        console.log(event.target.value);
+        console.log(duration);
     };
 
   
@@ -362,7 +386,7 @@ const CreateStreamForm = ({data}) => {
         const product = event.target.name;
         
         setProductType(event.target.value)
-        console.log(event.target.value)
+        console.log(product)
     };
 
 
@@ -370,7 +394,7 @@ const CreateStreamForm = ({data}) => {
         const deferredDuration = event.target.name;
 
         setDeferredDuration(event.target.value)
-        console.log(event.target.value)
+        console.log(deferredDuration)
     };
 
 
@@ -380,9 +404,9 @@ const CreateStreamForm = ({data}) => {
 
   
     const createIncomeStream = (prop) => (event) => {
-        console.log(productType, ' ', duration, ' ', amount, '', frequecny)
+        console.log(productType, ' ', duration, ' ', amount, '', frequency)
 
-        alert(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequecny}`)
+        alert(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
 
         // set the form values in one object
         setFormValues({ ...formValues, [prop]: event.target.value });
@@ -476,7 +500,7 @@ const CreateStreamForm = ({data}) => {
                                     <Select 
                                             style={{ color: '#009be5' }}
                                             native
-                                            value={frequecny}
+                                            value={frequency}
                                             onChange={handleFrequencyChange}
                                             inputProps={{
                                             name: 'frequency',

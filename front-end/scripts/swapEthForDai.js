@@ -12,9 +12,15 @@ const factoryContract = new web3.eth.Contract(factoryAbi, '0x9c83dce8ca20e9aaf9d
 
 
 // Ropsten DAI Token: https://ropsten.etherscan.io/token/0xaD6D458402F60fD3Bd25163575031ACDce07538D
+<<<<<<< HEAD
 ////const DAI_ABI = legos.erc20.dai.abi
 //const DAI_ADDRESS = '0xf80A32A835F79D7787E8a8ee5721D0fEaFd78108'; //'0xaD6D458402F60fD3Bd25163575031ACDce07538D'
 const daiContract = new web3.eth.Contract(legos.erc20.dai.abi, '0xaD6D458402F60fD3Bd25163575031ACDce07538D'); //legos.erc20.dai.address
+=======
+const DAI_ABI = legos.erc20.dai.abi
+const DAI_ADDRESS = '0xaD6D458402F60fD3Bd25163575031ACDce07538D'; //'0xf80A32A835F79D7787E8a8ee5721D0fEaFd78108'
+const daiContract = new web3.eth.Contract(DAI_ABI, DAI_ADDRESS);
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
 
 // erc20 tokens
 //legos.erc20.abi;
@@ -22,8 +28,13 @@ const daiContract = new web3.eth.Contract(legos.erc20.dai.abi, '0xaD6D458402F60f
 
 // Ropsten Uniswap Dai Exchange: https://ropsten.etherscan.io/address/0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0
 const EXCHANGE_ABI = legos.uniswap.exchange.abi
+<<<<<<< HEAD
 const EXCHANGE_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'; //'0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0'
 const exchangeContract = new web3.eth.Contract(legos.uniswap.exchange.abi, '0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0');//legos.uniswap.exchange.address
+=======
+const EXCHANGE_ADDRESS = '0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0'; //'0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+const exchangeContract = new web3.eth.Contract(EXCHANGE_ABI, EXCHANGE_ADDRESS);
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
 
 
 
