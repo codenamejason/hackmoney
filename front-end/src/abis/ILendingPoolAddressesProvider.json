@@ -28,25 +28,15 @@
       "type": "function"
     }
   ],
-<<<<<<< HEAD
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getLendingPool\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLendingPoolCore\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{},\"title\":\"ILendingPoolAddressesProvider interface\"},\"userdoc\":{\"methods\":{},\"notice\":\"provides the interface to fetch the LendingPoolCore address\"}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol\":\"ILendingPoolAddressesProvider\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol\":{\"keccak256\":\"0xcfff3767f35d746313ccef3c6a1406f6ff18a1548b9c217fa22937e4f55b43ee\",\"urls\":[\"bzz-raw://ea84fdcdbb903243aae4c0db6a07b633ae451b143f2db31b53e596194e64b368\",\"dweb:/ipfs/QmSFgazKp9dLPZ32YAGBg7mTM6tQ7XeLMeNrrTzTvqThTT\"]}},\"version\":1}",
-=======
   "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getLendingPool\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLendingPoolCore\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{},\"title\":\"ILendingPoolAddressesProvider interface\"},\"userdoc\":{\"methods\":{},\"notice\":\"provides the interface to fetch the LendingPoolCore address\"}},\"settings\":{\"compilationTarget\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol\":\"ILendingPoolAddressesProvider\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol\":{\"keccak256\":\"0xcfff3767f35d746313ccef3c6a1406f6ff18a1548b9c217fa22937e4f55b43ee\",\"urls\":[\"bzz-raw://ea84fdcdbb903243aae4c0db6a07b633ae451b143f2db31b53e596194e64b368\",\"dweb:/ipfs/QmSFgazKp9dLPZ32YAGBg7mTM6tQ7XeLMeNrrTzTvqThTT\"]}},\"version\":1}",
->>>>>>> origin/master
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.4.22 <0.7.0;\n\n/**\n    @title ILendingPoolAddressesProvider interface\n    @notice provides the interface to fetch the LendingPoolCore address\n */\n\ninterface ILendingPoolAddressesProvider {\n    function getLendingPoolCore() external view returns (address payable);\n    function getLendingPool() external view returns (address);\n}",
-<<<<<<< HEAD
-  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
-  "ast": {
-    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
-=======
   "sourcePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
   "ast": {
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
->>>>>>> origin/master
     "exportedSymbols": {
       "ILendingPoolAddressesProvider": [
         558
@@ -207,11 +197,7 @@
     "src": "0:347:6"
   },
   "legacyAST": {
-<<<<<<< HEAD
-    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
-=======
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
->>>>>>> origin/master
     "exportedSymbols": {
       "ILendingPoolAddressesProvider": [
         558
@@ -376,13 +362,8 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
-<<<<<<< HEAD
-  "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-14T17:51:49.829Z",
-=======
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-14T02:21:01.262Z",
->>>>>>> origin/master
+  "updatedAt": "2020-05-15T03:45:10.156Z",
   "devdoc": {
     "methods": {},
     "title": "ILendingPoolAddressesProvider interface"

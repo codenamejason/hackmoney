@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+const log = console.log;
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
 
 const StreamCreatorAbi = [{
@@ -145,7 +147,10 @@ const StreamCreatorAbi = [{
 const streamCreatorContractAddress = '0x77bcf90ffa34e4b0624e8257d58c97a4d3dab299';
 
 const streamCreatorContract = new web3.eth.Contract(StreamCreatorAbi, streamCreatorContractAddress);
+log(chalk.blue('Contract abi loaded...'));
 
-console.log(streamCreatorContract);
+
+
+//log(streamCreatorContract);
 
 
