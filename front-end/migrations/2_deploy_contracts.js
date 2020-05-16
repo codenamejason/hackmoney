@@ -11,8 +11,7 @@ const StreamToken = artifacts.require('StreamToken')
 // });
 //const { singletons } = require('@openzeppelin/test-helpers');
 
-module.exports = async function (deployer
-) {
+module.exports = async function (deployer) {
 
     /**
     * @dev deployments
@@ -35,10 +34,6 @@ module.exports = async function (deployer
 
     // Bandchain ETH oracle
     //await deployer.deploy(PriceOracle);
-<<<<<<< HEAD:front-end/src/migrations/2_deploy_contracts.js
-
-=======
->>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6:front-end/migrations/2_deploy_contracts.js
 
     //try {
         // let lendingPoolAddressesProviderAddress;
