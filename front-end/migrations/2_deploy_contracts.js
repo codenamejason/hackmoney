@@ -35,7 +35,7 @@ module.exports = async function (deployer
     await deployer.deploy(IncomeStreamCreator);
 
     // Bandchain ETH oracle
-    //await deployer.deploy(PriceOracle);
+    await deployer.deploy(PriceOracle);
 
 
     //try {

@@ -340,12 +340,6 @@ const CreateStreamForm = ({data}) => {
         const amount = event.target.value;
         setAmount(event.target.value);
 
-<<<<<<< HEAD
-        let pmt = (amount / duration) / frequecny;
-        // todo: add interest 
-        
-
-=======
         let pmt = (amount / duration) / frequency;
         switch (frequency) {
           case 1:
@@ -367,7 +361,6 @@ const CreateStreamForm = ({data}) => {
 
         let interest = pmt * .065;
         pmt = pmt + interest;
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
         setPayment(pmt);
 
         console.log(amount);

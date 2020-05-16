@@ -80,9 +80,9 @@ module.exports = {
   mocha: {
     useColors: true,
   },
-  contracts_directory: './src/contracts/',
-  contracts_build_directory: './src/abis/',
-  migrations_directory: './src/migratons/',
+  contracts_directory: './contracts/',
+  contracts_build_directory: './build/abis/',
+  migrations_directory: './migratons/',
   compilers: {
     solc: {
       version: '0.6.2',

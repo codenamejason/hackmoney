@@ -6606,6 +6606,7 @@
   },
   "networks": {},
 <<<<<<< HEAD
+<<<<<<< HEAD
   "schemaVersion": "3.1.0",
 <<<<<<< HEAD
   "updatedAt": "2020-05-15T19:48:46.309Z",
@@ -6616,6 +6617,10 @@
   "updatedAt": "2020-05-14T02:21:01.412Z",
 >>>>>>> origin/master
 >>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
+=======
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-05-15T03:45:10.215Z",
+>>>>>>> origin/master
   "devdoc": {
     "details": "Wrappers around ERC20 operations that throw on failure (when the token contract returns false). Tokens that return no value (and instead revert or throw on failure) are also supported, non-reverting calls are assumed to be successful. To use this library you can add a `using SafeERC20 for ERC20;` statement to your contract, which allows you to call the safe operations as `token.safeTransfer(...)`, etc.",
     "methods": {},

@@ -148,25 +148,15 @@
       "type": "receive"
     }
   ],
-<<<<<<< HEAD
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_addressProvider\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"LogWithdraw\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"addressesProvider\",\"outputs\":[{\"internalType\":\"contract ILendingPoolAddressesProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"withdraw(address)\":{\"details\":\"Withdraw asset.\",\"params\":{\"_assetAddress\":\"Asset to be withdrawn.\"}}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol\":\"FlashLoanReceiverBase\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol\":{\"keccak256\":\"0xb7737e0a114aa3bf847a6bc9d29cc751d4a5c726fd613f0bda316dc518a5e18d\",\"urls\":[\"bzz-raw://b1cec3933c1c60eafd8df335cb4f6589156e1cb6661982d43de505d5433f6b3f\",\"dweb:/ipfs/QmW4yDgJBWXawSyurXMkMRGDhnbUt8LmipYn5QDALUwzK1\"]},\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":{\"keccak256\":\"0xfd9a5313e59c8502c9d378c054aef67c81f7e390d979e636f8b4993bca2f3510\",\"urls\":[\"bzz-raw://8b216a28b287cd5a18672372b659ba7d16c7c16d174388c4c457a1bececd4893\",\"dweb:/ipfs/QmNdqZ8tzGpWcige75fdfTtpygXupePVS6obm8ms2PXJSS\"]},\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol\":{\"keccak256\":\"0xcfff3767f35d746313ccef3c6a1406f6ff18a1548b9c217fa22937e4f55b43ee\",\"urls\":[\"bzz-raw://ea84fdcdbb903243aae4c0db6a07b633ae451b143f2db31b53e596194e64b368\",\"dweb:/ipfs/QmSFgazKp9dLPZ32YAGBg7mTM6tQ7XeLMeNrrTzTvqThTT\"]},\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/Withdrawable.sol\":{\"keccak256\":\"0x1a1423114420cc1538563fc58f3ac5c702f71f91990affb5c1108b4efb272842\",\"urls\":[\"bzz-raw://e8d975a2727fb36c0cc7afaed506d5a62b4716e5dc8426b75134212206a683b6\",\"dweb:/ipfs/QmZ14dEpFkKFp6wjjCUbh2fxUgJ3J9FhQQaio2aASxdkbp\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x0de74dfa6b37943c1b834cbd8fb7a8d052e5ff80c7adb33692102dd6cd2985e9\",\"urls\":[\"bzz-raw://9d2d827fcf4a838f5821732c0acd6a40d21c2a5a2cfe2563feec91465f47bb60\",\"dweb:/ipfs/Qmex3wMKf5Sghbfvr288RUg1kP2uAyTMf11w83WbMbpQQc\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0x9a8c691b81a4a48adbbd5b010faa56a168c189e711495c16347d93b60b805f82\",\"urls\":[\"bzz-raw://d951d626ed7bfe1a2d7a6bd4af315ff8691929bd567594d6ab53599fe9e17e4e\",\"dweb:/ipfs/QmYkGeowpa6Bjr9aaDirWdDo7hSfShzzZhanKC4nTfRhLj\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x04d34b3cd5677bea25f8dfceb6dec0eaa071d4d4b789a43f13fe0c415ba4c296\",\"urls\":[\"bzz-raw://e7e8b526a6839e5ba14f0d23a830387fec47f7043ce01d42c9f285b709a9d080\",\"dweb:/ipfs/QmXmhhFmX5gcAvVzNiDPAGA35iHMPNaYtQkACswRHBVTNw\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x3211de52f707a62a356a34fdea9d6a7bed46402d5ce45f1891a16fe2132fbb47\",\"urls\":[\"bzz-raw://45dfe794ad43a3674fab38a378c57eb6ed3353949f6529ccad4a4cbc91d45fc5\",\"dweb:/ipfs/QmReFGciE9fgsb6Nas1Fx593pzKWMjaDa1VQg4CEJQaD6U\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x6cc1cb934a3ac2137a7dcaed018af9e235392236ceecfd3687259702b9c767ad\",\"urls\":[\"bzz-raw://0055fa88138cd1c3c6440370f8580f85857f8fe9dec41c99af9eafbeb8d9c3ce\",\"dweb:/ipfs/QmX1xDh8vwGLLCH8ti45eXjQ7Wcxv1FEGTR3jkFnd5Nv6F\"]},\"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0xa27d8d0bf389702f2b124fff3d86238b17ec0abd47d1401e81dc48a1509dbb9a\",\"urls\":[\"bzz-raw://899c25b79e783c1e4ccdd06928e332e2b37f3ecaa487f49ef68ef9fde6b18f82\",\"dweb:/ipfs/QmV3rZDWabetVSmZ2iviS5tajKzvR3AEwsicKZao4ptTg2\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x5f7da58ee3d9faa9b8999a93d49c8ff978f1afc88ae9bcfc6f9cbb44da011c2b\",\"urls\":[\"bzz-raw://4f089d954b3ecaa26949412fe63e9a184b056562c6c13dd4a0529a5d9a2e685a\",\"dweb:/ipfs/QmVK5iCNAMcEJQxT59bsC5E53JQASDQPU6khHox3d5ZXCn\"]}},\"version\":1}",
-=======
   "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_addressProvider\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"LogWithdraw\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"addressesProvider\",\"outputs\":[{\"internalType\":\"contract ILendingPoolAddressesProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_assetAddress\",\"type\":\"address\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"},\"withdraw(address)\":{\"details\":\"Withdraw asset.\",\"params\":{\"_assetAddress\":\"Asset to be withdrawn.\"}}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol\":\"FlashLoanReceiverBase\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol\":{\"keccak256\":\"0xb7737e0a114aa3bf847a6bc9d29cc751d4a5c726fd613f0bda316dc518a5e18d\",\"urls\":[\"bzz-raw://b1cec3933c1c60eafd8df335cb4f6589156e1cb6661982d43de505d5433f6b3f\",\"dweb:/ipfs/QmW4yDgJBWXawSyurXMkMRGDhnbUt8LmipYn5QDALUwzK1\"]},\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":{\"keccak256\":\"0xfd9a5313e59c8502c9d378c054aef67c81f7e390d979e636f8b4993bca2f3510\",\"urls\":[\"bzz-raw://8b216a28b287cd5a18672372b659ba7d16c7c16d174388c4c457a1bececd4893\",\"dweb:/ipfs/QmNdqZ8tzGpWcige75fdfTtpygXupePVS6obm8ms2PXJSS\"]},\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol\":{\"keccak256\":\"0xcfff3767f35d746313ccef3c6a1406f6ff18a1548b9c217fa22937e4f55b43ee\",\"urls\":[\"bzz-raw://ea84fdcdbb903243aae4c0db6a07b633ae451b143f2db31b53e596194e64b368\",\"dweb:/ipfs/QmSFgazKp9dLPZ32YAGBg7mTM6tQ7XeLMeNrrTzTvqThTT\"]},\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/Withdrawable.sol\":{\"keccak256\":\"0x1a1423114420cc1538563fc58f3ac5c702f71f91990affb5c1108b4efb272842\",\"urls\":[\"bzz-raw://e8d975a2727fb36c0cc7afaed506d5a62b4716e5dc8426b75134212206a683b6\",\"dweb:/ipfs/QmZ14dEpFkKFp6wjjCUbh2fxUgJ3J9FhQQaio2aASxdkbp\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x0de74dfa6b37943c1b834cbd8fb7a8d052e5ff80c7adb33692102dd6cd2985e9\",\"urls\":[\"bzz-raw://9d2d827fcf4a838f5821732c0acd6a40d21c2a5a2cfe2563feec91465f47bb60\",\"dweb:/ipfs/Qmex3wMKf5Sghbfvr288RUg1kP2uAyTMf11w83WbMbpQQc\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0x9a8c691b81a4a48adbbd5b010faa56a168c189e711495c16347d93b60b805f82\",\"urls\":[\"bzz-raw://d951d626ed7bfe1a2d7a6bd4af315ff8691929bd567594d6ab53599fe9e17e4e\",\"dweb:/ipfs/QmYkGeowpa6Bjr9aaDirWdDo7hSfShzzZhanKC4nTfRhLj\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x04d34b3cd5677bea25f8dfceb6dec0eaa071d4d4b789a43f13fe0c415ba4c296\",\"urls\":[\"bzz-raw://e7e8b526a6839e5ba14f0d23a830387fec47f7043ce01d42c9f285b709a9d080\",\"dweb:/ipfs/QmXmhhFmX5gcAvVzNiDPAGA35iHMPNaYtQkACswRHBVTNw\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x3211de52f707a62a356a34fdea9d6a7bed46402d5ce45f1891a16fe2132fbb47\",\"urls\":[\"bzz-raw://45dfe794ad43a3674fab38a378c57eb6ed3353949f6529ccad4a4cbc91d45fc5\",\"dweb:/ipfs/QmReFGciE9fgsb6Nas1Fx593pzKWMjaDa1VQg4CEJQaD6U\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x6cc1cb934a3ac2137a7dcaed018af9e235392236ceecfd3687259702b9c767ad\",\"urls\":[\"bzz-raw://0055fa88138cd1c3c6440370f8580f85857f8fe9dec41c99af9eafbeb8d9c3ce\",\"dweb:/ipfs/QmX1xDh8vwGLLCH8ti45eXjQ7Wcxv1FEGTR3jkFnd5Nv6F\"]},\"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0xa27d8d0bf389702f2b124fff3d86238b17ec0abd47d1401e81dc48a1509dbb9a\",\"urls\":[\"bzz-raw://899c25b79e783c1e4ccdd06928e332e2b37f3ecaa487f49ef68ef9fde6b18f82\",\"dweb:/ipfs/QmV3rZDWabetVSmZ2iviS5tajKzvR3AEwsicKZao4ptTg2\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x5f7da58ee3d9faa9b8999a93d49c8ff978f1afc88ae9bcfc6f9cbb44da011c2b\",\"urls\":[\"bzz-raw://4f089d954b3ecaa26949412fe63e9a184b056562c6c13dd4a0529a5d9a2e685a\",\"dweb:/ipfs/QmVK5iCNAMcEJQxT59bsC5E53JQASDQPU6khHox3d5ZXCn\"]}},\"version\":1}",
->>>>>>> origin/master
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.4.22 <0.7.0;\n\nimport \"@openzeppelin/contracts/math/SafeMath.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/IERC20.sol\";\nimport \"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\";\nimport \"./IFlashLoanReceiver.sol\";\nimport \"./ILendingPoolAddressesProvider.sol\";\nimport \"../../utils/Withdrawable.sol\";\n\nabstract contract FlashLoanReceiverBase is IFlashLoanReceiver, Withdrawable {\n\n    using SafeERC20 for IERC20;\n    using SafeMath for uint256;\n\n    address constant ethAddress = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;\n    ILendingPoolAddressesProvider public addressesProvider;\n\n    constructor(address _addressProvider) public {\n        addressesProvider = ILendingPoolAddressesProvider(_addressProvider);\n    }\n\n    receive() payable external {}\n\n    function transferFundsBackToPoolInternal(address _reserve, uint256 _amount) internal {\n        address payable core = addressesProvider.getLendingPoolCore();\n        transferInternal(core, _reserve, _amount);\n    }\n\n    function transferInternal(address payable _destination, address _reserve, uint256 _amount) internal {\n        if(_reserve == ethAddress) {\n            (bool success, ) = _destination.call{value: _amount}(\"\");\n            require(success == true, \"Couldn't transfer ETH\");\n            return;\n        }\n        IERC20(_reserve).safeTransfer(_destination, _amount);\n    }\n\n    function getBalanceInternal(address _target, address _reserve) internal view returns(uint256) {\n        if(_reserve == ethAddress) {\n            return _target.balance;\n        }\n        return IERC20(_reserve).balanceOf(_target);\n    }\n}\n",
-<<<<<<< HEAD
-  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol",
-  "ast": {
-    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol",
-=======
   "sourcePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol",
   "ast": {
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol",
->>>>>>> origin/master
     "exportedSymbols": {
       "FlashLoanReceiverBase": [
         339
@@ -238,11 +228,7 @@
         "unitAlias": ""
       },
       {
-<<<<<<< HEAD
-        "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
-=======
         "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
->>>>>>> origin/master
         "file": "./IFlashLoanReceiver.sol",
         "id": 220,
         "nodeType": "ImportDirective",
@@ -253,11 +239,7 @@
         "unitAlias": ""
       },
       {
-<<<<<<< HEAD
-        "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
-=======
         "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
->>>>>>> origin/master
         "file": "./ILendingPoolAddressesProvider.sol",
         "id": 221,
         "nodeType": "ImportDirective",
@@ -268,11 +250,7 @@
         "unitAlias": ""
       },
       {
-<<<<<<< HEAD
-        "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/Withdrawable.sol",
-=======
         "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/Withdrawable.sol",
->>>>>>> origin/master
         "file": "../../utils/Withdrawable.sol",
         "id": 222,
         "nodeType": "ImportDirective",
@@ -1857,11 +1835,7 @@
     "src": "0:1615:3"
   },
   "legacyAST": {
-<<<<<<< HEAD
-    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol",
-=======
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/FlashLoanReceiverBase.sol",
->>>>>>> origin/master
     "exportedSymbols": {
       "FlashLoanReceiverBase": [
         339
@@ -1933,11 +1907,7 @@
         "unitAlias": ""
       },
       {
-<<<<<<< HEAD
-        "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
-=======
         "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
->>>>>>> origin/master
         "file": "./IFlashLoanReceiver.sol",
         "id": 220,
         "nodeType": "ImportDirective",
@@ -1948,11 +1918,7 @@
         "unitAlias": ""
       },
       {
-<<<<<<< HEAD
-        "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
-=======
         "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/ILendingPoolAddressesProvider.sol",
->>>>>>> origin/master
         "file": "./ILendingPoolAddressesProvider.sol",
         "id": 221,
         "nodeType": "ImportDirective",
@@ -1963,11 +1929,7 @@
         "unitAlias": ""
       },
       {
-<<<<<<< HEAD
-        "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/Withdrawable.sol",
-=======
         "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/utils/Withdrawable.sol",
->>>>>>> origin/master
         "file": "../../utils/Withdrawable.sol",
         "id": 222,
         "nodeType": "ImportDirective",
@@ -3557,6 +3519,7 @@
   },
   "networks": {},
 <<<<<<< HEAD
+<<<<<<< HEAD
   "schemaVersion": "3.1.0",
 <<<<<<< HEAD
   "updatedAt": "2020-05-15T19:48:46.236Z",
@@ -3567,6 +3530,10 @@
   "updatedAt": "2020-05-14T02:21:01.243Z",
 >>>>>>> origin/master
 >>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
+=======
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-05-15T03:45:10.149Z",
+>>>>>>> origin/master
   "devdoc": {
     "methods": {
       "owner()": {

@@ -596,6 +596,7 @@
   },
   "networks": {},
 <<<<<<< HEAD
+<<<<<<< HEAD
   "schemaVersion": "3.1.0",
 <<<<<<< HEAD
   "updatedAt": "2020-05-15T19:48:46.285Z",
@@ -606,6 +607,10 @@
   "updatedAt": "2020-05-14T02:21:01.344Z",
 >>>>>>> origin/master
 >>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
+=======
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-05-15T03:45:10.197Z",
+>>>>>>> origin/master
   "devdoc": {
     "methods": {}
   },
