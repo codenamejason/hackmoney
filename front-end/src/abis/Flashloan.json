@@ -250,9 +250,9 @@
         "contractDependencies": [
           339,
           353,
-          1175,
-          1202,
-          1305
+          1281,
+          1308,
+          1411
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -261,9 +261,9 @@
         "linearizedBaseContracts": [
           214,
           339,
-          1175,
-          1305,
-          1202,
+          1281,
+          1411,
+          1308,
           353
         ],
         "name": "Flashloan",
@@ -795,8 +795,13 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
+<<<<<<< HEAD
+                      "referencedDeclaration": 1590,
+                      "src": "1188:11:2",
+=======
                       "referencedDeclaration": 1484,
                       "src": "1153:11:2",
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
                         "typeString": "function (uint256,uint256) pure returns (uint256)"
@@ -1499,8 +1504,13 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
+<<<<<<< HEAD
+                  "referencedDeclaration": 1362,
+                  "src": "2222:9:2",
+=======
                   "referencedDeclaration": 1256,
                   "src": "2157:9:2",
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
@@ -1649,9 +1659,9 @@
         "contractDependencies": [
           339,
           353,
-          1175,
-          1202,
-          1305
+          1281,
+          1308,
+          1411
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -1660,9 +1670,9 @@
         "linearizedBaseContracts": [
           214,
           339,
-          1175,
-          1305,
-          1202,
+          1281,
+          1411,
+          1308,
           353
         ],
         "name": "Flashloan",
@@ -2194,8 +2204,13 @@
                       "lValueRequested": false,
                       "memberName": "add",
                       "nodeType": "MemberAccess",
+<<<<<<< HEAD
+                      "referencedDeclaration": 1590,
+                      "src": "1188:11:2",
+=======
                       "referencedDeclaration": 1484,
                       "src": "1153:11:2",
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
                         "typeString": "function (uint256,uint256) pure returns (uint256)"
@@ -2898,8 +2913,13 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
+<<<<<<< HEAD
+                  "referencedDeclaration": 1362,
+                  "src": "2222:9:2",
+=======
                   "referencedDeclaration": 1256,
                   "src": "2157:9:2",
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
@@ -2972,7 +2992,19 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
+<<<<<<< HEAD
   "updatedAt": "2020-05-15T21:48:04.166Z",
+=======
+<<<<<<< HEAD
+  "updatedAt": "2020-05-15T19:48:46.230Z",
+=======
+  "updatedAt": "2020-05-14T17:51:49.807Z",
+=======
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-05-14T02:21:01.230Z",
+>>>>>>> origin/master
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
+>>>>>>> 9b2dc2ed57c9022b1e28cde116a2166c0b71c750
   "devdoc": {
     "methods": {
       "owner()": {

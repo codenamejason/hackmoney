@@ -64,8 +64,7 @@ module.exports = {
         "https://mainnet.infura.io/v3/1ad03ac212da4523b6c8337eace81a14",
       ),
       network_id: 1,
-      gas: 4700000,
-      skipDryRun: false
+      gas: 4700000
     },
     kovan: {
 	    provider: new HDWalletProvider(

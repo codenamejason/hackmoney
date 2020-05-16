@@ -1,4 +1,9 @@
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
+const chalk = require('chalk');
+const log = console.log;
+const { getLegosFor, networks } = require("@studydefi/money-legos");
+const legos = getLegosFor(networks.mainnet);
+
 
 const StreamCreatorAbi = [{
         "inputs": [{
@@ -142,7 +147,9 @@ const StreamCreatorAbi = [{
         "type": "function"
     }
 ];
+
 const streamCreatorContractAddress = '0x77bcf90ffa34e4b0624e8257d58c97a4d3dab299';
+
 
 const streamCreatorContract = new web3.eth.Contract(StreamCreatorAbi, streamCreatorContractAddress);
 
