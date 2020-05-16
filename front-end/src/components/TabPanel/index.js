@@ -353,6 +353,7 @@ const CreateStreamForm = ({data}) => {
               // if one payment the duration has to be 3 years
               //setDuration(36)
 
+              
               break;  
           case 4:
               // quarterly payments

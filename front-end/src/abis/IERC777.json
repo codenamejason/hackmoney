@@ -4010,19 +4010,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-<<<<<<< HEAD
-  "updatedAt": "2020-05-15T21:48:04.290Z",
-=======
-<<<<<<< HEAD
-  "updatedAt": "2020-05-15T19:48:46.337Z",
-=======
-  "updatedAt": "2020-05-14T17:51:49.978Z",
-=======
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-14T02:21:01.497Z",
->>>>>>> origin/master
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
->>>>>>> 9b2dc2ed57c9022b1e28cde116a2166c0b71c750
+  "updatedAt": "2020-05-16T11:13:49.442Z",
   "devdoc": {
     "details": "Interface of the ERC777Token standard as defined in the EIP. * This contract uses the https://eips.ethereum.org/EIPS/eip-1820[ERC1820 registry standard] to let token holders and recipients react to token movements by using setting implementers for the associated interfaces in said registry. See {IERC1820Registry} and {ERC1820Implementer}.",
     "methods": {

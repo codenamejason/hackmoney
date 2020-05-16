@@ -7,15 +7,15 @@
       "type": "constructor"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/contracts/utils/DaiFaucet2.sol\":\"owned\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/contracts/utils/DaiFaucet2.sol\":{\"keccak256\":\"0x34a1cc396487d02e7a93345b81ce0b4eeb734b770fa284b9ce7ad786904a67ce\",\"urls\":[\"bzz-raw://7813c29aff87b2cbcf5894ee763d42fce0d7f1924e991a55dbc34d3a68792fa8\",\"dweb:/ipfs/QmdR119kWZyvDXuNTivGtRD7d11JwUGwfZreKkQJqa8C3v\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b5033600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550734f96fe3b7a6cf9725f59d353f723c1bdb64ca6aa6000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550603f8060b26000396000f3fe6080604052600080fdfea264697066735822122006407aca0b8f83fa7e0bf96b32f1624d7c5d500e0eeef9a260765583b310daa764736f6c63430006020033",
-  "deployedBytecode": "0x6080604052600080fdfea264697066735822122006407aca0b8f83fa7e0bf96b32f1624d7c5d500e0eeef9a260765583b310daa764736f6c63430006020033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol\":\"owned\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol\":{\"keccak256\":\"0x34a1cc396487d02e7a93345b81ce0b4eeb734b770fa284b9ce7ad786904a67ce\",\"urls\":[\"bzz-raw://7813c29aff87b2cbcf5894ee763d42fce0d7f1924e991a55dbc34d3a68792fa8\",\"dweb:/ipfs/QmdR119kWZyvDXuNTivGtRD7d11JwUGwfZreKkQJqa8C3v\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5033600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550734f96fe3b7a6cf9725f59d353f723c1bdb64ca6aa6000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550603f8060b26000396000f3fe6080604052600080fdfea2646970667358221220a726ef457747d0349f2431fac164ec4281fc0791547c36886604bdb9a6be037364736f6c63430006020033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220a726ef457747d0349f2431fac164ec4281fc0791547c36886604bdb9a6be037364736f6c63430006020033",
   "sourceMap": "193:286:13:-:0;;;251:113;8:9:-1;5:2;;;30:1;27;20:12;5:2;251:113:13;283:10;275:5;;:18;;;;;;;;;;;;;;;;;;317:42;297:8;;:63;;;;;;;;;;;;;;;;;;193:286;;;;;;",
   "deployedSourceMap": "193:286:13:-:0;;;;;",
   "source": "pragma solidity >=0.4.22 <0.7.0;\n\ninterface DaiToken {\n    function transfer(address dst, uint wad) external returns(bool);\n    function balanceOf(address guy) external view returns(uint);\n}\n\n\ncontract owned {\n    DaiToken daitoken;\n\taddress owner;\n\n\tconstructor() public{\n\t\towner = msg.sender;\n\t\tdaitoken = DaiToken(0x4F96Fe3b7A6Cf9725f59d353F723c1bDb64CA6Aa);\n\t}\n\n\tmodifier onlyOwner {\n\t\trequire(msg.sender == owner, \"Only the contract owner can call this function\");\n\t\t_;\n\t}\n}\n\n\ncontract mortal is owned {\n\t// Only owner can shutdown this contract.\n\tfunction destroy() public onlyOwner {\n\t    daitoken.transfer(owner, daitoken.balanceOf(address(this)));\n\t    selfdestruct(msg.sender);\n\t}\n}\n\n\ncontract DaiFaucet is mortal {\n\n\tevent Withdrawal(address indexed to, uint amount);\n\tevent Deposit(address indexed from, uint amount);\n\n\n\t// Give out Dai to anyone who asks\n\tfunction withdraw(uint withdraw_amount) public {\n\t\t// Limit withdrawal amount\n\t\trequire(withdraw_amount <= 0.1 ether);\n\t\trequire(daitoken.balanceOf(address(this)) >= withdraw_amount,\n\t\t\t\"Insufficient balance in faucet for withdrawal request\");\n\t\t// Send the amount to the address that requested it\n\t\tdaitoken.transfer(msg.sender, withdraw_amount);\n\t\temit Withdrawal(msg.sender, withdraw_amount);\n\t}\n\n\t// Accept any incoming amount\n\tfunction accetpIncoming() external payable onlyOwner {\n\t\temit Deposit(msg.sender, msg.value);\n\t}\n}\n\n\n\n\n\n\n\n\n\n",
-  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/contracts/utils/DaiFaucet2.sol",
+  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol",
   "ast": {
-    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/contracts/utils/DaiFaucet2.sol",
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol",
     "exportedSymbols": {
       "DaiFaucet": [
         1191
@@ -82,13 +82,8 @@
                   "name": "dst",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1057,
-                  "src": "80:11:13",
-=======
-                  "scope": 951,
                   "src": "77:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -115,13 +110,8 @@
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1057,
-                  "src": "93:8:13",
-=======
-                  "scope": 951,
                   "src": "90:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -154,13 +144,8 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1057,
-                  "src": "120:4:13",
-=======
-                  "scope": 951,
                   "src": "117:4:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -183,13 +168,8 @@
               ],
               "src": "116:6:13"
             },
-<<<<<<< HEAD
             "scope": 1065,
-            "src": "62:64:13",
-=======
-            "scope": 959,
             "src": "59:64:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -215,13 +195,8 @@
                   "name": "guy",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1064,
-                  "src": "151:11:13",
-=======
-                  "scope": 958,
                   "src": "147:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -255,13 +230,8 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1064,
-                  "src": "186:4:13",
-=======
-                  "scope": 958,
                   "src": "182:4:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -284,25 +254,15 @@
               ],
               "src": "181:6:13"
             },
-<<<<<<< HEAD
             "scope": 1065,
-            "src": "132:60:13",
-=======
-            "scope": 959,
             "src": "128:60:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "36:159:13"
-=======
-        "scope": 1086,
         "src": "34:156:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       },
       {
         "abstract": false,
@@ -324,13 +284,8 @@
             "name": "daitoken",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-<<<<<<< HEAD
             "scope": 1097,
-            "src": "223:17:13",
-=======
-            "scope": 991,
             "src": "214:17:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -342,13 +297,8 @@
               "id": 1066,
               "name": "DaiToken",
               "nodeType": "UserDefinedTypeName",
-<<<<<<< HEAD
               "referencedDeclaration": 1065,
-              "src": "223:8:13",
-=======
-              "referencedDeclaration": 959,
               "src": "214:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_DaiToken_$1065",
                 "typeString": "contract DaiToken"
@@ -363,13 +313,8 @@
             "name": "owner",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-<<<<<<< HEAD
             "scope": 1097,
-            "src": "244:13:13",
-=======
-            "scope": 991,
             "src": "234:13:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -410,13 +355,8 @@
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1069,
-                      "src": "288:5:13",
-=======
-                      "referencedDeclaration": 963,
                       "src": "275:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -477,13 +417,8 @@
                       "name": "daitoken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1067,
-                      "src": "311:8:13",
-=======
-                      "referencedDeclaration": 961,
                       "src": "297:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_contract$_DaiToken_$1065",
                         "typeString": "contract DaiToken"
@@ -524,13 +459,8 @@
                         "name": "DaiToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1065,
-                        "src": "322:8:13",
-=======
-                        "referencedDeclaration": 959,
                         "src": "308:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_contract$_DaiToken_$1065_$",
                           "typeString": "type(contract DaiToken)"
@@ -583,13 +513,8 @@
               "parameters": [],
               "src": "271:0:13"
             },
-<<<<<<< HEAD
             "scope": 1097,
-            "src": "263:116:13",
-=======
-            "scope": 991,
             "src": "251:113:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
@@ -652,13 +577,8 @@
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-<<<<<<< HEAD
                           "referencedDeclaration": 1069,
-                          "src": "430:5:13",
-=======
-                          "referencedDeclaration": 963,
                           "src": "412:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -756,13 +676,8 @@
             "visibility": "internal"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "201:299:13"
-=======
-        "scope": 1086,
         "src": "193:286:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       },
       {
         "abstract": false,
@@ -774,13 +689,8 @@
               "id": 1098,
               "name": "owned",
               "nodeType": "UserDefinedTypeName",
-<<<<<<< HEAD
               "referencedDeclaration": 1097,
-              "src": "525:5:13",
-=======
-              "referencedDeclaration": 991,
               "src": "501:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_owned_$1097",
                 "typeString": "contract owned"
@@ -821,13 +731,8 @@
                         "name": "owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1069,
-                        "src": "641:5:13",
-=======
-                        "referencedDeclaration": 963,
                         "src": "614:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -911,13 +816,8 @@
                             "name": "daitoken",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-<<<<<<< HEAD
                             "referencedDeclaration": 1067,
-                            "src": "648:8:13",
-=======
-                            "referencedDeclaration": 961,
                             "src": "621:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_DaiToken_$1065",
                               "typeString": "contract DaiToken"
@@ -930,13 +830,8 @@
                           "lValueRequested": false,
                           "memberName": "balanceOf",
                           "nodeType": "MemberAccess",
-<<<<<<< HEAD
                           "referencedDeclaration": 1064,
-                          "src": "648:18:13",
-=======
-                          "referencedDeclaration": 958,
                           "src": "621:18:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
                             "typeString": "function (address) view external returns (uint256)"
@@ -975,13 +870,8 @@
                         "name": "daitoken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1067,
-                        "src": "623:8:13",
-=======
-                        "referencedDeclaration": 961,
                         "src": "596:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_DaiToken_$1065",
                           "typeString": "contract DaiToken"
@@ -994,13 +884,8 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-<<<<<<< HEAD
                       "referencedDeclaration": 1057,
-                      "src": "623:17:13",
-=======
-                      "referencedDeclaration": 951,
                       "src": "596:17:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
                         "typeString": "function (address,uint256) external returns (bool)"
@@ -1113,13 +998,8 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-<<<<<<< HEAD
                   "referencedDeclaration": 1096,
-                  "src": "605:9:13",
-=======
-                  "referencedDeclaration": 990,
                   "src": "579:9:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
@@ -1144,25 +1024,15 @@
               "parameters": [],
               "src": "589:0:13"
             },
-<<<<<<< HEAD
             "scope": 1124,
-            "src": "579:140:13",
-=======
-            "scope": 1018,
             "src": "553:137:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "506:216:13"
-=======
-        "scope": 1086,
         "src": "482:210:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       },
       {
         "abstract": false,
@@ -1174,13 +1044,8 @@
               "id": 1125,
               "name": "mortal",
               "nodeType": "UserDefinedTypeName",
-<<<<<<< HEAD
               "referencedDeclaration": 1124,
-              "src": "750:6:13",
-=======
-              "referencedDeclaration": 1018,
               "src": "717:6:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_mortal_$1124",
                 "typeString": "contract mortal"
@@ -1224,13 +1089,8 @@
                   "name": "to",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1132,
-                  "src": "780:18:13",
-=======
-                  "scope": 1026,
                   "src": "745:18:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1258,13 +1118,8 @@
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1132,
-                  "src": "800:11:13",
-=======
-                  "scope": 1026,
                   "src": "765:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1306,13 +1161,8 @@
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1138,
-                  "src": "830:20:13",
-=======
-                  "scope": 1032,
                   "src": "794:20:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1340,13 +1190,8 @@
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1138,
-                  "src": "852:11:13",
-=======
-                  "scope": 1032,
                   "src": "816:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1398,13 +1243,8 @@
                           "name": "withdraw_amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-<<<<<<< HEAD
                           "referencedDeclaration": 1140,
-                          "src": "999:15:13",
-=======
-                          "referencedDeclaration": 1034,
                           "src": "957:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1570,13 +1410,8 @@
                               "name": "daitoken",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-<<<<<<< HEAD
                               "referencedDeclaration": 1067,
-                              "src": "1041:8:13",
-=======
-                              "referencedDeclaration": 961,
                               "src": "998:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                               "typeDescriptions": {
                                 "typeIdentifier": "t_contract$_DaiToken_$1065",
                                 "typeString": "contract DaiToken"
@@ -1589,13 +1424,8 @@
                             "lValueRequested": false,
                             "memberName": "balanceOf",
                             "nodeType": "MemberAccess",
-<<<<<<< HEAD
                             "referencedDeclaration": 1064,
-                            "src": "1041:18:13",
-=======
-                            "referencedDeclaration": 958,
                             "src": "998:18:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
                               "typeString": "function (address) view external returns (uint256)"
@@ -1624,13 +1454,8 @@
                           "name": "withdraw_amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-<<<<<<< HEAD
                           "referencedDeclaration": 1140,
-                          "src": "1078:15:13",
-=======
-                          "referencedDeclaration": 1034,
                           "src": "1035:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -1744,13 +1569,8 @@
                         "name": "withdraw_amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1140,
-                        "src": "1245:15:13",
-=======
-                        "referencedDeclaration": 1034,
                         "src": "1199:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1774,13 +1594,8 @@
                         "name": "daitoken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1067,
-                        "src": "1215:8:13",
-=======
-                        "referencedDeclaration": 961,
                         "src": "1169:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_DaiToken_$1065",
                           "typeString": "contract DaiToken"
@@ -1793,13 +1608,8 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-<<<<<<< HEAD
                       "referencedDeclaration": 1057,
-                      "src": "1215:17:13",
-=======
-                      "referencedDeclaration": 951,
                       "src": "1169:17:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
                         "typeString": "function (address,uint256) external returns (bool)"
@@ -1863,13 +1673,8 @@
                         "name": "withdraw_amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1140,
-                        "src": "1294:15:13",
-=======
-                        "referencedDeclaration": 1034,
                         "src": "1247:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1891,13 +1696,8 @@
                       "name": "Withdrawal",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1132,
-                      "src": "1271:10:13",
-=======
-                      "referencedDeclaration": 1026,
                       "src": "1224:10:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
@@ -1943,13 +1743,8 @@
                   "name": "withdraw_amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1177,
-                  "src": "927:20:13",
-=======
-                  "scope": 1071,
                   "src": "887:20:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1978,13 +1773,8 @@
               "parameters": [],
               "src": "916:0:13"
             },
-<<<<<<< HEAD
             "scope": 1191,
-            "src": "909:406:13",
-=======
-            "scope": 1085,
             "src": "869:398:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
@@ -2073,13 +1863,8 @@
                       "name": "Deposit",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1138,
-                      "src": "1415:7:13",
-=======
-                      "referencedDeclaration": 1032,
                       "src": "1363:7:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
@@ -2121,13 +1906,8 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-<<<<<<< HEAD
                   "referencedDeclaration": 1096,
-                  "src": "1395:9:13",
-=======
-                  "referencedDeclaration": 990,
                   "src": "1344:9:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
@@ -2152,31 +1932,21 @@
               "parameters": [],
               "src": "1354:0:13"
             },
-<<<<<<< HEAD
             "scope": 1191,
-            "src": "1352:98:13",
-=======
-            "scope": 1085,
             "src": "1301:96:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "728:725:13"
-=======
-        "scope": 1086,
         "src": "695:704:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       }
     ],
     "src": "0:1409:13"
   },
   "legacyAST": {
-    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/contracts/utils/DaiFaucet2.sol",
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/utils/DaiFaucet2.sol",
     "exportedSymbols": {
       "DaiFaucet": [
         1191
@@ -2243,13 +2013,8 @@
                   "name": "dst",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1057,
-                  "src": "80:11:13",
-=======
-                  "scope": 951,
                   "src": "77:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2276,13 +2041,8 @@
                   "name": "wad",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1057,
-                  "src": "93:8:13",
-=======
-                  "scope": 951,
                   "src": "90:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2315,13 +2075,8 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1057,
-                  "src": "120:4:13",
-=======
-                  "scope": 951,
                   "src": "117:4:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2344,13 +2099,8 @@
               ],
               "src": "116:6:13"
             },
-<<<<<<< HEAD
             "scope": 1065,
-            "src": "62:64:13",
-=======
-            "scope": 959,
             "src": "59:64:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -2376,13 +2126,8 @@
                   "name": "guy",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1064,
-                  "src": "151:11:13",
-=======
-                  "scope": 958,
                   "src": "147:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2416,13 +2161,8 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1064,
-                  "src": "186:4:13",
-=======
-                  "scope": 958,
                   "src": "182:4:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2445,25 +2185,15 @@
               ],
               "src": "181:6:13"
             },
-<<<<<<< HEAD
             "scope": 1065,
-            "src": "132:60:13",
-=======
-            "scope": 959,
             "src": "128:60:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "36:159:13"
-=======
-        "scope": 1086,
         "src": "34:156:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       },
       {
         "abstract": false,
@@ -2485,13 +2215,8 @@
             "name": "daitoken",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-<<<<<<< HEAD
             "scope": 1097,
-            "src": "223:17:13",
-=======
-            "scope": 991,
             "src": "214:17:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2503,13 +2228,8 @@
               "id": 1066,
               "name": "DaiToken",
               "nodeType": "UserDefinedTypeName",
-<<<<<<< HEAD
               "referencedDeclaration": 1065,
-              "src": "223:8:13",
-=======
-              "referencedDeclaration": 959,
               "src": "214:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_DaiToken_$1065",
                 "typeString": "contract DaiToken"
@@ -2524,13 +2244,8 @@
             "name": "owner",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-<<<<<<< HEAD
             "scope": 1097,
-            "src": "244:13:13",
-=======
-            "scope": 991,
             "src": "234:13:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -2571,13 +2286,8 @@
                       "name": "owner",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1069,
-                      "src": "288:5:13",
-=======
-                      "referencedDeclaration": 963,
                       "src": "275:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -2638,13 +2348,8 @@
                       "name": "daitoken",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1067,
-                      "src": "311:8:13",
-=======
-                      "referencedDeclaration": 961,
                       "src": "297:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_contract$_DaiToken_$1065",
                         "typeString": "contract DaiToken"
@@ -2685,13 +2390,8 @@
                         "name": "DaiToken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1065,
-                        "src": "322:8:13",
-=======
-                        "referencedDeclaration": 959,
                         "src": "308:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_type$_t_contract$_DaiToken_$1065_$",
                           "typeString": "type(contract DaiToken)"
@@ -2744,13 +2444,8 @@
               "parameters": [],
               "src": "271:0:13"
             },
-<<<<<<< HEAD
             "scope": 1097,
-            "src": "263:116:13",
-=======
-            "scope": 991,
             "src": "251:113:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
@@ -2813,13 +2508,8 @@
                           "name": "owner",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-<<<<<<< HEAD
                           "referencedDeclaration": 1069,
-                          "src": "430:5:13",
-=======
-                          "referencedDeclaration": 963,
                           "src": "412:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -2917,13 +2607,8 @@
             "visibility": "internal"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "201:299:13"
-=======
-        "scope": 1086,
         "src": "193:286:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       },
       {
         "abstract": false,
@@ -2935,13 +2620,8 @@
               "id": 1098,
               "name": "owned",
               "nodeType": "UserDefinedTypeName",
-<<<<<<< HEAD
               "referencedDeclaration": 1097,
-              "src": "525:5:13",
-=======
-              "referencedDeclaration": 991,
               "src": "501:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_owned_$1097",
                 "typeString": "contract owned"
@@ -2982,13 +2662,8 @@
                         "name": "owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1069,
-                        "src": "641:5:13",
-=======
-                        "referencedDeclaration": 963,
                         "src": "614:5:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -3072,13 +2747,8 @@
                             "name": "daitoken",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-<<<<<<< HEAD
                             "referencedDeclaration": 1067,
-                            "src": "648:8:13",
-=======
-                            "referencedDeclaration": 961,
                             "src": "621:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                             "typeDescriptions": {
                               "typeIdentifier": "t_contract$_DaiToken_$1065",
                               "typeString": "contract DaiToken"
@@ -3091,13 +2761,8 @@
                           "lValueRequested": false,
                           "memberName": "balanceOf",
                           "nodeType": "MemberAccess",
-<<<<<<< HEAD
                           "referencedDeclaration": 1064,
-                          "src": "648:18:13",
-=======
-                          "referencedDeclaration": 958,
                           "src": "621:18:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
                             "typeString": "function (address) view external returns (uint256)"
@@ -3136,13 +2801,8 @@
                         "name": "daitoken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1067,
-                        "src": "623:8:13",
-=======
-                        "referencedDeclaration": 961,
                         "src": "596:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_DaiToken_$1065",
                           "typeString": "contract DaiToken"
@@ -3155,13 +2815,8 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-<<<<<<< HEAD
                       "referencedDeclaration": 1057,
-                      "src": "623:17:13",
-=======
-                      "referencedDeclaration": 951,
                       "src": "596:17:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
                         "typeString": "function (address,uint256) external returns (bool)"
@@ -3274,13 +2929,8 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-<<<<<<< HEAD
                   "referencedDeclaration": 1096,
-                  "src": "605:9:13",
-=======
-                  "referencedDeclaration": 990,
                   "src": "579:9:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
@@ -3305,25 +2955,15 @@
               "parameters": [],
               "src": "589:0:13"
             },
-<<<<<<< HEAD
             "scope": 1124,
-            "src": "579:140:13",
-=======
-            "scope": 1018,
             "src": "553:137:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "506:216:13"
-=======
-        "scope": 1086,
         "src": "482:210:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       },
       {
         "abstract": false,
@@ -3335,13 +2975,8 @@
               "id": 1125,
               "name": "mortal",
               "nodeType": "UserDefinedTypeName",
-<<<<<<< HEAD
               "referencedDeclaration": 1124,
-              "src": "750:6:13",
-=======
-              "referencedDeclaration": 1018,
               "src": "717:6:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_mortal_$1124",
                 "typeString": "contract mortal"
@@ -3385,13 +3020,8 @@
                   "name": "to",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1132,
-                  "src": "780:18:13",
-=======
-                  "scope": 1026,
                   "src": "745:18:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3419,13 +3049,8 @@
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1132,
-                  "src": "800:11:13",
-=======
-                  "scope": 1026,
                   "src": "765:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3467,13 +3092,8 @@
                   "name": "from",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1138,
-                  "src": "830:20:13",
-=======
-                  "scope": 1032,
                   "src": "794:20:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3501,13 +3121,8 @@
                   "name": "amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1138,
-                  "src": "852:11:13",
-=======
-                  "scope": 1032,
                   "src": "816:11:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3559,13 +3174,8 @@
                           "name": "withdraw_amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-<<<<<<< HEAD
                           "referencedDeclaration": 1140,
-                          "src": "999:15:13",
-=======
-                          "referencedDeclaration": 1034,
                           "src": "957:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -3731,13 +3341,8 @@
                               "name": "daitoken",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-<<<<<<< HEAD
                               "referencedDeclaration": 1067,
-                              "src": "1041:8:13",
-=======
-                              "referencedDeclaration": 961,
                               "src": "998:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                               "typeDescriptions": {
                                 "typeIdentifier": "t_contract$_DaiToken_$1065",
                                 "typeString": "contract DaiToken"
@@ -3750,13 +3355,8 @@
                             "lValueRequested": false,
                             "memberName": "balanceOf",
                             "nodeType": "MemberAccess",
-<<<<<<< HEAD
                             "referencedDeclaration": 1064,
-                            "src": "1041:18:13",
-=======
-                            "referencedDeclaration": 958,
                             "src": "998:18:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
                               "typeString": "function (address) view external returns (uint256)"
@@ -3785,13 +3385,8 @@
                           "name": "withdraw_amount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-<<<<<<< HEAD
                           "referencedDeclaration": 1140,
-                          "src": "1078:15:13",
-=======
-                          "referencedDeclaration": 1034,
                           "src": "1035:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -3905,13 +3500,8 @@
                         "name": "withdraw_amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1140,
-                        "src": "1245:15:13",
-=======
-                        "referencedDeclaration": 1034,
                         "src": "1199:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3935,13 +3525,8 @@
                         "name": "daitoken",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1067,
-                        "src": "1215:8:13",
-=======
-                        "referencedDeclaration": 961,
                         "src": "1169:8:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_DaiToken_$1065",
                           "typeString": "contract DaiToken"
@@ -3954,13 +3539,8 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-<<<<<<< HEAD
                       "referencedDeclaration": 1057,
-                      "src": "1215:17:13",
-=======
-                      "referencedDeclaration": 951,
                       "src": "1169:17:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
                         "typeString": "function (address,uint256) external returns (bool)"
@@ -4024,13 +3604,8 @@
                         "name": "withdraw_amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-<<<<<<< HEAD
                         "referencedDeclaration": 1140,
-                        "src": "1294:15:13",
-=======
-                        "referencedDeclaration": 1034,
                         "src": "1247:15:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -4052,13 +3627,8 @@
                       "name": "Withdrawal",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1132,
-                      "src": "1271:10:13",
-=======
-                      "referencedDeclaration": 1026,
                       "src": "1224:10:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
@@ -4104,13 +3674,8 @@
                   "name": "withdraw_amount",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-<<<<<<< HEAD
                   "scope": 1177,
-                  "src": "927:20:13",
-=======
-                  "scope": 1071,
                   "src": "887:20:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4139,13 +3704,8 @@
               "parameters": [],
               "src": "916:0:13"
             },
-<<<<<<< HEAD
             "scope": 1191,
-            "src": "909:406:13",
-=======
-            "scope": 1085,
             "src": "869:398:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
@@ -4234,13 +3794,8 @@
                       "name": "Deposit",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
                       "referencedDeclaration": 1138,
-                      "src": "1415:7:13",
-=======
-                      "referencedDeclaration": 1032,
                       "src": "1363:7:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
@@ -4282,13 +3837,8 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-<<<<<<< HEAD
                   "referencedDeclaration": 1096,
-                  "src": "1395:9:13",
-=======
-                  "referencedDeclaration": 990,
                   "src": "1344:9:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
@@ -4313,25 +3863,15 @@
               "parameters": [],
               "src": "1354:0:13"
             },
-<<<<<<< HEAD
             "scope": 1191,
-            "src": "1352:98:13",
-=======
-            "scope": 1085,
             "src": "1301:96:13",
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-<<<<<<< HEAD
         "scope": 1192,
-        "src": "728:725:13"
-=======
-        "scope": 1086,
         "src": "695:704:13"
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
       }
     ],
     "src": "0:1409:13"
@@ -4342,19 +3882,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-<<<<<<< HEAD
-  "updatedAt": "2020-05-15T21:48:04.217Z",
-=======
-<<<<<<< HEAD
-  "updatedAt": "2020-05-15T19:48:46.281Z",
-=======
-  "updatedAt": "2020-05-14T17:51:49.886Z",
-=======
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-14T02:21:01.329Z",
->>>>>>> origin/master
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
->>>>>>> 9b2dc2ed57c9022b1e28cde116a2166c0b71c750
+  "updatedAt": "2020-05-16T11:13:49.373Z",
   "devdoc": {
     "methods": {}
   },

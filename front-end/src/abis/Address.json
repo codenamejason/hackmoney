@@ -1826,19 +1826,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-<<<<<<< HEAD
-  "updatedAt": "2020-05-15T21:48:04.295Z",
-=======
-<<<<<<< HEAD
-  "updatedAt": "2020-05-15T19:48:46.340Z",
-=======
-  "updatedAt": "2020-05-14T17:51:49.985Z",
-=======
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-14T02:21:01.509Z",
->>>>>>> origin/master
->>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
->>>>>>> 9b2dc2ed57c9022b1e28cde116a2166c0b71c750
+  "updatedAt": "2020-05-16T11:13:49.448Z",
   "devdoc": {
     "details": "Collection of functions related to the address type",
     "methods": {}
