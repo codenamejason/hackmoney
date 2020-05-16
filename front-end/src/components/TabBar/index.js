@@ -122,7 +122,7 @@ function ScrollableTabsButtonPrevent() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}  style={{ backgroundColor: 'rgb(83, 10, 133)' }}>
-        <CreateStreamForm 
+        <CreateStreamForm // test data...
             data={{ name: 'Jason Romero', x: '5000' }
         }/>
       </TabPanel>
@@ -135,16 +135,6 @@ function ScrollableTabsButtonPrevent() {
       <TabPanel value={value} index={3}>
           Backup my stream??
       </TabPanel>
-      
-      {/* <TabPanel value={value} index={4}>
-            Help Section
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel> */}
     </div>
   );
 }

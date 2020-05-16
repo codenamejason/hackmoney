@@ -1,25 +1,12 @@
 pragma solidity  >=0.4.22 <0.7.0;
 
-import '../token/erc777/StreamToken.sol';
+import './StreamToken.sol';
 
-
-contract Ownable {
-    address owner;
-
-    constructor() public {
-        owner = msg.sender;
-    }
-
-    modifier onlyOwner {
-        require(msg.sender == owner, "you must be owner");
-        _;
-    }
-}
 
 /**
 *   @dev IncomeStreamCreator contract
 */
-contract IncomeStreamCreator is StreamToken, Ownable {
+contract IncomeStreamCreator is StreamToken {
     // State variables
     address payable public owner;
     address public streamTokenReceiverAddress;
@@ -68,23 +55,7 @@ contract IncomeStreamCreator is StreamToken, Ownable {
     }
     
     // Modifiers
-    modifier IsWallet(address _address) {
-		/**
-		* @dev Transfer tokens from msg.sender to another address.  
-		* Cannot Allows execution if the transfer to address code size is 0
-		* @param _address address to check that its not a contract
-		*/		
-		uint codeLength;
-		assembly {
-            // Retrieve the size of the code on target address, this needs assembly .
-            codeLength := extcodesize(_address)
-        }
-		assert(codeLength==0);
-        _;
-    }
-
     
-
     modifier onlyWhileDefault {
         require(currentStatus == Statuses.DEFAULT, "Not Available.");
         _;
@@ -125,12 +96,7 @@ contract IncomeStreamCreator is StreamToken, Ownable {
         // Set the status to NEW stream
         currentStatus = Statuses.NEW;
         
-        // figure out how many tokens they need and what metadata to put
-        // ex: JUN2020x150, JUL2020x150, etc.
-
-
-
-        // send the iNETs tokens to the owner
+        // send the ether to the owner
         owner.transfer(msg.value);
         
         
