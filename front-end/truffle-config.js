@@ -46,7 +46,7 @@ module.exports = {
 	    network_id: 42,
 	    gas: 5000000,
 		gasPrice: 5000000000, // 5 Gwei
-		skipDryRun: true
+		skipDryRun: false
 	  },
     ropsten: {
       provider: () => new HDWalletProvider(
@@ -55,34 +55,35 @@ module.exports = {
       ),
       network_id: 3,
       gas: 5000000,
-      gasPrice: 5000000000 // 5 Gwei
+      gasPrice: 5000000000, // 5 Gwei
+      skipDryRun: false
     },
     main: {
       provider: () => new HDWalletProvider(
-        mnemonic,
+        ganache,
         "https://mainnet.infura.io/v3/1ad03ac212da4523b6c8337eace81a14",
       ),
-      network_id: 5,
-      gas: 4700000
+      network_id: 1,
+      gas: 4700000,
+      skipDryRun: false
     },
     kovan: {
-	    provider: new HDWalletProvider(rop, "https://kovan.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382"),
+	    provider: new HDWalletProvider(
+        ganache,
+        "https://kovan.infura.io/v3/4a3706ac2ddf434fbc3ca2e68a746382"
+      ),
 	    network_id: 42,
 	    gas: 5000000,
       gasPrice: 5000000000, // 5 Gwei
-      skipDryRun: true
+      skipDryRun: false
 	  },
-    // ropsten: configNetwok('ropsten', 3),
-    // kovan: configNetwok('kovan', 42),
-    // rinkeby: configNetwok('rinkeby', 4),
-    // main: configNetwok('mainnet', 1),
   },
   mocha: {
     useColors: true,
   },
-  contracts_directory: './src/contracts/',
+  contracts_directory: './contracts/',
   contracts_build_directory: './src/abis/',
-  migrations_directory: './src/migratons/',
+  migrations_directory: './migratons/',
   compilers: {
     solc: {
       version: '0.6.2',

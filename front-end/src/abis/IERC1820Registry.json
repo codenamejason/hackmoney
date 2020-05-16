@@ -2251,13 +2251,8 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
-<<<<<<< HEAD
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-14T17:51:49.917Z",
-=======
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-14T02:21:01.360Z",
->>>>>>> origin/master
+  "updatedAt": "2020-05-15T21:48:04.229Z",
   "devdoc": {
     "details": "Interface of the global ERC1820 Registry, as defined in the https://eips.ethereum.org/EIPS/eip-1820[EIP]. Accounts may register implementers for interfaces in this registry, as well as query support. * Implementers may be shared by multiple accounts, and can also implement more than a single interface for each account. Contracts can implement interfaces for themselves, but externally-owned accounts (EOA) must delegate this to a contract. * {IERC165} interfaces can also be queried via the registry. * For an in-depth explanation and source code analysis, see the EIP text.",
     "methods": {

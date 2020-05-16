@@ -526,13 +526,8 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
-<<<<<<< HEAD
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-05-14T17:51:49.982Z",
-=======
-  "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-14T02:21:01.502Z",
->>>>>>> origin/master
+  "updatedAt": "2020-05-15T21:48:04.293Z",
   "devdoc": {
     "details": "Interface of the ERC777TokensRecipient standard as defined in the EIP. * Accounts can be notified of {IERC777} tokens being sent to them by having a contract implement this interface (contract holders can be their own implementer) and registering it on the https://eips.ethereum.org/EIPS/eip-1820[ERC1820 global registry]. * See {IERC1820Registry} and {ERC1820Implementer}.",
     "methods": {

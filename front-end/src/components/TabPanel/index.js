@@ -228,6 +228,7 @@ const TransferStreamForm = ({props}) => {
 
 const CreateStreamForm = ({data}) => {  
     const classes = useStyles();
+
     const [duration, setDuration] = useState(0);
     const [productType, setProductType] = useState(0);
     const [amount, setAmount] = useState(0);
@@ -252,6 +253,12 @@ const CreateStreamForm = ({data}) => {
         console.log(event.target.value);
     };
 
+    const handlePaymentChange = (event, newValue) => {
+      const payment = event.target.value;
+      //setPayment(payment);
+
+
+    }
     
     const handleAmountChange = (event, newValue) => {
         const amount = event.target.value;
@@ -261,6 +268,7 @@ const CreateStreamForm = ({data}) => {
         switch (frequency) {
           case 1:
               // if one payment the duration has to be 3 years
+              //setDuration(36)
 
               break;  
           case 4:
@@ -276,7 +284,7 @@ const CreateStreamForm = ({data}) => {
               break;
         }
 
-        let interest = pmt * .065;
+        let interest = pmt * .055;
         pmt = pmt + interest;
         setPayment(pmt);
 
@@ -314,7 +322,7 @@ const CreateStreamForm = ({data}) => {
 
   
     const createIncomeStream = (prop) => (event) => {
-        console.log(productType, ' ', duration, ' ', amount, '', frequency)
+        console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
 
         alert(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
 
@@ -440,6 +448,7 @@ const CreateStreamForm = ({data}) => {
                                     <Input
                                         id="amount"
                                         value={amount}
+                                        variant="outlined"
                                         onChange={handleAmountChange}
                                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                     />
@@ -451,14 +460,13 @@ const CreateStreamForm = ({data}) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl>
-                                    <Tooltip>
-                                        <TextField 
-                                                    value={payment} 
-                                                    variant="outlined"
-                                                    color='primary'
-                                                    disabled
-                                        />
-                                    </Tooltip>
+                                      <TextField
+                                          id="payment"
+                                          value={payment} 
+                                          variant="outlined"
+                                          color='primary'                                            
+                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                      />
                                     <FormHelperText style={{ color: '#FE6B8B' }}>
                                       The amount you will receive
                                     </FormHelperText>
