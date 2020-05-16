@@ -30,15 +30,25 @@
       "type": "function"
     }
   ],
+<<<<<<< HEAD
   "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aave\",\"details\":\"implement this interface to develop a flashloan-compatible flashLoanReceiver contract*\",\"methods\":{},\"title\":\"IFlashLoanReceiver interface\"},\"userdoc\":{\"methods\":{},\"notice\":\"Interface for the Aave fee IFlashLoanReceiver.\"}},\"settings\":{\"compilationTarget\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":\"IFlashLoanReceiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":{\"keccak256\":\"0xfd9a5313e59c8502c9d378c054aef67c81f7e390d979e636f8b4993bca2f3510\",\"urls\":[\"bzz-raw://8b216a28b287cd5a18672372b659ba7d16c7c16d174388c4c457a1bececd4893\",\"dweb:/ipfs/QmNdqZ8tzGpWcige75fdfTtpygXupePVS6obm8ms2PXJSS\"]}},\"version\":1}",
+=======
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_reserve\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_fee\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOperation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Aave\",\"details\":\"implement this interface to develop a flashloan-compatible flashLoanReceiver contract*\",\"methods\":{},\"title\":\"IFlashLoanReceiver interface\"},\"userdoc\":{\"methods\":{},\"notice\":\"Interface for the Aave fee IFlashLoanReceiver.\"}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":\"IFlashLoanReceiver\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol\":{\"keccak256\":\"0xfd9a5313e59c8502c9d378c054aef67c81f7e390d979e636f8b4993bca2f3510\",\"urls\":[\"bzz-raw://8b216a28b287cd5a18672372b659ba7d16c7c16d174388c4c457a1bececd4893\",\"dweb:/ipfs/QmNdqZ8tzGpWcige75fdfTtpygXupePVS6obm8ms2PXJSS\"]}},\"version\":1}",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.4.22 <0.7.0;\n\n/**\n* @title IFlashLoanReceiver interface\n* @notice Interface for the Aave fee IFlashLoanReceiver.\n* @author Aave\n* @dev implement this interface to develop a flashloan-compatible flashLoanReceiver contract\n**/\ninterface IFlashLoanReceiver {\n    function executeOperation(address _reserve, uint256 _amount, uint256 _fee, bytes calldata _params) external;\n}",
+<<<<<<< HEAD
   "sourcePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
   "ast": {
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
+=======
+  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
+  "ast": {
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
     "exportedSymbols": {
       "IFlashLoanReceiver": [
         353
@@ -222,7 +232,11 @@
     "src": "0:390:4"
   },
   "legacyAST": {
+<<<<<<< HEAD
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
+=======
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/flashloan/aave/IFlashLoanReceiver.sol",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
     "exportedSymbols": {
       "IFlashLoanReceiver": [
         353
@@ -412,6 +426,7 @@
   "networks": {},
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "schemaVersion": "3.1.0",
 <<<<<<< HEAD
   "updatedAt": "2020-05-15T19:48:46.239Z",
@@ -426,6 +441,10 @@
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-05-15T03:45:10.152Z",
 >>>>>>> origin/master
+=======
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-16T11:13:49.339Z",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
   "devdoc": {
     "author": "Aave",
     "details": "implement this interface to develop a flashloan-compatible flashLoanReceiver contract*",

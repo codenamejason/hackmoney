@@ -350,6 +350,7 @@
   "networks": {},
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "schemaVersion": "3.1.0",
 <<<<<<< HEAD
   "updatedAt": "2020-05-15T19:48:46.289Z",
@@ -364,6 +365,10 @@
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-05-15T03:45:10.201Z",
 >>>>>>> origin/master
+=======
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-16T11:13:49.386Z",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
   "devdoc": {
     "details": "Interface for an ERC1820 implementer, as defined in the https://eips.ethereum.org/EIPS/eip-1820#interface-implementation-erc1820implementerinterface[EIP]. Used by contracts that will be registered as implementers in the {IERC1820Registry}.",
     "methods": {

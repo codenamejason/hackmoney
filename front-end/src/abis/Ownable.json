@@ -2747,6 +2747,7 @@
   "networks": {},
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "schemaVersion": "3.1.0",
 <<<<<<< HEAD
   "updatedAt": "2020-05-15T19:48:46.286Z",
@@ -2761,6 +2762,10 @@
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-05-15T03:45:10.198Z",
 >>>>>>> origin/master
+=======
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-16T11:13:49.381Z",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
   "devdoc": {
     "details": "Contract module which provides a basic access control mechanism, where there is an account (an owner) that can be granted exclusive access to specific functions. * By default, the owner account will be the one that deploys the contract. This can later be changed with {transferOwnership}. * This module is used through inheritance. It will make available the modifier `onlyOwner`, which can be applied to your functions to restrict their use to the owner.",
     "methods": {
