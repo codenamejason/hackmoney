@@ -1,32 +1,28 @@
 const StreamToken = artifacts.require('StreamToken')
+const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
 //const iNETToken = artifacts.require('iNETToken')
 //const Flashloan = artifacts.require('FlashLoan')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
-const PriceOracle = artifacts.require('OracleExample')
-//const DaiFaucet = artifacts.require('DaiFaucet');
-
-// require('@openzeppelin/test-helpers/configure')({ 
-//     provider: web3.currentProvider,
-//     environment: 'truffle' 
-// });
+//const PriceOracle = artifacts.require('OracleExample')
+const DaiFaucet = artifacts.require('DaiFaucet');
+require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider, environment: 'truffle' });
 
 //const { singletons } = require('@openzeppelin/test-helpers');
 
-module.exports = async function (deployer
-) {
+module.exports = async function (deployer, network, accounts) {
 
     /**
     * @dev deployments
     */
-    //await deployer.deploy(DaiFaucet);
+    await deployer.deploy(DaiFaucet);
 
     await deployer.deploy(StreamToken);
-    // const streamToken = await StreamToken.deployed()
-    // console.log(streamToken)
+    const streamToken = await StreamToken.deployed()
+
+    await deployer.deploy(StreamTokenReceiver, streamToken.address);
 
     //await deployer.deploy(iNETToken)
     // const iNetToken = await iNETToken.deployed()
-    // console.log(iNetToken)
 
     // Flashloan testing
     //await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)
@@ -35,13 +31,10 @@ module.exports = async function (deployer
     await deployer.deploy(IncomeStreamCreator);
 
     // Bandchain ETH oracle
-    await deployer.deploy(PriceOracle);
-
+    //await deployer.deploy(PriceOracle);
 
     //try {
-
         // let lendingPoolAddressesProviderAddress;
-
         // switch (network) {
         //     case "live":
         //         lendingPoolAddressesProviderAddress = "0x24a42fD28C976A61Df5D00D0599C34c4f90748c8"; 
@@ -62,11 +55,10 @@ module.exports = async function (deployer
         //         lendingPoolAddressesProviderAddress = "0x506B0B2CF20FAA8f38a4E2B524EE43e1f4458Cc5";
         //     default:
         //         throw Error(`Are you deploying to the current network? (network selected: ${network})`)                
-        // } 
-
-        
-
+        // }
     // } catch (e) {
     //         console.log(`Error in migration: ${e.message}`)
     // }
+
+
 }

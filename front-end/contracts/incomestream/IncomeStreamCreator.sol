@@ -2,18 +2,6 @@ pragma solidity  >=0.4.22 <0.7.0;
 
 import '../token/erc777/StreamToken.sol';
 
-interface StreamTokenReceiver {
-    function tokensReceived(
-        address operator,
-        address from,
-        address to,
-        uint256 amount,
-        bytes calldata userData,
-        bytes calldata operatorData
-    ) external;
-
-    event DoneStuff(address operator, address from, address to, uint256 amount, bytes userData, bytes operatorData);
-}
 
 /**
 *   @dev IncomeStreamCreator contract
@@ -94,10 +82,10 @@ contract IncomeStreamCreator is StreamToken {
         uint256 _payment,
         address  _owner,
         address[] memory _defalultOperators
-    ) payable public onlyWhileDefault enoughEther(.01 ether){ // test amount
+    ) payable public onlyWhileDefault enoughEther(.01 ether){
         if(_owner != msg.sender) {
             // assign to _defalultOperators
-            
+            //_defaultOperators.push(msg.sender);
             
         } else {
             // set msg.sender to _owner
