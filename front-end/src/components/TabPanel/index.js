@@ -14,7 +14,78 @@ import { Paper, Typography, FormControl, InputLabel, Select,
 import { Grid } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import BlurLinearIcon from '@material-ui/icons/BlurLinear';
+import Web3 from 'web3';
 
+//const web3 = new Web3(window.ethereum);
+
+async function runSetup() {
+  console.group('Run Setup:')
+  // Detect MetaMask
+  if(typeof web3 !== 'undefined') {
+    // continue execution
+    console.log('Welcome!')
+    //await loadBlockchainData()
+
+    // test account
+    //const account = "0x6F7d7d68c3Eed4Df81CF5F97582deef8ABC51533";
+    
+    const web3 = await loadWeb3()
+    //const account = await loadAccount(web3)
+    const account = await web3.eth.getAccounts()
+    console.log(account)
+    //this.checkAuthorization(account)
+  } else {
+    console.log('User does not have MetaMask installed')
+    window.alert('Please install MetaMask!')
+    // todo: don't show page content here...
+
+  }
+  console.groupEnd()
+}
+
+async function loadWeb3() {
+  console.group('Web3');
+  console.info('Loading Web3');
+  if (window.ethereum) {
+    window.web3 = new Web3(window.ethereum)
+    await window.ethereum.enable()
+    console.groupEnd();
+  }
+  else if (window.web3) {
+    window.web3 = new Web3(window.web3.currentProvider)
+    console.groupEnd();
+  }
+  else {
+    window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    console.groupEnd();
+  }
+}
+
+
+async function checkAuthorization(account){
+  // ToTo: check against actual token holders
+  // Call a smart contract to fetch token holders
+  // Test accounts from Ganache
+  const tokenHolders = [
+    "0xb6498080D032a5cede8d03feA95b693596b87580"
+  ]
+
+  const authorized = tokenHolders.includes(account)
+  if(authorized) {
+    // todo: show website content
+    //window.alert("You're Authorized! :)")
+    console.log("You're Authorized! :)")
+  } else {
+    // todo: show login content
+    window.alert("You're not Authorized! :(")
+  }
+}
+
+/**
+ * TabPanel
+ * @param {props} props 
+ * @param {home} home 
+ */
 function TabPanel(props, home) {
   const { children, value, index, ...other } = props;
 
@@ -69,6 +140,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * Full width tabs
+ */
 function FullWidthTabs() {
   const classes = useStyles();
   const theme = useTheme();
@@ -119,6 +193,10 @@ function FullWidthTabs() {
   );
 }
 
+/**
+ * My Streams
+ * @param {object} data
+ */
 const MyStreams = ({data}) => {
     const classes = useStyles();
     const [formValues, setFormValues] = useState({
@@ -153,6 +231,10 @@ const MyStreams = ({data}) => {
     )
 }
 
+/**
+ * Transfer stream form
+ * @param {object} param0 
+ */
 const TransferStreamForm = ({props}) => {
     const classes = useStyles();
 
@@ -226,8 +308,10 @@ const TransferStreamForm = ({props}) => {
     )
 }
 
-const CreateStreamForm = ({data}) => {  
+const CreateStreamForm = ({data}) => {
+    loadWeb3();
     const classes = useStyles();
+
     const [duration, setDuration] = useState(0);
     const [productType, setProductType] = useState(0);
     const [amount, setAmount] = useState(0);
@@ -252,16 +336,24 @@ const CreateStreamForm = ({data}) => {
         console.log(event.target.value);
     };
 
+    const handlePaymentChange = (event, newValue) => {
+      const payment = event.target.value;
+      //setPayment(payment);
+
+
+    }
     
     const handleAmountChange = (event, newValue) => {
         const amount = event.target.value;
-        setAmount(event.target.value);
+        setAmount(event.target.value);        
 
         let pmt = (amount / duration) / frequency;
         switch (frequency) {
           case 1:
               // if one payment the duration has to be 3 years
+              //setDuration(36)
 
+              
               break;  
           case 4:
               // quarterly payments
@@ -276,7 +368,7 @@ const CreateStreamForm = ({data}) => {
               break;
         }
 
-        let interest = pmt * .065;
+        let interest = pmt * .055;
         pmt = pmt + interest;
         setPayment(pmt);
 
@@ -314,7 +406,7 @@ const CreateStreamForm = ({data}) => {
 
   
     const createIncomeStream = (prop) => (event) => {
-        console.log(productType, ' ', duration, ' ', amount, '', frequency)
+        console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
 
         alert(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
 
@@ -440,6 +532,7 @@ const CreateStreamForm = ({data}) => {
                                     <Input
                                         id="amount"
                                         value={amount}
+                                        variant="outlined"
                                         onChange={handleAmountChange}
                                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                     />
@@ -451,14 +544,13 @@ const CreateStreamForm = ({data}) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl>
-                                    <Tooltip>
-                                        <TextField 
-                                                    value={payment} 
-                                                    variant="outlined"
-                                                    color='primary'
-                                                    disabled
-                                        />
-                                    </Tooltip>
+                                      <TextField
+                                          id="payment"
+                                          value={payment} 
+                                          variant="outlined"
+                                          color='primary'                                            
+                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                      />
                                     <FormHelperText style={{ color: '#FE6B8B' }}>
                                       The amount you will receive
                                     </FormHelperText>
