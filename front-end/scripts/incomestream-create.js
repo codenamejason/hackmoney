@@ -1,10 +1,8 @@
 const chalk = require('chalk');
 const log = console.log;
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
-const chalk = require('chalk');
-const log = console.log;
-const { getLegosFor, networks } = require("@studydefi/money-legos");
-const legos = getLegosFor(networks.mainnet);
+//const { getLegosFor, networks } = require("@studydefi/money-legos");
+const legos = require("@studydefi/money-legos");//getLegosFor(networks.ropsten);
 
 
 const StreamCreatorAbi = [{
@@ -158,6 +156,6 @@ log(chalk.blue('Contract abi loaded...'));
 
 
 
-//log(streamCreatorContract);
+log(streamCreatorContract);
 
-
+let incomeStream = streamCreatorContract.methods.createStream().call();
