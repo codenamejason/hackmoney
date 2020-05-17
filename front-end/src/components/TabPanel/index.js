@@ -375,7 +375,7 @@ const TransferStreamForm = ({props}) => {
               <Paper className={classes.paperHeading} elevation={3}></Paper>
               <Paper className={classes.paper} elevation={3}>              
                     <Grid container spacing={3}>
-                        <Grid item xs>
+                        <Grid item xs={4}>
                             <FormControl className={classes.formControl}>
                                 <InputLabel width='240' htmlFor="demo-customized-select-native">Owner</InputLabel>
                                 <BootstrapInput id="demo-customized-textbox" value={ownerAddress} />
@@ -384,7 +384,7 @@ const TransferStreamForm = ({props}) => {
                                 </FormHelperText>
                             </FormControl>
                         </Grid>
-                        <Grid item xs>
+                        <Grid item xs={4}>
                             <FormControl className={classes.formControl}>
                                 <InputLabel htmlFor="demo-customized-textbox">New Owner</InputLabel>
                                 <BootstrapInput id="demo-customized-textbox" />
@@ -393,7 +393,7 @@ const TransferStreamForm = ({props}) => {
                                 </FormHelperText>
                             </FormControl>
                         </Grid>
-                        <Grid item xs>
+                        <Grid item xs={4}>
                             <FormControl className={classes.formControl}>                                    
                             <InputLabel htmlFor="demo-customized-select-native">Stream Id</InputLabel>
                                 <NativeSelect
@@ -716,7 +716,7 @@ const CreateStreamForm = ({data}) => {
                                     </FormHelperText>
                                 </FormControl>                 
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs>
                                 <FormControl>
                                 <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
                                             Amount in USD
