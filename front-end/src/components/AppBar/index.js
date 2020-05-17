@@ -31,7 +31,24 @@ const onboard = Onboard({
 const notify = Notify({
     dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
     networkId: 1,
+    darkMode: true,
+    system: 'ethereum',
 });
+
+// const { emitter, result } = notify.transaction({
+//   estimateGas: Function,
+//   gasPrice: Function,
+//   balance: String,
+//   txDetails: {
+//     to: String,
+//     value: Number || String
+//   },
+//   sendTransaction: Function,
+//   contractCall: {
+//     methodName: String,
+//     params: Array
+//   }
+// })
 
 async function connectWallet() {
     await onboard.walletSelect();
@@ -86,7 +103,7 @@ export default function HideAppBar(props) {
             <Typography variant="h6">
                 Amazing Annuity
             </Typography>
-            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <Button onClick={connectWallet}>
                     Connect Wallet
             </Button>

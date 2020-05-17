@@ -44,15 +44,25 @@
       "type": "function"
     }
   ],
+<<<<<<< HEAD
   "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"input\",\"type\":\"bytes\"}],\"name\":\"query\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"output\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"enum Oracle.QueryStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"queryPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol\":\"Oracle\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol\":{\"keccak256\":\"0x746949b1d04a849e433ff113c0c5d3338a049cd99899cb192b4685b9386579cf\",\"urls\":[\"bzz-raw://3d7fd8c313be8ba9268d25548866892d57009a80ce39f6c51437cd2363c109ee\",\"dweb:/ipfs/QmYjHGxxTsm8METYJsmkM3hnT3MCUcGS6AsSoFBe9QR29j\"]}},\"version\":1}",
+=======
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"input\",\"type\":\"bytes\"}],\"name\":\"query\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"output\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"enum Oracle.QueryStatus\",\"name\":\"status\",\"type\":\"uint8\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"queryPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/bandprotocol/Oracle.sol\":\"Oracle\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/bandprotocol/Oracle.sol\":{\"keccak256\":\"0x746949b1d04a849e433ff113c0c5d3338a049cd99899cb192b4685b9386579cf\",\"urls\":[\"bzz-raw://3d7fd8c313be8ba9268d25548866892d57009a80ce39f6c51437cd2363c109ee\",\"dweb:/ipfs/QmYjHGxxTsm8METYJsmkM3hnT3MCUcGS6AsSoFBe9QR29j\"]}},\"version\":1}",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity  >=0.4.22 <0.7.0;\n\ninterface Oracle {\n    enum QueryStatus { INVALID, OK, NOT_AVAILABLE, DISAGREEMENT }\n    function query (bytes calldata input)\n        external payable returns (bytes32 output, uint256 updatedAt, QueryStatus status);\n    function queryPrice() external view returns (uint256);\n}\n\ncontract OracleExample {\n    uint256 public ethusd;\n\n    function update() public payable {\n        Oracle oracle = Oracle(0xa24dF0420dE1f3b8d740A52AAEB9d55d6D64478e);\n        (bytes32 raw,,) = oracle.query.value(oracle.queryPrice())(\"SPOTPX/ETH-USD\");\n        ethusd = uint256(raw);\n    }\n}",
+<<<<<<< HEAD
   "sourcePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol",
   "ast": {
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol",
+=======
+  "sourcePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/bandprotocol/Oracle.sol",
+  "ast": {
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/bandprotocol/Oracle.sol",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
     "exportedSymbols": {
       "Oracle": [
         80
@@ -799,7 +809,11 @@
     "src": "0:605:1"
   },
   "legacyAST": {
+<<<<<<< HEAD
     "absolutePath": "/Users/jaxcoder/Documents/Blockchain/hackmoney/dev/front-end/src/contracts/bandprotocol/Oracle.sol",
+=======
+    "absolutePath": "/home/jaxcoder/Projects/hackmoney/front-end/src/contracts/bandprotocol/Oracle.sol",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
     "exportedSymbols": {
       "Oracle": [
         80
@@ -1550,8 +1564,27 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {},
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  "schemaVersion": "3.1.0",
+<<<<<<< HEAD
+  "updatedAt": "2020-05-15T19:48:46.225Z",
+=======
+  "updatedAt": "2020-05-14T17:51:49.795Z",
+=======
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-05-14T02:21:01.199Z",
+>>>>>>> origin/master
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
+=======
   "schemaVersion": "3.0.23",
   "updatedAt": "2020-05-15T03:45:10.144Z",
+>>>>>>> origin/master
+=======
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-05-16T11:13:49.302Z",
+>>>>>>> 7c60717f63acf6b26bcccab9e66d6a9b8af385d6
   "devdoc": {
     "methods": {}
   },

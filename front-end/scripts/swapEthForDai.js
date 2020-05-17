@@ -6,22 +6,35 @@ const { legos } = require("@studydefi/money-legos");
 
 const factoryAbi = legos.uniswap.factory.abi;
 const factoryAddress = legos.uniswap.factory.address;
-log(chalk.blue('Factory Address: ', factoryAddress))
+log(chalk.blue('Factory Address: ', factoryAddress));
+const factoryContract = new web3.eth.Contract(factoryAbi, '0x9c83dce8ca20e9aaf9d3efc003b2ea62abc08351');
+
 
 
 // Ropsten DAI Token: https://ropsten.etherscan.io/token/0xaD6D458402F60fD3Bd25163575031ACDce07538D
+<<<<<<< HEAD
+////const DAI_ABI = legos.erc20.dai.abi
+//const DAI_ADDRESS = '0xf80A32A835F79D7787E8a8ee5721D0fEaFd78108'; //'0xaD6D458402F60fD3Bd25163575031ACDce07538D'
+const daiContract = new web3.eth.Contract(legos.erc20.dai.abi, '0xaD6D458402F60fD3Bd25163575031ACDce07538D'); //legos.erc20.dai.address
+=======
 const DAI_ABI = legos.erc20.dai.abi
 const DAI_ADDRESS = '0xaD6D458402F60fD3Bd25163575031ACDce07538D'; //'0xf80A32A835F79D7787E8a8ee5721D0fEaFd78108'
 const daiContract = new web3.eth.Contract(DAI_ABI, DAI_ADDRESS);
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
 
 // erc20 tokens
-legos.erc20.abi;
-legos.erc20.address;
+//legos.erc20.abi;
+//legos.erc20.address;
 
 // Ropsten Uniswap Dai Exchange: https://ropsten.etherscan.io/address/0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0
 const EXCHANGE_ABI = legos.uniswap.exchange.abi
+<<<<<<< HEAD
+const EXCHANGE_ADDRESS = '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'; //'0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0'
+const exchangeContract = new web3.eth.Contract(legos.uniswap.exchange.abi, '0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0');//legos.uniswap.exchange.address
+=======
 const EXCHANGE_ADDRESS = '0xc0fc958f7108be4060F33a699a92d3ea49b0B5f0'; //'0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
 const exchangeContract = new web3.eth.Contract(EXCHANGE_ABI, EXCHANGE_ADDRESS);
+>>>>>>> 0be082010e4f84db914c32db259d808cae46cb5d
 
 
 
@@ -39,8 +52,8 @@ console.log("Deadline", DEADLINE)
 const SETTINGS = {
     gasLimit: 6000000, // Override gas settings: https://github.com/ethers-io/ethers.js/issues/469
     gasPrice: web3.utils.toWei('50', 'Gwei'),
-    from: '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e', // Use your account here
-    value: web3.utils.toWei('0.01', 'Ether') // Amount of Ether to Swap
+    from: '0xd2cCea05436bf27aE49B01726075449F815B683e', // Use your account here
+    value: web3.utils.toWei('0.1', 'Ether') // Amount of Ether to Swap
 }
 
 console.log("Settings", SETTINGS)
