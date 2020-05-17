@@ -723,7 +723,7 @@ const CreateStreamForm = ({data}) => {
                                     </InputLabel>
                                       <BootstrapInput
                                           id="payment"
-                                          value={payment} 
+                                          value={payment == null ? 0 : payment.toFixed(2)} 
                                           variant="outlined"
                                           color='primary'                                            
                                           startAdornment={<InputAdornment position="start">$</InputAdornment>}
