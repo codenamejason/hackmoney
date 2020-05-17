@@ -97,7 +97,14 @@ function ScrollableTabsButtonAuto() {
             </Typography>
         </MainTabPanel>
         <MainTabPanel value={value} index={3}>
-          Security
+          <Typography>
+              <p>
+              With a business module, our court ship from payment from investor to 
+              return for investor. All covered by our own ............... security. 
+              Always staying vigilant to attackers and on guard with 'insureNET' for the 
+              assets to be managed, professionally and basis of one's own future.
+              </p>
+          </Typography>
         </MainTabPanel>
         <MainTabPanel value={value} index={4}>
           <Typography>
@@ -116,20 +123,53 @@ function ScrollableTabsButtonAuto() {
         </MainTabPanel>
         <MainTabPanel value={value} index={5}>
             <Typography>
-                <ol>
-                    <li>Do I require to sign anything or continue to invest in the stream.</li>
-                    <li>What is minimum investment?</li>
-                    <li>Is my outlay of capital gains need taxes?</li>
-                    <li>Is my investment safe in the long run?</li>
-                    <li>Do I require personal requests can my investment be payed out fully upoun request?</li>
-                    <li>How do I watch the growth on the market of my investment?</li>
-                    <li>Is there availability of a team to contribute ideas, chat or info?</li>
-                    <li>Is this variable bonds structuring?</li>
-                    <li>My ETH blockchain value is important, why?</li>
-                    <li>Is there availability of balance on request?</li>
-                    <li>How does my wallet withdraw investment?</li>
-                    <li>Is there any chance I could loose my investment, long term?</li>
-                </ol>
+                <ul style={{ listStyle: 'none' }}>
+                    <li><b>Q. Do I require to sign anything or continue to invest in the stream.</b></li>
+                    <li><i>A. There is no signature and no commitment to continue to invest required.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. What is minimum investment?</b></li>
+                    <li><i>A. The minumum investment is $1000 USD</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Is my outlay of capital gains need taxes?</b></li>
+                    <li><i>A. Yes, at the end of each tax year for US based customers there will be a document.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Is my investment safe in the long run?</b></li>
+                    <li><i>A. Yes, your ivestment is locked up in a stable token gaining a stable interest rate.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Do I require personal requests can my investment be payed out fully upoun request?</b></li>
+                    <li><i>
+                        A. No, once you make your deposit your funds are locked in at the set payout intervals
+                        and amounts that you created.
+                    </i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. How do I watch the growth on the market of my investment?</b></li>
+                    <li><i>A. There is nothing you need to do. Your payments are guaranteed as agreed when the income stream was created.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Is there availability of a team to contribute ideas, chat or info?</b></li>
+                    <li><i>A. Yes, we have an active team that looks continuously at current and future investments for our customers.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Is this variable bonds structuring?</b></li>
+                    <li><i>A. No. This is an annuity product on the Ethereum blockchain.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Can I do multiple accounts and investment, say for other family members?</b></li>
+                    <li><i>A. Yes, and encourage people to try out different products and timelines.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. My ETH blockchain value is important, why?</b></li>
+                    <li><i>A. Not as important as if you were directly investing in ETH. We lock up your funds in stablecoins pegged at the US Dollar.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Is there availability of balance on request?</b></li>.
+                    <li><i>A. yes, you can get the balance of your payments by going to the 'Myu Streams' tab.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. How does my wallet withdraw investment?</b></li>
+                    <li><i>A. By holding the JARs tokens you will be paid automatically on the frequency you selected.</i></li>
+                    <li>&nbsp;</li>
+                    <li><b>Q. Is there any chance I could loose my investment, long term?</b></li>
+                    <li><i>
+                        A. There is always risk when ivesting and we at Just About Right Holdings will guarantee 60% of your
+                         initial investment and get insurance for the rest.
+                    </i></li>
+                    <li>&nbsp;</li>
+                </ul>
             </Typography>
         </MainTabPanel>
         <MainTabPanel value={value} index={6}>
