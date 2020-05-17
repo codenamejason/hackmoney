@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "erc1820": "0.0.2",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@openzeppelin/contracts": "^3.0.1",
@@ -16,6 +17,7 @@
     "bnc-notify": "^1.2.0",
     "bnc-onboard": "^1.7.8",
     "chalk": "^4.0.0",
+    "erc777": "^0.1.1",
     "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
