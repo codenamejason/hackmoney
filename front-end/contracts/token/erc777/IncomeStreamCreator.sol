@@ -1,12 +1,71 @@
-pragma solidity  >=0.4.22 <0.7.0;
+/**
+*
+*
+**/
+pragma solidity  >=0.4.21 <0.7.0;
 
-import './StreamToken.sol';
+import "@openzeppelin/contracts/token/ERC777/IERC777.sol";
+import "@openzeppelin/contracts/introspection/IERC1820Registry.sol";
+import "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol";
+
+/**
+**      @dev Ownable contract
+**/
+contract Ownable {
+    address owner;
+
+    constructor() public {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner, "you must be owner");
+        _;
+    }
+}
+
+
+
+// interface IWETH {
+//   function deposit() external payable;
+//   function withdraw(uint wad) external;
+//   function totalSupply() external view returns (uint);
+//   function approve(address guy, uint wad) external returns (bool);
+//   function transfer(address dst, uint wad) external returns (bool);
+//   function transferFrom(address src, address dst, uint wad) external returns (bool);
+//   function () external payable;
+// }
+
+
+interface IUniswapFactory {
+    function createExchange(address token) external returns (address exchange);
+    function getExchange(address token) external view returns (address exchange);
+    function getToken(address exchange) external view returns (address token);
+    function getTokenWithId(uint256 tokenId) external view returns (address token);
+    function initializeFactory(address template) external;
+}
+
+
+
+interface ERC20 {
+    function totalSupply() external view returns (uint supply);
+    function balanceOf(address _owner) external view returns (uint balance);
+    function transfer(address _to, uint _value) external returns (bool success);
+    function transferFrom(address _from, address _to, uint _value) external returns (bool success);
+    function approve(address _spender, uint _value) external returns (bool success);
+    function allowance(address _owner, address _spender) external view returns (uint remaining);
+    function decimals() external view returns(uint digits);
+    event Approval(address indexed _owner, address indexed _spender, uint _value);
+}
+
+
+
 
 
 /**
 *   @dev IncomeStreamCreator contract
 */
-contract IncomeStreamCreator is StreamToken {
+contract IncomeStreamCreator {
     // State variables
     address payable public owner;
     address public streamTokenReceiverAddress;
@@ -17,7 +76,7 @@ contract IncomeStreamCreator is StreamToken {
 
     bytes public userData;
     bytes public operatorData;
-    enum Statuses { VACANT, OCCUPIED, DEFAULT, PAID, NOT_PAID, EXPIRED, NEW }
+    enum Statuses { DEFAULT, PAID, NOT_PAID, EXPIRED, NEW }
     Statuses currentStatus;
     
     mapping(address => bool) registeredAddresses;
@@ -28,6 +87,17 @@ contract IncomeStreamCreator is StreamToken {
     struct Member {
         address payable id;
         uint256[] tokens;
+    }
+
+    struct IncomeStream{
+        address payable streamId;
+        address payable owner;
+        uint256 depositAmount;
+        uint256 paymentAmount;
+        uint256 duration;
+        uint256 frequency;
+        uint256 interestRate;
+        uint256 deferrementLength;
     }
     
     // Events

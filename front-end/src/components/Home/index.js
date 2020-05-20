@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ScrollableTabsButtonAuto() {
+function ScrollableTabsButtonAuto({data}) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
   
@@ -70,13 +70,13 @@ function ScrollableTabsButtonAuto() {
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
           >
-            <Tab label="What is Income Jar?" {...a11yProps(0)} />
-            <Tab label="How" {...a11yProps(1)} />
-            <Tab label="Benefits" {...a11yProps(2)} />
-            <Tab label="Security" {...a11yProps(3)} />
-            <Tab label="Safety" {...a11yProps(4)} />
-            <Tab label="FAQ" {...a11yProps(5)} />
-            <Tab label="Streams" {...a11yProps(6)} />
+            <Tab label={data.one.name} {...a11yProps(0)} />
+            <Tab label={data.two.name} {...a11yProps(1)} />
+            <Tab label={data.three.name} {...a11yProps(2)} />
+            <Tab label={data.four.name} {...a11yProps(3)} />
+            <Tab label={data.five.name} {...a11yProps(4)} />
+            <Tab label={data.six.name} {...a11yProps(5)} />
+            <Tab label={data.seven.name} {...a11yProps(6)} />
           </Tabs>
         </AppBar>
         <MainTabPanel value={value} index={0}>
@@ -173,21 +173,40 @@ function ScrollableTabsButtonAuto() {
             </Typography>
         </MainTabPanel>
         <MainTabPanel value={value} index={6}>
-            <TabPanel other='test'/>
+            <TabPanel data="test" />
         </MainTabPanel>
       </div>
     );
 }
 
 const Home = (props) => {
-
+    const data = {
+        one: {
+            name: "What is Income Jar?"
+        },
+        two: {
+            name: "How"
+        },
+        three: {
+            name: "Benefits"
+        },
+        four: {
+            name: "Security"
+        },
+        five: {
+            name: "Safety"
+        },
+        six: {
+            name: "FAQ"
+        },
+        seven: {
+            name: "Streams"
+        }
+    }
 
     return (
         <React.Fragment>
-            <ScrollableTabsButtonAuto other='test' />
-
-
-           
+            <ScrollableTabsButtonAuto data={data} />           
         </React.Fragment>
     )
 }
