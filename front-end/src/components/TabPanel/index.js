@@ -12,6 +12,9 @@ import { Grid, Box, Tab, Tabs, AppBar } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import TransformIcon from '@material-ui/icons/Transform';
 import BlurLinearIcon from '@material-ui/icons/BlurLinear';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 // blockchain etc.
 import Web3 from 'web3';
 
@@ -27,7 +30,7 @@ async function runSetup() {
 
       // test account
       //const account = "0x6F7d7d68c3Eed4Df81CF5F97582deef8ABC51533";
-      
+
       const web3 = await loadWeb3()
       //const account = await loadAccount(web3)
       const account = await web3.eth.getAccounts()
@@ -81,11 +84,11 @@ async function checkAuthorization(account){
 
 /**
  * TabPanel
- * @param {props} props 
- * @param {home} home 
+ * @param {props} props
+ * @param {home} home
  */
 function TabPanel(props, home) {
-    const { children, value, index, ...other } = props;
+    const { data, children, value, index, ...other } = props;
 
     return (
         <div
@@ -118,24 +121,73 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: '100%',
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    root: {
+        backgroundColor: theme.palette.background.paper,
+        width: '100%',
+        flexGrow: 1,
+    },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        padding: '10px',
+        textAlign: 'center',
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #3f51b5',
+        boxShadow: theme.shadows[5],
+        //padding: theme.spacing(2, 4, 3),
+        color: theme.palette.text.secondary,
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
 }));
+
+function TransitionsModal() {
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    return (
+        <div>
+            <button type="button" onClick={handleOpen}>
+              react-transition-group
+            </button>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div className={classes.paper}>
+                        <h2 id="transition-modal-title">Transition modal</h2>
+                        <p id="transition-modal-description">react-transition-group animates me.</p>
+                    </div>
+                </Fade>
+            </Modal>
+        </div>
+    );
+}
 
 /**
  * Full width tabs
@@ -167,6 +219,7 @@ function FullWidthTabs() {
           <Tab label="Create Stream" {...a11yProps(0)} />
           <Tab label="Transfer Stream" {...a11yProps(1)} />
           <Tab label="My Stream(s)" {...a11yProps(2)} />
+          <Tab label="Operators" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -185,9 +238,49 @@ function FullWidthTabs() {
             {/* some panel here  */}
             <MyStreams />
         </TabPanel>
+        <TabPanel value={value} index={3} >
+            <Operators />
+        </TabPanel>
       </SwipeableViews>
     </div>
   );
+}
+
+// test for ui testing
+const streams = [
+  {
+      streamId: '0x0000000000000000000000000000',
+      owner: '0x0000000000000000000000000000',
+      payment: 1000,
+      deposit: 10000,
+      numberOfPayments: 12
+  },
+  {
+      streamId: '0x0000000000000000000000000000',
+      owner: '0x0000000000000000000000000000',
+      payment: 1000,
+      deposit: 10000,
+      numberOfPayments: 12
+  },
+  {
+      streamId: '0x0000000000000000000000000000',
+      owner: '0x0000000000000000000000000000',
+      payment: 1000,
+      deposit: 10000,
+      numberOfPayments: 12
+  }
+]
+
+const Operators = ({operatorData, userData}) => {
+    const classes = useStyles();
+
+    return (
+      <React.Fragment>
+        <Paper elevation={3}>
+
+        </Paper>
+      </React.Fragment>
+    )
 }
 
 /**
@@ -205,30 +298,7 @@ const MyStreams = ({data}) => {
 
     });
 
-    // test for ui testing
-    const streams = [
-        {
-            streamId: 'address',
-            owner: 'address',
-            payment: 1000,
-            deposit: 10000,
-            numberOfPayments: 12
-        },
-        {
-            streamId: 'address',
-            owner: 'address',
-            payment: 1000,
-            deposit: 10000,
-            numberOfPayments: 12
-        },
-        {
-            streamId: 'address',
-            owner: 'address',
-            payment: 1000,
-            deposit: 10000,
-            numberOfPayments: 12
-        }
-    ]
+
 
     const handleFormSubmit = (prop) => (event) => {
         setFormValues({ ...formValues, [prop]: event.target.value });
@@ -238,18 +308,26 @@ const MyStreams = ({data}) => {
         <React.Fragment>
             <Grid item xs={12}>
               <Paper className={classes.paperHeading} elevation={3}>
-                
+
               </Paper>
-              <Paper className={classes.paper} elevation={6}>                  
+              <Paper className={classes.paper} elevation={6}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} xl={12}>
                           <ul>
                           {streams.map((stream, index) => {
-                              return  <li key={index}>{stream.streamId}</li>
+                              return (
+                              <li key={index}>
+                                Stream ID: {stream.streamId}
+                                Owner: {stream.owner}
+                                Deposit: {stream.deposit}
+                                Payment: {stream.payment}
+                                No of Pmts: {stream.numberOfPayments}
+                              </li>
+                              )
                           })}
-                          </ul>        
+                          </ul>
                         </Grid>
-                    </Grid>                       
+                    </Grid>
                 </Paper>
               </Grid>
         </React.Fragment>
@@ -291,56 +369,10 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-function CustomizedSelects() {
-  const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  return (
-    <div>
-        <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
-            <BootstrapInput id="demo-customized-textbox" />
-        </FormControl>
-        <FormControl className={classes.margin}>
-            <InputLabel id="demo-customized-select-label">Age</InputLabel>
-            <Select
-              labelId="demo-customized-select-label"
-              id="demo-customized-select"
-              value={age}
-              onChange={handleChange}
-              input={<BootstrapInput />}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-        </FormControl>
-        <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
-            <NativeSelect
-              id="demo-customized-select-native"
-              value={age}
-              onChange={handleChange}
-              input={<BootstrapInput />}
-            >
-              <option aria-label="None" value="" />
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-            </NativeSelect>
-        </FormControl>
-    </div>
-  );
-}
 
 /**
  * Transfer stream form
- * @param {object} param0 
+ * @param {object} param0
  */
 const TransferStreamForm = ({props}) => {
     const classes = useStyles();
@@ -373,7 +405,7 @@ const TransferStreamForm = ({props}) => {
         <React.Fragment>
             <Grid item xs={12}>
               <Paper className={classes.paperHeading} elevation={3}></Paper>
-              <Paper className={classes.paper} elevation={3}>              
+              <Paper className={classes.paper} elevation={3}>
                     <Grid container spacing={3}>
                         <Grid item xs={4}>
                             <FormControl className={classes.formControl}>
@@ -394,7 +426,7 @@ const TransferStreamForm = ({props}) => {
                             </FormControl>
                         </Grid>
                         <Grid item xs={4}>
-                            <FormControl className={classes.formControl}>                                    
+                            <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="demo-customized-select-native">Stream Id</InputLabel>
                                 <NativeSelect
                                   id="demo-customized-select-native"
@@ -406,29 +438,29 @@ const TransferStreamForm = ({props}) => {
                                   {streams.map((s, i) => {
 
                                   })}
-                                  
+
                                 </NativeSelect>
                                 <FormHelperText style={{ color: '#FE6B8B' }}>
                                     Stream to transfer
                                 </FormHelperText>
-                            </FormControl>       
+                            </FormControl>
                         </Grid>
-                    </Grid>               
+                    </Grid>
                     <div><br/></div>
                     {/* second row */}
                     <Grid container spacing={3}>
                         <Grid item xs>
                             <FormControl className={classes.formControl}>
-                              
+
                             </FormControl>
                         </Grid>
                         <Grid item xs={6}>
                             <FormControl>
 
-                            </FormControl>                      
+                            </FormControl>
                         </Grid>
-                        <Grid item xs><br />               
-                            <Tooltip title='coming soon'>                                
+                        <Grid item xs><br />
+                            <Tooltip title='coming soon'>
                                 <Button
                                     variant='contained'
                                     size='large'
@@ -448,9 +480,9 @@ const TransferStreamForm = ({props}) => {
 }
 
 const CreateStreamForm = ({data}) => {
-    loadWeb3();
+    //loadWeb3();
     const classes = useStyles();
-
+    const [open, setOpen] = React.useState(false);
     const [duration, setDuration] = useState(null);
     const [productType, setProductType] = useState('IMMEDIATE');
     const [amount, setAmount] = useState(null);
@@ -458,6 +490,8 @@ const CreateStreamForm = ({data}) => {
     const [frequency, setFrequency] = useState(null);
     const [payment, setPayment] = useState(null);
     const [depositType, setDepositType] = useState(null);
+    const [amountConverted, setAmountConverted] = useState(0);
+    const [totalPayments, setTotalPayments] = useState(0);
     const [formValues, setFormValues] = useState({
         productType: '',
         duration: '',
@@ -467,54 +501,76 @@ const CreateStreamForm = ({data}) => {
         payment: '',
     });
 
+    const paymentTotal = payment * duration * frequency;
+    const minimum = 100;
+    const maximum = 1000
+
+
+    const handleOpen = (event, value) =>{
+        setOpen(true);
+        console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
+        console.log(`Payment Total: ${paymentTotal}`);
+        //alert(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
+        // set the form values in one object
+        //setFormValues({ ...formValues, [prop]: event.target.value });
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     //myflashloancontract();
 
     const handleFrequencyChange = (event, newValue) => {
-        const frequency = event.target.name;        
+        const frequency = event.target.name;
         setFrequency(event.target.value);
         console.log(event.target.value);
+        // need to refresh the rest ...
+        
+
     };
 
     const handlePaymentChange = (event, newValue) => {
       const payment = event.target.value;
-      //setPayment(payment);
+      setPayment(payment);
+      //setTotalPayments(payment * frequency * duration);
 
+    };
 
-    }
-    
     const handleAmountChange = (event, newValue) => {
         const amount = event.target.value;
-        setAmount(event.target.value);        
+        setAmount(event.target.value);
+        let pmt = (amount / duration) / frequency;
+        let interest = pmt * .055; // 5.5% PA
+        pmt = pmt + interest;
+        setPayment(pmt);
 
         switch (frequency) {
           case 1:
               // if one payment the duration has to be 3 years
               //setDuration(36)
+              setTotalPayments(pmt * 1);
 
-              
               break;
 
           case 4:
               // quarterly payments
-
+              setTotalPayments(pmt * 4);
               break;
 
           case 12:
               // monthly payments
-
+              setTotalPayments(pmt * 12);
               break;
 
           default:
               // default shit here
+              setTotalPayments(pmt * 1);
               break;
         }
 
-        
-        let pmt = (amount / duration) / frequency;
-        let interest = pmt * .055;
-        pmt = pmt + interest;
-        setPayment(pmt);
+
+       
 
         console.log(amount);
     };
@@ -522,19 +578,23 @@ const CreateStreamForm = ({data}) => {
     const handleDepositChange = (event, newValue) => {
         const depositType = event.target.value;
         setDepositType(depositType);
-    }
+        // now we need to make sure we do any conversions in the background..
 
+        // display the amount of slected deposit value is USD/<selected>
 
-    const handleDurationChange = (event, newValue) => {
-        const duration = event.target.name;        
-        setDuration(event.target.value);
-        console.log(duration);
+        //setTotalPayments(payment * frequency * duration);
     };
 
-  
+    const handleDurationChange = (event, newValue) => {
+        const duration = event.target.name;
+        setDuration(event.target.value);
+        console.log(duration);
+        setTotalPayments(payment * frequency * duration);
+    };
+
     const handleProductTypeChange = (event, newValue) => {
         const product = event.target.name;
-        
+
         setProductType(event.target.value)
         console.log(product)
     };
@@ -545,6 +605,8 @@ const CreateStreamForm = ({data}) => {
 
         setDeferredDuration(event.target.value)
         console.log(deferredDuration)
+        // uses new interest chart for deferements
+        //setTotalPayments(payment * frequency * duration);
     };
 
 
@@ -552,7 +614,7 @@ const CreateStreamForm = ({data}) => {
         setFormValues({ ...formValues, [prop]: event.target.value });
     };
 
-  
+
     const createIncomeStream = (prop) => (event) => {
         console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
 
@@ -561,17 +623,22 @@ const CreateStreamForm = ({data}) => {
         // set the form values in one object
         setFormValues({ ...formValues, [prop]: event.target.value });
 
+        //setTotalPayments(payment * frequency * duration);
     };
 
+    // useEffect(() => {
+    //     //setTotalPayments(duration * frequency * payment);
+    //     let pmt = (amount / duration) / frequency;
+    //     let interest = pmt * .055; // 5.5% PA
+    //     pmt = pmt + interest;
+    //     setPayment(pmt);
+    //     console.log('useEffect', pmt)
+    //     return () => {
+    //         //
+    //     }
+    // }, []);
 
-    useEffect(() => {
-      //
-      return () => {
-        //
-      }
-    }, []);
 
-  
     // ToDo: Impliment in future
     let deferredTime
     if(productType == 'DEFERRED'){
@@ -580,7 +647,7 @@ const CreateStreamForm = ({data}) => {
                         <InputLabel htmlFor="deferredDuration" style={{ color: '#009be5' }}>
                           Deferred Duration in Years
                         </InputLabel>
-                        <Select 
+                        <Select
                             style={{ color: '#009be5' }}
                             native
                             value={deferredDuration}
@@ -597,15 +664,35 @@ const CreateStreamForm = ({data}) => {
                         </Select>
                         <FormHelperText style={{ color: '#FE6B8B' }}>helper text</FormHelperText>
                         </FormControl>
-                        </React.Fragment>  
+                        </React.Fragment>
     };
-    
+
     // Current Create Stream Form
     return (
         <React.Fragment>
+            <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  className={classes.modal}
+                  open={open}
+                  onClose={handleClose}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+              >
+                  <Fade in={open}>
+                      <div className={classes.paper}>
+                          <h2 id="transition-modal-title">Transition modal</h2>
+                          <p id="transition-modal-description">react-transition-group animates me.</p>
+                      </div>
+                  </Fade>
+              </Modal>
               <Grid item xs={12}>
               <Paper className={classes.paperHeading} elevation={3}>
-                
+                  {/* Show account number here and some other shortcuts/info */}
+
               </Paper>
               <Paper className={classes.paper} elevation={6}>
                     {/* first row */}
@@ -615,8 +702,6 @@ const CreateStreamForm = ({data}) => {
                                   {/* <TextField label="Immediate Stream" variant="outlined" disabled/> */}
                                   <InputLabel htmlFor="productType">Product Type</InputLabel>
                                     <BootstrapInput value='Immediate' id="productType" disabled />
-                               
-                                    
                                 </FormControl>
                             </Grid>
                             <Grid item xs>
@@ -631,27 +716,38 @@ const CreateStreamForm = ({data}) => {
                                     <option aria-label="None" value="" />
                                     <option value={'ETH'}>ETH</option>
                                     <option value={'DAI'}>DAI</option>
-                                    <option value={'USDC'}>USDC</option>
+                                    {/* <option value={'USDC'}>USDC</option>
                                     <option value={'BUSD'}>BUSD</option>
-                                    <option value={'TUSD'}>TUSD</option>
+                                    <option value={'TUSD'}>TUSD</option> */}
                                   </NativeSelect>
                                   <FormHelperText style={{ color: '#FE6B8B' }}>
                                       Select your currency / token
                                   </FormHelperText>
-                              </FormControl>  
+                              </FormControl>
                             </Grid>
                             <Grid item xs>
                                 <FormControl className={classes.formControl}>
-                               
-                                </FormControl>              
+                                    <InputLabel htmlFor="amountConverted" style={{ color: '#009be5' }}>
+                                        Amount in [selecected] currency
+                                    </InputLabel>
+                                    <BootstrapInput
+                                          id="amountConverted"
+                                          value={amountConverted == null ? 0 : amountConverted.toFixed(2)}
+                                          variant="outlined"
+                                          color='primary'
+                                          disabled
+                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                      />
+                                </FormControl>
                             </Grid>
-                        </Grid>                        
+                        </Grid>
                         <div><br/></div>
                         <Grid container spacing={3}>
-                           
                             <Grid item xs>
                                <FormControl className={classes.formControl}>
-                               <InputLabel htmlFor="duration" style={{ color: '#009be5' }}>Duration in Years</InputLabel>
+                                  <InputLabel htmlFor="duration" style={{ color: '#009be5' }}>
+                                      Duration in Years
+                                  </InputLabel>
                                   <NativeSelect
                                     id="duration"
                                     value={duration}
@@ -662,13 +758,13 @@ const CreateStreamForm = ({data}) => {
                                     <option value={1}>One</option>
                                     <option value={3}>Three</option>
                                     <option value={5}>Five</option>
-                                    <option value={7}>Seven</option>
-                                    <option value={10}>Ten</option>
+                                    {/* <option value={7}>Seven</option>
+                                    <option value={10}>Ten</option> */}
                                   </NativeSelect>
                                   <FormHelperText style={{ color: '#FE6B8B' }}>
                                       How long do you want to be paid?
                                   </FormHelperText>
-                              </FormControl>  
+                              </FormControl>
                             </Grid>
                             <Grid item xs>
                             <FormControl className={classes.formControl}>
@@ -687,14 +783,24 @@ const CreateStreamForm = ({data}) => {
                                     <FormHelperText style={{ color: '#FE6B8B' }}>
                                         How often do you want your payments?
                                     </FormHelperText>
-                                </FormControl>              
+                                </FormControl>
                             </Grid>
                             <Grid item xs>
                                 <FormControl className={classes.formControl}>
-                                    
+                                    <InputLabel htmlFor="totalPayments" style={{ color: '#009be5' }}>
+                                        Total Payments.
+                                    </InputLabel>
+                                    <BootstrapInput
+                                          id="totalPayments"
+                                          value={paymentTotal == null ? 0 : paymentTotal.toFixed(2)}
+                                          variant="outlined"
+                                          color='primary'
+                                          disabled
+                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                      />
                                 </FormControl>
                             </Grid>
-                        </Grid>                        
+                        </Grid>
                         <div><br/></div>
                         {/* second row */}
                         <Grid container spacing={3}>
@@ -710,11 +816,11 @@ const CreateStreamForm = ({data}) => {
                                         onChange={handleAmountChange}
                                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                     />
-                                    
+
                                     <FormHelperText style={{ color: '#FE6B8B' }}>
                                         Enter amount you wish to contribute
                                     </FormHelperText>
-                                </FormControl>                 
+                                </FormControl>
                             </Grid>
                             <Grid item xs>
                                 <FormControl>
@@ -723,24 +829,24 @@ const CreateStreamForm = ({data}) => {
                                     </InputLabel>
                                       <BootstrapInput
                                           id="payment"
-                                          value={payment == null ? 0 : payment.toFixed(2)} 
+                                          value={payment == null ? 0 : payment.toFixed(2)}
                                           variant="outlined"
-                                          color='primary'                                            
+                                          color='primary'
                                           startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                       />
                                     <FormHelperText style={{ color: '#FE6B8B' }}>
                                       The amount you will receive
                                     </FormHelperText>
                                 </FormControl>
-                            
+
                             </Grid>
-                            <Grid item xs><br />                   
-                                <Tooltip title='Create the Stream'>                                    
+                            <Grid item xs><br />
+                                <Tooltip title='Create the Stream'>
                                     <Button
                                         variant='contained'
                                         size='large'
                                         color='primary'
-                                        onClick={createIncomeStream()}
+                                        onClick={handleOpen}
                                         startIcon={<BlurLinearIcon />}
                                     >Create</Button>
                                 </Tooltip>

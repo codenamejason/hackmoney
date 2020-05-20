@@ -56,6 +56,7 @@ interface ERC777Token {
 }
 
 
+
 interface StreamTokenReceiver {
     function tokensReceived(
         address operator,
@@ -68,6 +69,8 @@ interface StreamTokenReceiver {
 
     event DoneStuff(address operator, address from, address to, uint256 amount, bytes userData, bytes operatorData);
 }
+
+
 
 
 
