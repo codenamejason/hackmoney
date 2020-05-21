@@ -1,4 +1,4 @@
-const StreamToken = artifacts.require('StreamToken')
+//const StreamToken = artifacts.require('StreamToken')
 const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
 //const iNETToken = artifacts.require('iNETToken')
 //const Flashloan = artifacts.require('FlashLoan')
@@ -16,10 +16,10 @@ module.exports = async function (deployer, network, accounts) {
     */
     await deployer.deploy(DaiFaucet);
 
-    await deployer.deploy(StreamToken);
-    const streamToken = await StreamToken.deployed()
+    //await deployer.deploy(StreamToken);
+    //const streamToken = await StreamToken.deployed()
 
-    await deployer.deploy(StreamTokenReceiver, streamToken.address);
+    //await deployer.deploy(StreamTokenReceiver, streamToken.address);
 
     //await deployer.deploy(iNETToken)
     // const iNetToken = await iNETToken.deployed()
