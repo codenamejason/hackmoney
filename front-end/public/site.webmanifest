@@ -1,11 +1,21 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "Income Stream",
+    "short_name": "income-stream",
     "icons": [
         {
-            "src": "/android-chrome-192x192.png",
+            "src": "/logo192.png",
             "sizes": "192x192",
             "type": "image/png"
+        },
+        {
+            "src": "logo.jpg",
+            "sizes": "192x192",
+            "type": "image/jpg"
+        },
+        {
+            "src": "inet-logo.jpg",
+            "sizes": "512x512",
+            "type": "image/jpg"
         }
     ],
     "theme_color": "#ffffff",

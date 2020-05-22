@@ -21,7 +21,14 @@ const portisDappId = 'ddefb9bf-de03-4b90-878e-9490166117d0';
 const portis = new Portis(portisDappId, 'ropsten', { scope: [ 'email' ] } );
 const web3 = new Web3(portis.provider);
 //var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
+
+// opens the portis widget
 portis.showPortis();
+
+// set the users email if we know if or want to know it...
+//portis.setDefaultEmail('satoshi@portis.io');
+
+
 web3.eth.getAccounts((error, accounts) => {
     console.log(accounts);
 });
