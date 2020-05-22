@@ -79,7 +79,7 @@ module.exports = {
 
         ropsten: {
             provider: () => new HDWalletProvider(
-                process.env.DEV_MNEMONIC,
+                'evoke club entry catalog unveil truly run lyrics melt property main noise',//process.env.DEV_MNEMONIC,
                 `https://ropsten.infura.io/v3/${infuraProjectID}`),
             network_id: 3, // eslint-disable-line camelcase
             gas: 5500000, // Ropsten has a lower block limit than mainnet

@@ -428,8 +428,8 @@ const streamTokenAbi = [
 	}
 ];
 
-const createStreamAddress = '0x36Da2253Ee9c1e727A53a18bba02E2D3994Cb9AD';
-const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_streamOwnerId","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"string","name":"message","type":"string"},{"indexed":false,"internalType":"uint256","name":"id","type":"uint256"},{"indexed":false,"internalType":"string","name":"source","type":"string"}],"name":"Test","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"streamId","type":"uint256"}],"name":"payStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferStream","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes","name":"","type":"bytes"}],"stateMutability":"view","type":"function"}];
+const createStreamAddress = '0x928bFaE6F74B9Aca2f582575e7E04362dFf185A7';
+const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_streamOwnerId","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"string","name":"message","type":"string"},{"indexed":false,"internalType":"uint256","name":"id","type":"uint256"},{"indexed":false,"internalType":"string","name":"source","type":"string"}],"name":"Test","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_owner","type":"address"},{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getBalanceContract","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"streamId","type":"uint256"}],"name":"payStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"receive","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address payable","name":"newOwner","type":"address"}],"name":"transferStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes","name":"","type":"bytes"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"}];
 
 let createStreamContract = new web3.eth.Contract(createStreamAbi, createStreamAddress);
 let streamTokenContract = new web3.eth.Contract(streamTokenAbi, streamTokenAddress);
@@ -839,20 +839,21 @@ const CreateStreamForm = ({ data, setValue }) => {
     const maximum = 1000
 
     async function createStreamWithContract() {
-      await createStreamContract.methods.createStream(amount, duration, frequency, payment.toFixed(0))
-      .call({ from: '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e', value: web3.utils.toBN(1) })
-      .then((error, result) => {
-        if(error){
-          console.error(error);;
-        }
-        console.log(result);
-        setOpen(false);
+        const amountInEth = 1;
+        await createStreamContract.methods.createStream(amount, duration, frequency, payment.toFixed(0))
+            .call({ from: '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e', value: web3.utils.toBN(amountInEth) })
+            .then((error, result) => {
+                if(error){
+                    console.error(error);;
+                }
+                console.log(result);
+                setOpen(false);
 
-        // navigate to the streams tab
-        setValue(2);
+                // navigate to the streams tab
+                setValue(2);
 
 
-      })
+        })
     }
 
 
@@ -1033,6 +1034,7 @@ const CreateStreamForm = ({ data, setValue }) => {
     const rows = [
       createData(duration, frequency, amount)
     ];
+
     // createStreamWithContract
     return (
         <React.Fragment>
@@ -1079,168 +1081,173 @@ const CreateStreamForm = ({ data, setValue }) => {
                       </div>
                   </Fade>
               </Modal>
-              <Grid item xs={12}>
-              <Paper className={classes.paperHeading} elevation={3}>
-                  {/* Show account number here and some other shortcuts/info */}
-                  <Typography>Account: 0x</Typography>
-              </Paper>
-              <Paper className={classes.paper} elevation={6}>
-                    {/* first row */}
-                    <Grid container spacing={3}>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                                  {/* <TextField label="Immediate Stream" variant="outlined" disabled/> */}
-                                  <InputLabel htmlFor="productType">Product Type</InputLabel>
-                                    <BootstrapInput value='Immediate' id="productType" disabled />
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs>
-                               <FormControl className={classes.formControl}>
-                               <InputLabel htmlFor="depositType" style={{ color: '#009be5' }}>Deposit Type</InputLabel>
-                                  <NativeSelect
-                                    id="depositType"
-                                    value={depositType}
-                                    onChange={handleDepositChange}
-                                    input={<BootstrapInput />}
-                                  >
-                                    <option aria-label="None" value="" />
-                                    <option value={'ETH'}>ETH</option>
-                                    <option value={'DAI'}>DAI</option>
-                                    {/* <option value={'USDC'}>USDC</option>
-                                    <option value={'BUSD'}>BUSD</option>
-                                    <option value={'TUSD'}>TUSD</option> */}
-                                  </NativeSelect>
-                                  <FormHelperText style={{ color: '#FE6B8B' }}>
-                                      Select your currency / token
-                                  </FormHelperText>
-                              </FormControl>
-                            </Grid>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel htmlFor="amountConverted" style={{ color: '#009be5' }}>
-                                        Amount in [selecected] currency
-                                    </InputLabel>
-                                    <BootstrapInput
-                                          id="amountConverted"
-                                          value={amountConverted == null ? 0 : amountConverted.toFixed(0)}
-                                          variant="outlined"
-                                          color='primary'
-                                          disabled
-                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                      />
-                                </FormControl>
-                            </Grid>
-                        </Grid>
-                        <div><br/></div>
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                               <FormControl className={classes.formControl}>
-                                  <InputLabel htmlFor="duration" style={{ color: '#009be5' }}>
-                                      Duration in Years
-                                  </InputLabel>
-                                  <NativeSelect
-                                    id="duration"
-                                    value={duration}
-                                    onChange={handleDurationChange}
-                                    input={<BootstrapInput />}
-                                  >
-                                    <option aria-label="None" value="" />
-                                    <option value={1}>One</option>
-                                    <option value={3}>Three</option>
-                                    <option value={5}>Five</option>
-                                    {/* <option value={7}>Seven</option>
-                                    <option value={10}>Ten</option> */}
-                                  </NativeSelect>
-                                  <FormHelperText style={{ color: '#FE6B8B' }}>
-                                      How long do you want to be paid?
-                                  </FormHelperText>
-                              </FormControl>
-                            </Grid>
-                            <Grid item xs>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel htmlFor="frequency" style={{ color: '#009be5' }}>Frequency</InputLabel>
-                                <NativeSelect
-                                    id="frequency"
-                                    value={frequency}
-                                    onChange={handleFrequencyChange}
-                                    input={<BootstrapInput />}
-                                  >
-                                    <option aria-label="None" value="" />
-                                    <option value={'12'}>Monthly</option>
-                                    <option value={'4'}>Quarterly</option>
-                                    <option value={'1'}>Yearly</option>
-                                </NativeSelect>
-                                    <FormHelperText style={{ color: '#FE6B8B' }}>
-                                        How often do you want your payments?
-                                    </FormHelperText>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel htmlFor="totalPayments" style={{ color: '#009be5' }}>
-                                        Total Payments.
-                                    </InputLabel>
-                                    <BootstrapInput
-                                          id="totalPayments"
-                                          value={paymentTotal == null ? 0 : paymentTotal.toFixed(2)}
-                                          variant="outlined"
-                                          color='primary'
-                                          disabled
-                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                      />
-                                </FormControl>
-                            </Grid>
-                        </Grid>
-                        <div><br/></div>
-                        {/* second row */}
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
-                                            Amount in USD
-                                    </InputLabel>
-                                    <BootstrapInput
-                                        id="amount"
-                                        value={amount}
-                                        variant="outlined"
-                                        onChange={handleAmountChange}
-                                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                    />
 
-                                    <FormHelperText style={{ color: '#FE6B8B' }}>
-                                        Enter amount you wish to contribute
-                                    </FormHelperText>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs>
-                                <FormControl>
-                                <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
-                                            Amount in USD
-                                    </InputLabel>
-                                      <BootstrapInput
-                                          id="payment"
-                                          value={payment == null ? 0 : payment.toFixed(2)}
-                                          variant="outlined"
-                                          color='primary'
-                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                      />
-                                    <FormHelperText style={{ color: '#FE6B8B' }}>
-                                      The amount you will receive
-                                    </FormHelperText>
-                                </FormControl>
+                
+                <Grid item xs={12}>
+                <Paper className={classes.paperHeading} elevation={3}>
+                    <Grid item xs>
+                    <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
+                        {/* <InputLabel htmlFor="amountConverted" style={{ color: '#009be5' }}>
+                            Amount in [selecected] currency
+                        </InputLabel> */}
+                        <BootstrapInput
+                                id="amountConverted"
+                                value={amountConverted == null ? 0 : amountConverted.toFixed(0)}
+                                variant="outlined"
+                                color='primary'
+                                disabled
+                                startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                            />
+                    </FormControl>
+                    <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
+                            {/* <InputLabel htmlFor="totalPayments" style={{ color: '#009be5' }}>
+                                Total Payments.
+                            </InputLabel> */}
+                            <BootstrapInput
+                                    id="totalPayments"
+                                    value={paymentTotal == null ? 0 : paymentTotal.toFixed(0)}
+                                    variant="outlined"
+                                    color='primary'
+                                    disabled
+                                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                />
+                        </FormControl>
+                    </Grid>
+                </Paper>
+                <br />
+                <Paper className={classes.paper} elevation={6}>
+                    {/* first row <Grid container spacing={3}></Grid>*/}
+                    {/* <Grid item xl> 
+                        <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
+                            <TextField label="Immediate Stream" variant="outlined" disabled/>
+                            <InputLabel htmlFor="productType">Product Type</InputLabel>
+                            <BootstrapInput value='Immediate' id="productType" disabled />
+                        </FormControl>
+                    </Grid>*/}
+                    <Grid item xl>
+                        <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
+                        <InputLabel htmlFor="depositType" style={{ color: '#009be5' }}>Deposit Type</InputLabel>
+                            <NativeSelect
+                            id="depositType"
+                            value={depositType}
+                            onChange={(e) => handleDepositChange(e)}
+                            input={<BootstrapInput />}
+                            >
+                            <option aria-label="None" value="" />
+                            <option value={'ETH'}>ETH</option>
+                            <option value={'DAI'}>DAI</option>
+                            {/* <option value={'USDC'}>USDC</option>
+                            <option value={'BUSD'}>BUSD</option>
+                            <option value={'TUSD'}>TUSD</option> */}
+                            </NativeSelect>
+                            <FormHelperText style={{ color: '#FE6B8B' }}>
+                                Select your currency / token
+                            </FormHelperText>
+                        </FormControl>
+                    </Grid>
+                
+                {/* <Grid container spacing={3}></Grid> */}
+                
+                <div><br/></div>
+                <Grid container spacing={3}>
+                    <Grid item xs>
+                        <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
+                            <InputLabel htmlFor="duration" style={{ color: '#009be5' }}>
+                                Duration in Years
+                            </InputLabel>
+                            <NativeSelect
+                                id="duration"
+                                value={duration}
+                                onChange={handleDurationChange}
+                                input={<BootstrapInput />}
+                            >
+                            <option aria-label="None" value="" />
+                            <option value={1}>One</option>
+                            <option value={3}>Three</option>
+                            <option value={5}>Five</option>
+                            {/* <option value={7}>Seven</option>
+                            <option value={10}>Ten</option> */}
+                            </NativeSelect>
+                            <FormHelperText style={{ color: '#FE6B8B' }}>
+                                How long do you want to be paid?
+                            </FormHelperText>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs>
+                    <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
+                        <InputLabel htmlFor="frequency" style={{ color: '#009be5' }}>Frequency</InputLabel>
+                        <NativeSelect
+                            id="frequency"
+                            value={frequency}
+                            onChange={handleFrequencyChange}
+                            input={<BootstrapInput />}
+                            >
+                            <option aria-label="None" value="" />
+                            <option value={'12'}>Monthly</option>
+                            <option value={'4'}>Quarterly</option>
+                            <option value={'1'}>Yearly</option>
+                        </NativeSelect>
+                            <FormHelperText style={{ color: '#FE6B8B' }}>
+                                How often do you want your payments?
+                            </FormHelperText>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs>
+                        
+                    </Grid>
+                </Grid>
+                <div><br/></div>
+                {/* second row */}
+                <Grid container spacing={3}>
+                    <Grid item xs>
+                        <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
+                            <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
+                                    Amount in USD
+                            </InputLabel>
+                            <BootstrapInput
+                                id="amount"
+                                value={amount}
+                                variant="outlined"
+                                onChange={handleAmountChange}
+                                startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                            />
 
-                            </Grid>
-                            <Grid item xs><br />
-                                <Tooltip title='Create the Stream'>
-                                    <Button
-                                        variant='contained'
-                                        size='large'
-                                        color='primary'
-                                        onClick={handleOpen}
-                                        startIcon={<BlurLinearIcon />}
-                                    >Create</Button>
-                                </Tooltip>
-                            </Grid>
+                            <FormHelperText style={{ color: '#FE6B8B' }}>
+                                Enter amount you wish to contribute
+                            </FormHelperText>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs>
+                        <FormControl style={{ minWidth: 200 }}>
+                        <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
+                                    Amount in USD
+                            </InputLabel>
+                                <BootstrapInput
+                                    id="payment"
+                                    value={payment == null ? 0 : payment.toFixed(2)}
+                                    variant="outlined"
+                                    color='primary'
+                                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                />
+                            <FormHelperText style={{ color: '#FE6B8B' }}>
+                                The amount you will receive
+                            </FormHelperText>
+                        </FormControl>
+
+                    </Grid>
+                    <Grid item xs><br />
+                        <FormControl  style={{ minWidth: 200 }}>
+                            <Tooltip title='Create the Stream'>
+                                <Button
+                                    variant='contained'
+                                    size='large'
+                                    color='primary'
+                                    onClick={handleOpen}
+                                    startIcon={<BlurLinearIcon />}
+                                >Create</Button>
+                            </Tooltip>
+                        </FormControl>
+                    </Grid>
                     </Grid>
                 </Paper>
               </Grid>
