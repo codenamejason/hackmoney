@@ -16,11 +16,11 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Web3 from 'web3';
-import Portis from '@portis/web3';
+//import Portis from '@portis/web3';
 const portisDappId = 'ddefb9bf-de03-4b90-878e-9490166117d0';
-const portis = new Portis(portisDappId, 'ropsten', { scope: [ 'email' ] } );
-const web3 = new Web3(portis.provider);
-//var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
+//const portis = new Portis(portisDappId, 'ropsten', { scope: [ 'email' ] } );
+//const web3 = new Web3(portis.provider);
+var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
 
 // opens the portis widget
 //portis.showPortis();
