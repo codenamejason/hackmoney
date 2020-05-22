@@ -101,7 +101,7 @@ export default function HideAppBar(props) {
         <AppBar>
           <Toolbar>
             <Typography variant="h6">
-                Income JAR
+                Income Stream
             </Typography>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <Button 
