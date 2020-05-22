@@ -1,11 +1,24 @@
 {
-  "name": "front-end",
-  "version": "0.1.0",
+  "name": "income-stream",
+  "version": "0.1.01",
   "private": true,
   "dependencies": {
     "@chainlink/contracts": "0.0.4",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
+    "@portis/web3": "^2.0.0-beta.55",
+    "@studydefi/money-legos": "^2.1.0",
+    "bnc-notify": "^1.2.0",
+    "bnc-onboard": "^1.7.8",
+    "moment": "^2.25.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "react-swipeable-views": "^0.13.9",
+    "truffle-hdwallet-provider": "1.0.6",
+    "web3": "^1.2.8"
+  },
+  "decDependencies": {
     "@openzeppelin/contracts": "^3.0.1",
     "@openzeppelin/test-helpers": "^0.5.5",
     "@studydefi/money-legos": "^2.1.0",
@@ -13,19 +26,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "babel-polyfill": "^6.26.0",
-    "babel-register": "^6.26.0",
-    "bnc-notify": "^1.2.0",
-    "bnc-onboard": "^1.7.8",
-    "chalk": "^4.0.0",
-    "erc1820": "0.0.2",
-    "erc777": "^0.1.1",
-    "moment": "^2.25.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "react-swipeable-views": "^0.13.9",
-    "truffle-hdwallet-provider": "1.0.6",
-    "web3": "1.2.7"
+    "babel-register": "^6.26.0"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",

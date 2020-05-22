@@ -1,6 +1,6 @@
-const StreamToken = artifacts.require('StreamToken')
-const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
-//const iNETToken = artifacts.require('iNETToken')
+//const StreamToken = artifacts.require('StreamToken')
+//const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
+const iNETToken = artifacts.require('iNETToken')
 //const Flashloan = artifacts.require('FlashLoan')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
 //const PriceOracle = artifacts.require('OracleExample')
@@ -16,13 +16,13 @@ module.exports = async function (deployer, network, accounts) {
     */
     await deployer.deploy(DaiFaucet);
 
-    await deployer.deploy(StreamToken);
-    const streamToken = await StreamToken.deployed()
+    //await deployer.deploy(StreamToken);
+    //const streamToken = await StreamToken.deployed()
 
-    await deployer.deploy(StreamTokenReceiver, streamToken.address);
+    //await deployer.deploy(StreamTokenReceiver, streamToken.address);
 
-    //await deployer.deploy(iNETToken)
-    // const iNetToken = await iNETToken.deployed()
+    await deployer.deploy(iNETToken)
+    //const iNetToken = await iNETToken.deployed()
 
     // Flashloan testing
     //await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)

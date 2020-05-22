@@ -1,21 +1,11 @@
-pragma solidity  >=0.4.22 <0.7.0;
+pragma solidity  >=0.4.2 <0.7.0;
 
 import "@openzeppelin/contracts/token/ERC777/ERC777.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
 //import { Ownable } from "openzeppelin-solidity/contracts/access/Ownable.sol";
 //import { SafeMath } from "openzeppelin-solidity/contracts/math/SafeMath.sol";
-
-contract Ownable {
-    address owner;
-
-    constructor() public {
-        owner = msg.sender;
-    }
-
-    modifier onlyOwner {
-        require(msg.sender == owner, "you must be owner");
-        _;
-    }
-}
 
 interface ERC777Token {
     function name() external view returns (string memory);
@@ -68,7 +58,6 @@ interface StreamTokenReceiver {
 
     event DoneStuff(address operator, address from, address to, uint256 amount, bytes userData, bytes operatorData);
 }
-
 
 
 contract StreamToken is ERC777 {

@@ -8,12 +8,423 @@ import { Paper, Typography, FormControl, InputLabel, Select,
           TextField, NativeSelect, InputBase, MenuItem,
           FormControlLabel} from '@material-ui/core';
 import { Grid, Box, Tab, Tabs, AppBar } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableCounter, TablePagination,
+        TableHead, TableRow, TableSortLabel } from '@material-ui/core';
 // icons
 import AddIcon from '@material-ui/icons/Add';
 import TransformIcon from '@material-ui/icons/Transform';
 import BlurLinearIcon from '@material-ui/icons/BlurLinear';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+import FullWidthTabs from './FullWidthTabPanel';
 // blockchain etc.
 import Web3 from 'web3';
+var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
+
+const streamTokenAddress = '0x4ec3e41ce1c658ae7e011de309a87184405f60fd';
+const streamTokenAbi = [
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "tokenHolder",
+				"type": "address"
+			}
+		],
+		"name": "AuthorizedOperator",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "operatorData",
+				"type": "bytes"
+			}
+		],
+		"name": "Burned",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "operatorData",
+				"type": "bytes"
+			}
+		],
+		"name": "Minted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "tokenHolder",
+				"type": "address"
+			}
+		],
+		"name": "RevokedOperator",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			},
+			{
+				"indexed": false,
+				"internalType": "bytes",
+				"name": "operatorData",
+				"type": "bytes"
+			}
+		],
+		"name": "Sent",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			}
+		],
+		"name": "authorizeOperator",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "burn",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "defaultOperators",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "granularity",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "tokenHolder",
+				"type": "address"
+			}
+		],
+		"name": "isOperatorFor",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			},
+			{
+				"internalType": "bytes",
+				"name": "operatorData",
+				"type": "bytes"
+			}
+		],
+		"name": "operatorBurn",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			},
+			{
+				"internalType": "bytes",
+				"name": "operatorData",
+				"type": "bytes"
+			}
+		],
+		"name": "operatorSend",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			}
+		],
+		"name": "revokeOperator",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "send",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+const createStreamAddress = '0x36Da2253Ee9c1e727A53a18bba02E2D3994Cb9AD';
+const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_streamOwnerId","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"string","name":"message","type":"string"},{"indexed":false,"internalType":"uint256","name":"id","type":"uint256"},{"indexed":false,"internalType":"string","name":"source","type":"string"}],"name":"Test","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"streamId","type":"uint256"}],"name":"payStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferStream","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes","name":"","type":"bytes"}],"stateMutability":"view","type":"function"}];
+
+let createStreamContract = new web3.eth.Contract(createStreamAbi, createStreamAddress);
+let streamTokenContract = new web3.eth.Contract(streamTokenAbi, streamTokenAddress);
+console.log('Token Contract: ', streamTokenContract)
+console.log("Create Stream Contract: ", createStreamContract);
 
 //const web3 = new Web3(window.ethereum);
 
@@ -27,7 +438,7 @@ async function runSetup() {
 
       // test account
       //const account = "0x6F7d7d68c3Eed4Df81CF5F97582deef8ABC51533";
-      
+
       const web3 = await loadWeb3()
       //const account = await loadAccount(web3)
       const account = await web3.eth.getAccounts()
@@ -79,678 +490,75 @@ async function checkAuthorization(account){
     }
 }
 
-/**
- * TabPanel
- * @param {props} props 
- * @param {home} home 
- */
-function TabPanel(props, home) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`full-width-tabpanel-${index}`}
-            aria-labelledby={`full-width-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={5}>
-                  <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-}
-
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: '100%',
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
+    root: {
+        backgroundColor: theme.palette.background.paper,
+        width: '100%',
+        flexGrow: 1,
+    },
+    table: {
+      minWidth: 650,
+    },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        padding: '10px',
+        textAlign: 'center',
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #3f51b5',
+        boxShadow: theme.shadows[5],
+        //padding: theme.spacing(2, 4, 3),
+        color: theme.palette.text.secondary,
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
 }));
 
-/**
- * Full width tabs
- */
-function FullWidthTabs() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+// // test for ui testing
+// const streams = [
+//   {
+//       streamId: '0x0000000000000000000000000000',
+//       owner: '0x0000000000000000000000000000',
+//       payment: 879.17,
+//       deposit: 10000,
+//       numberOfPayments: 12
+//   },
+//   {
+//       streamId: '0x0000000000000000000000000000',
+//       owner: '0x0000000000000000000000000000',
+//       payment: 293.06,
+//       deposit: 10000,
+//       numberOfPayments: 36
+//   },
+//   {
+//       streamId: '0x0000000000000000000000000000',
+//       owner: '0x0000000000000000000000000000',
+//       payment: 175.83,
+//       deposit: 10000,
+//       numberOfPayments: 60
+//   }
+// ]
 
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="Create Stream" {...a11yProps(0)} />
-          <Tab label="Transfer Stream" {...a11yProps(1)} />
-          <Tab label="My Stream(s)" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0}>
-           <CreateStreamForm />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-            {/* some panel here  */}
-            <TransferStreamForm />
-        </TabPanel>
-        <TabPanel value={value} index={2} >
-            {/* some panel here  */}
-            <MyStreams />
-        </TabPanel>
-      </SwipeableViews>
-    </div>
-  );
-}
-
-/**
- * My Streams
- * @param {object} data
- */
-const MyStreams = ({data}) => {
+const Operators = ({operatorData, userData}) => {
     const classes = useStyles();
-    const [formValues, setFormValues] = useState({
-        ownerAddress: '',
-        newOperator: '',
-        stream: {
-          id: 0,
-        },
 
-    });
+    return (
+      <React.Fragment>
+        <Paper elevation={3}>
 
-    // test for ui testing
-    const streams = [
-        {
-            streamId: 'address',
-            owner: 'address',
-            payment: 1000,
-            deposit: 10000,
-            numberOfPayments: 12
-        },
-        {
-            streamId: 'address',
-            owner: 'address',
-            payment: 1000,
-            deposit: 10000,
-            numberOfPayments: 12
-        },
-        {
-            streamId: 'address',
-            owner: 'address',
-            payment: 1000,
-            deposit: 10000,
-            numberOfPayments: 12
-        }
-    ]
-
-    const handleFormSubmit = (prop) => (event) => {
-        setFormValues({ ...formValues, [prop]: event.target.value });
-    };
-
-    return(
-        <React.Fragment>
-            <Grid item xs={12}>
-              <Paper className={classes.paperHeading} elevation={3}>
-                
-              </Paper>
-              <Paper className={classes.paper} elevation={6}>                  
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} xl={12}>
-                          <ul>
-                          {streams.map((stream, index) => {
-                              return  <li key={index}>{stream.streamId}</li>
-                          })}
-                          </ul>        
-                        </Grid>
-                    </Grid>                       
-                </Paper>
-              </Grid>
-        </React.Fragment>
+        </Paper>
+      </React.Fragment>
     )
 }
 
-const BootstrapInput = withStyles((theme) => ({
-  root: {
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
-  },
-  input: {
-    borderRadius: 4,
-    position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-    border: '1px solid #ced4da',
-    fontSize: 16,
-    padding: '10px 26px 10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderRadius: 4,
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
-  },
-}))(InputBase);
-
-function CustomizedSelects() {
-  const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-  return (
-    <div>
-        <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
-            <BootstrapInput id="demo-customized-textbox" />
-        </FormControl>
-        <FormControl className={classes.margin}>
-            <InputLabel id="demo-customized-select-label">Age</InputLabel>
-            <Select
-              labelId="demo-customized-select-label"
-              id="demo-customized-select"
-              value={age}
-              onChange={handleChange}
-              input={<BootstrapInput />}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-        </FormControl>
-        <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
-            <NativeSelect
-              id="demo-customized-select-native"
-              value={age}
-              onChange={handleChange}
-              input={<BootstrapInput />}
-            >
-              <option aria-label="None" value="" />
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-            </NativeSelect>
-        </FormControl>
-    </div>
-  );
-}
-
-/**
- * Transfer stream form
- * @param {object} param0 
- */
-const TransferStreamForm = ({props}) => {
-    const classes = useStyles();
-    let ownerAddress = '0xdDA0E4835D997518C7C4a6b479dA4e3F24Aa84da';
-
-    const [formValues, setFormValues] = useState({
-        ownerAddress: '0xdDA0E4835D997518C7C4a6b479dA4e3F24Aa84da',
-        newOperator: '',
-        stream: {
-          id: '0x',
-        },
-
-    });
-
-    const [streams, updateStreams] = useState([]);
-
-    const handleAddressChange = (prop) => (event) => {
-
-    }
-
-    const handleStreamChange = (props) => (event) => {
-
-    }
-
-    const handleFormSubmit = (prop) => (event) => {
-        setFormValues({ ...formValues, [prop]: event.target.value });
-    };
-
-    return (
-        <React.Fragment>
-            <Grid item xs={12}>
-              <Paper className={classes.paperHeading} elevation={3}></Paper>
-              <Paper className={classes.paper} elevation={3}>              
-                    <Grid container spacing={3}>
-                        <Grid item xs={4}>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel width='240' htmlFor="demo-customized-select-native">Owner</InputLabel>
-                                <BootstrapInput id="demo-customized-textbox" value={ownerAddress} />
-                                <FormHelperText style={{ color: '#FE6B8B' }}>
-                                    Current Owner
-                                </FormHelperText>
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel htmlFor="demo-customized-textbox">New Owner</InputLabel>
-                                <BootstrapInput id="demo-customized-textbox" />
-                                <FormHelperText style={{ color: '#FE6B8B' }}>
-                                    New Owner
-                                </FormHelperText>
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <FormControl className={classes.formControl}>                                    
-                            <InputLabel htmlFor="demo-customized-select-native">Stream Id</InputLabel>
-                                <NativeSelect
-                                  id="demo-customized-select-native"
-                                  value={streams}
-                                  onChange={handleStreamChange}
-                                  input={<BootstrapInput />}
-                                >
-                                  <option aria-label="None" value="" />
-                                  {streams.map((s, i) => {
-
-                                  })}
-                                  
-                                </NativeSelect>
-                                <FormHelperText style={{ color: '#FE6B8B' }}>
-                                    Stream to transfer
-                                </FormHelperText>
-                            </FormControl>       
-                        </Grid>
-                    </Grid>               
-                    <div><br/></div>
-                    {/* second row */}
-                    <Grid container spacing={3}>
-                        <Grid item xs>
-                            <FormControl className={classes.formControl}>
-                              
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <FormControl>
-
-                            </FormControl>                      
-                        </Grid>
-                        <Grid item xs><br />               
-                            <Tooltip title='coming soon'>                                
-                                <Button
-                                    variant='contained'
-                                    size='large'
-                                    color='primary'
-                                    onClick={handleFormSubmit}
-                                    startIcon={<TransformIcon />}
-                                >
-                                  Transfer Now
-                                </Button>
-                            </Tooltip>
-                        </Grid>
-                    </Grid>
-                </Paper>
-              </Grid>
-        </React.Fragment>
-    )
-}
-
-const CreateStreamForm = ({data}) => {
-    loadWeb3();
-    const classes = useStyles();
-
-    const [duration, setDuration] = useState(null);
-    const [productType, setProductType] = useState('IMMEDIATE');
-    const [amount, setAmount] = useState(null);
-    const [deferredDuration, setDeferredDuration] = useState(null);
-    const [frequency, setFrequency] = useState(null);
-    const [payment, setPayment] = useState(null);
-    const [depositType, setDepositType] = useState(null);
-    const [formValues, setFormValues] = useState({
-        productType: '',
-        duration: '',
-        deferredDuration: '',
-        frequency: '',
-        amount: '',
-        payment: '',
-    });
-
-
-    //myflashloancontract();
-
-    const handleFrequencyChange = (event, newValue) => {
-        const frequency = event.target.name;        
-        setFrequency(event.target.value);
-        console.log(event.target.value);
-    };
-
-    const handlePaymentChange = (event, newValue) => {
-      const payment = event.target.value;
-      //setPayment(payment);
-
-
-    }
-    
-    const handleAmountChange = (event, newValue) => {
-        const amount = event.target.value;
-        setAmount(event.target.value);        
-
-        switch (frequency) {
-          case 1:
-              // if one payment the duration has to be 3 years
-              //setDuration(36)
-
-              
-              break;
-
-          case 4:
-              // quarterly payments
-
-              break;
-
-          case 12:
-              // monthly payments
-
-              break;
-
-          default:
-              // default shit here
-              break;
-        }
-
-        
-        let pmt = (amount / duration) / frequency;
-        let interest = pmt * .055;
-        pmt = pmt + interest;
-        setPayment(pmt);
-
-        console.log(amount);
-    };
-
-    const handleDepositChange = (event, newValue) => {
-        const depositType = event.target.value;
-        setDepositType(depositType);
-    }
-
-
-    const handleDurationChange = (event, newValue) => {
-        const duration = event.target.name;        
-        setDuration(event.target.value);
-        console.log(duration);
-    };
-
-  
-    const handleProductTypeChange = (event, newValue) => {
-        const product = event.target.name;
-        
-        setProductType(event.target.value)
-        console.log(product)
-    };
-
-
-    const handleDeferredDurationChange = (event, newValue) => {
-        const deferredDuration = event.target.name;
-
-        setDeferredDuration(event.target.value)
-        console.log(deferredDuration)
-    };
-
-
-    const handleFormSubmit = (prop) => (event) => {
-        setFormValues({ ...formValues, [prop]: event.target.value });
-    };
-
-  
-    const createIncomeStream = (prop) => (event) => {
-        console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
-
-        alert(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
-
-        // set the form values in one object
-        setFormValues({ ...formValues, [prop]: event.target.value });
-
-    };
-
-
-    useEffect(() => {
-      //
-      return () => {
-        //
-      }
-    }, []);
-
-  
-    // ToDo: Impliment in future
-    let deferredTime
-    if(productType == 'DEFERRED'){
-        deferredTime =  <React.Fragment>
-                        <FormControl>
-                        <InputLabel htmlFor="deferredDuration" style={{ color: '#009be5' }}>
-                          Deferred Duration in Years
-                        </InputLabel>
-                        <Select 
-                            style={{ color: '#009be5' }}
-                            native
-                            value={deferredDuration}
-                            onChange={handleDeferredDurationChange}
-                            inputProps={{
-                                name: 'deferredDuration',
-                                id: 'deferredDuration',
-                            }}
-                        >
-                            <option aria-label="None" value="Select Duration" />
-                            <option value={1}>One</option>
-                            <option value={3}>Three</option>
-                            <option value={5}>Five</option>
-                        </Select>
-                        <FormHelperText style={{ color: '#FE6B8B' }}>helper text</FormHelperText>
-                        </FormControl>
-                        </React.Fragment>  
-    };
-    
-    // Current Create Stream Form
-    return (
-        <React.Fragment>
-              <Grid item xs={12}>
-              <Paper className={classes.paperHeading} elevation={3}>
-                
-              </Paper>
-              <Paper className={classes.paper} elevation={6}>
-                    {/* first row */}
-                    <Grid container spacing={3}>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                                  {/* <TextField label="Immediate Stream" variant="outlined" disabled/> */}
-                                  <InputLabel htmlFor="productType">Product Type</InputLabel>
-                                    <BootstrapInput value='Immediate' id="productType" disabled />
-                               
-                                    
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs>
-                               <FormControl className={classes.formControl}>
-                               <InputLabel htmlFor="depositType" style={{ color: '#009be5' }}>Deposit Type</InputLabel>
-                                  <NativeSelect
-                                    id="depositType"
-                                    value={depositType}
-                                    onChange={handleDepositChange}
-                                    input={<BootstrapInput />}
-                                  >
-                                    <option aria-label="None" value="" />
-                                    <option value={'ETH'}>ETH</option>
-                                    <option value={'DAI'}>DAI</option>
-                                    <option value={'USDC'}>USDC</option>
-                                    <option value={'BUSD'}>BUSD</option>
-                                    <option value={'TUSD'}>TUSD</option>
-                                  </NativeSelect>
-                                  <FormHelperText style={{ color: '#FE6B8B' }}>
-                                      Select your currency / token
-                                  </FormHelperText>
-                              </FormControl>  
-                            </Grid>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                               
-                                </FormControl>              
-                            </Grid>
-                        </Grid>                        
-                        <div><br/></div>
-                        <Grid container spacing={3}>
-                           
-                            <Grid item xs>
-                               <FormControl className={classes.formControl}>
-                               <InputLabel htmlFor="duration" style={{ color: '#009be5' }}>Duration in Years</InputLabel>
-                                  <NativeSelect
-                                    id="duration"
-                                    value={duration}
-                                    onChange={handleDurationChange}
-                                    input={<BootstrapInput />}
-                                  >
-                                    <option aria-label="None" value="" />
-                                    <option value={1}>One</option>
-                                    <option value={3}>Three</option>
-                                    <option value={5}>Five</option>
-                                    <option value={7}>Seven</option>
-                                    <option value={10}>Ten</option>
-                                  </NativeSelect>
-                                  <FormHelperText style={{ color: '#FE6B8B' }}>
-                                      How long do you want to be paid?
-                                  </FormHelperText>
-                              </FormControl>  
-                            </Grid>
-                            <Grid item xs>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel htmlFor="frequency" style={{ color: '#009be5' }}>Frequency</InputLabel>
-                                <NativeSelect
-                                    id="frequency"
-                                    value={frequency}
-                                    onChange={handleFrequencyChange}
-                                    input={<BootstrapInput />}
-                                  >
-                                    <option aria-label="None" value="" />
-                                    <option value={'12'}>Monthly</option>
-                                    <option value={'4'}>Quarterly</option>
-                                    <option value={'1'}>Yearly</option>
-                                </NativeSelect>
-                                    <FormHelperText style={{ color: '#FE6B8B' }}>
-                                        How often do you want your payments?
-                                    </FormHelperText>
-                                </FormControl>              
-                            </Grid>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                                    
-                                </FormControl>
-                            </Grid>
-                        </Grid>                        
-                        <div><br/></div>
-                        {/* second row */}
-                        <Grid container spacing={3}>
-                            <Grid item xs>
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
-                                            Amount in USD
-                                    </InputLabel>
-                                    <BootstrapInput
-                                        id="amount"
-                                        value={amount}
-                                        variant="outlined"
-                                        onChange={handleAmountChange}
-                                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                    />
-                                    
-                                    <FormHelperText style={{ color: '#FE6B8B' }}>
-                                        Enter amount you wish to contribute
-                                    </FormHelperText>
-                                </FormControl>                 
-                            </Grid>
-                            <Grid item xs>
-                                <FormControl>
-                                <InputLabel htmlFor="amount" style={{ color: '#009be5' }}>
-                                            Amount in USD
-                                    </InputLabel>
-                                      <BootstrapInput
-                                          id="payment"
-                                          value={payment == null ? 0 : payment.toFixed(2)} 
-                                          variant="outlined"
-                                          color='primary'                                            
-                                          startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                      />
-                                    <FormHelperText style={{ color: '#FE6B8B' }}>
-                                      The amount you will receive
-                                    </FormHelperText>
-                                </FormControl>
-                            
-                            </Grid>
-                            <Grid item xs><br />                   
-                                <Tooltip title='Create the Stream'>                                    
-                                    <Button
-                                        variant='contained'
-                                        size='large'
-                                        color='primary'
-                                        onClick={createIncomeStream()}
-                                        startIcon={<BlurLinearIcon />}
-                                    >Create</Button>
-                                </Tooltip>
-                            </Grid>
-                    </Grid>
-                </Paper>
-              </Grid>
-        </React.Fragment>
-    );
-
-}
 
 export default FullWidthTabs;

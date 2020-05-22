@@ -79,13 +79,13 @@ module.exports = {
 
         ropsten: {
             provider: () => new HDWalletProvider(
-                process.env.DEV_MNEMONIC,
+                'outside bridge shrimp above piece myth acquire doll void filter fit reject',//process.env.DEV_MNEMONIC,
                 `https://ropsten.infura.io/v3/${infuraProjectID}`),
             network_id: 3, // eslint-disable-line camelcase
             gas: 5500000, // Ropsten has a lower block limit than mainnet
             confirmations: 2, // # of confs to wait between deployments. (default: 0)
             timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
-            skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
+            skipDryRun: false, // Skip dry run before migrations? (default: false for public nets )
         },
 
         kovan: {
@@ -111,11 +111,14 @@ module.exports = {
     mocha: {
     // timeout: 100000
     },
+    contracts_directory: './contracts/',
+    migrations_directory: './migrations/',
+    //contracts_build_directory: './src/abis/',
 
     // Configure your compilers
     compilers: {
         solc: {
-            version: '^0.6.7', // Fetch exact version from solc-bin (default: truffle's version)
+            version: '^0.6.8', // Fetch exact version from solc-bin (default: truffle's version)
             // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
             settings: { // See the solidity docs for advice about optimization and evmVersion
                 optimizer: {
