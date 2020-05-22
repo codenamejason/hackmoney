@@ -95,7 +95,7 @@ function ScrollableTabsButtonAuto({data}) {
                     <ul>
                         <li>Amount you want to deposit</li>
                         <li>Length of the stream ( 1, 3 or 5 years)</li>
-                        <li>Payment frequency (monthly, quarterly, or annually</li>
+                        <li>Payment frequency (monthly, quarterly, or annually)</li>
                     </ul>
                 </Typography>
                 <Typography className={classes.typography} paragraph align='left'>
@@ -141,7 +141,7 @@ function ScrollableTabsButtonAuto({data}) {
                     <ul>
                         <li>Deposit amount</li>
                         <li>Length of income - 1 | 3 | 5 years</li>
-                        <li>Payment period - monthly | quarterly | annual</li>
+                        <li>Payment period - monthly | quarterly | annualy</li>
                     </ul>
               </Typography>
               <Typography className={classes.typography} paragraph align='left'>

@@ -33,6 +33,10 @@ var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
 //     console.log(accounts);
 // });
 
+const ethOracleAddress = '0x516E2b896A599f20EbB0Bd249cd643EBEb1C39E1';
+const ethOracleAbi = [{"constant":true,"inputs":[],"name":"getLatestPriceOfEthUsd","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_aggregator","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+const ethPriceContract = new web3.eth.Contract(ethOracleAbi, ethOracleAddress);
+
 const streamTokenAddress = '0x4ec3e41ce1c658ae7e011de309a87184405f60fd';
 const streamTokenAbi = [
 	{
@@ -822,9 +826,10 @@ const CreateStreamForm = ({ data, setValue }) => {
     const [deferredDuration, setDeferredDuration] = useState(null);
     const [frequency, setFrequency] = useState(0);
     const [payment, setPayment] = useState(null);
-    const [depositType, setDepositType] = useState(null);
+    const [depositType, setDepositType] = useState('ETH');
     const [amountConverted, setAmountConverted] = useState(0);
     const [totalPayments, setTotalPayments] = useState(0);
+    const [currentEthPrice, setCurrentEthPrice] = useState(0);
     const [formValues, setFormValues] = useState({
         productType: '',
         duration: '',
@@ -839,9 +844,17 @@ const CreateStreamForm = ({ data, setValue }) => {
     const maximum = 1000
 
     async function createStreamWithContract() {
-        const amountInEth = 1;
+        // contact the wallet
+
+
+        // get the eth amount from form in wei
+        const amountInWei = amountConverted;
+
+
+
+
         await createStreamContract.methods.createStream(amount, duration, frequency, payment.toFixed(0))
-            .call({ from: '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e', value: web3.utils.toBN(amountInEth) })
+            .send({ from: '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e', value: amountInWei })
             .then((error, result) => {
                 if(error){
                     console.error(error);;
@@ -853,8 +866,21 @@ const CreateStreamForm = ({ data, setValue }) => {
                 setValue(2);
 
 
-        })
+        });
     }
+
+    (async function getEthPrice() {
+        let priceOfEth = 0;
+        priceOfEth = await ethPriceContract.methods.getLatestPriceOfEthUsd().call();
+        setCurrentEthPrice(priceOfEth);
+
+        let amtCnvtd =  0;
+
+
+        console.log(amtCnvtd);
+        setAmountConverted(amount / currentEthPrice);
+        console.log(`Current Eth price: ${priceOfEth}`);
+    })();
 
 
     const handleOpen = (event, value) =>{
@@ -879,7 +905,7 @@ const CreateStreamForm = ({ data, setValue }) => {
         console.log(frequency);
         // need to refresh the rest ...
         let pmt = (amount / duration) / frequency;
-        let interest = pmt * .055; // 5.5% PA
+        let interest = pmt * .0675; // 6.75% PA
         pmt = pmt + interest;
         setPayment(pmt);
         setTotalPayments(frequency * payment * duration);    
@@ -897,7 +923,7 @@ const CreateStreamForm = ({ data, setValue }) => {
         const amount = event.target.value;
         setAmount(event.target.value);
         let pmt = (amount / duration) / frequency;
-        let interest = pmt * .055; // 5.5% PA
+        let interest = pmt * .0675; // 6.75% PA
         pmt = pmt + interest;
         setPayment(pmt);
 
@@ -937,6 +963,7 @@ const CreateStreamForm = ({ data, setValue }) => {
         // now we need to make sure we do any conversions in the background..
 
         // display the amount of slected deposit value is USD/<selected>
+        //currentEthPrice
 
         //setTotalPayments(payment * frequency * duration);
     };
@@ -946,7 +973,7 @@ const CreateStreamForm = ({ data, setValue }) => {
         setDuration(duration);
         console.log(duration);
         let pmt = (amount / duration) / frequency;
-        let interest = pmt * .055; // 5.5% PA
+        let interest = pmt * .0675; // 6.75% PA
         pmt = pmt + interest;
         setPayment(pmt);
         setTotalPayments(payment * frequency * duration);
@@ -1090,45 +1117,43 @@ const CreateStreamForm = ({ data, setValue }) => {
                         {/* <InputLabel htmlFor="amountConverted" style={{ color: '#009be5' }}>
                             Amount in [selecected] currency
                         </InputLabel> */}
-                        <Tooltip title='Length of time to receive payments' placement='top-start'>
+                        <Tooltip title='Amount of your deposit' placement='top-start'>
                         <BootstrapInput
                                 id="amountConverted"
-                                value={amountConverted == null ? 0 : amountConverted.toFixed(0)}
+                                value={amountConverted == null ? 0 : amountConverted.toFixed(18)}
                                 variant="outlined"
                                 color='primary'
                                 disabled
                                 // startAdornment={<InputAdornment position="start">$</InputAdornment>}
                         /></Tooltip>
                         <FormHelperText style={{ color: '#FE6B8B' }}>
-                            Amount in Tokens
+                            Amount in {depositType}
                         </FormHelperText>
                     </FormControl>
                     <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
                         {/* <InputLabel htmlFor="totalPayments" style={{ color: '#009be5' }}>
                             Total Payments.
                         </InputLabel> */}
-                        <Tooltip title='Length of time to receive payments' placement='top-start'>
+                        <Tooltip title='Total amount you will receive' placement='top-start'>
                         <BootstrapInput
                                 id="totalPayments"
                                 value={paymentTotal == null ? 0 : paymentTotal.toFixed(0)}
                                 variant="outlined"
                                 color='primary'
                                 disabled
-                                startAdornment={<InputAdornment position="start">$</InputAdornment>}
                             /></Tooltip>
                         <FormHelperText style={{ color: '#FE6B8B' }}>
                             Total Amount You Will Receive
                         </FormHelperText>
                     </FormControl>
                     <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
-                    <Tooltip title='Length of time to receive payments' placement='top-start'>                     
+                    <Tooltip title='Your payment amount' placement='top-start'>                     
                         <BootstrapInput
                             id="payment"
                             value={payment == null ? 0 : payment.toFixed(2)}
                             variant="outlined"
                             color='primary'
                             disabled
-                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
                         /></Tooltip>
                         <FormHelperText style={{ color: '#FE6B8B' }}>
                             Your Payment Amount
@@ -1160,7 +1185,7 @@ const CreateStreamForm = ({ data, setValue }) => {
                             </NativeSelect>
                             </Tooltip>
                             <FormHelperText style={{ color: '#FE6B8B' }}>
-                                How long do you want to be paid?
+                                How long do you want to be paid in years?
                             </FormHelperText>
                         </FormControl>
                     </Grid>
