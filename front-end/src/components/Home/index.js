@@ -81,7 +81,7 @@ function ScrollableTabsButtonAuto({data}) {
         </AppBar>
         <MainTabPanel value={value} index={0}>
             <Paper elevation={3}>
-                <Typography variant="h4">Income Jar</Typography>
+                <Typography variant="h4">Income Stream</Typography>
                 <Typography>
 
                 </Typography>
