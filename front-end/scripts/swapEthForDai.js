@@ -47,7 +47,7 @@ const SETTINGS = {
 
 console.log("Settings", SETTINGS)
 
-module.exports = async function(callback) {
+module.exports = async function swap(callback) {
   try {
     let balance
 
