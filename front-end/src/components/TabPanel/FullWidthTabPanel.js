@@ -15,12 +15,16 @@ import BlurLinearIcon from '@material-ui/icons/BlurLinear';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Onboard from 'bnc-onboard'
+import Notify from 'bnc-notify'
 import Web3 from 'web3';
+const HDWalletProvider = require("truffle-hdwallet-provider");
 //import Portis from '@portis/web3';
 const portisDappId = 'ddefb9bf-de03-4b90-878e-9490166117d0';
 //const portis = new Portis(portisDappId, 'ropsten', { scope: [ 'email' ] } );
 //const web3 = new Web3(portis.provider);
-var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
+let web3
+web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
 
 // opens the portis widget
 //portis.showPortis();
@@ -28,416 +32,56 @@ var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
 // set the users email if we know if or want to know it...
 //portis.setDefaultEmail('satoshi@portis.io');
 
-
 // web3.eth.getAccounts((error, accounts) => {
 //     console.log(accounts);
 // });
 
+const onboard = Onboard({
+    dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
+    networkId: 1,
+    darkMode: true,
+    subscriptions: {
+        wallet: wallet => {
+            web3 = new Web3(wallet.provider)
+            console.log(`${wallet.name} is now connected!`)
+        }
+    }
+});
+
+const notify = Notify({
+    dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
+    networkId: 1,
+    darkMode: true,
+    system: 'ethereum',
+});
+
+
+async function connectWallet() {
+    await onboard.walletSelect();
+    await onboard.walletCheck();    
+}
+
+async function getAccounts () {
+    const accounts = await web3.eth.getAccounts();
+    const address = accounts[0];
+
+    web3.eth.sendTransaction({
+        from: '',
+        to: '',
+        value: ''
+    }).on('transactionHash', (hash) => {
+        notify.hash(hash);
+    });
+}
+
+
 const ethOracleAddress = '0x3B6510FE219c9f27663Be9ca50d14dF023a9351F';
 const ethOracleAbi = [{"constant":true,"inputs":[{"name":"_back","type":"uint256"}],"name":"getPreviousTimestamp","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getLatestAnswer","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_back","type":"uint256"}],"name":"getPreviousAnswer","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getLatestTimestamp","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_aggregator","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
-const ethPriceContract = new web3.eth.Contract(ethOracleAbi, ethOracleAddress);
-
-const streamTokenAddress = '0x4ec3e41ce1c658ae7e011de309a87184405f60fd';
-const streamTokenAbi = [
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "tokenHolder",
-				"type": "address"
-			}
-		],
-		"name": "AuthorizedOperator",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "Burned",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "Minted",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "tokenHolder",
-				"type": "address"
-			}
-		],
-		"name": "RevokedOperator",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "Sent",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			}
-		],
-		"name": "authorizeOperator",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "burn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "defaultOperators",
-		"outputs": [
-			{
-				"internalType": "address[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "granularity",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenHolder",
-				"type": "address"
-			}
-		],
-		"name": "isOperatorFor",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "operatorBurn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "operatorSend",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			}
-		],
-		"name": "revokeOperator",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "send",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-];
-
-const createStreamAddress = '0xa3C5DD1Bfc094869c7b32974834f5E14aE532Cd1';
-const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_streamOwner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getBalanceContract","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"receive","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"streamOwner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"}];
-
+let ethPriceContract = new web3.eth.Contract(ethOracleAbi, ethOracleAddress);
+console.log(`Eth price oracle contract ${ethPriceContract}`);
+const createStreamAddress = '0x50E1a3B82b9710dd9903b60f1d3c1B4A4cd79122';
+const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_streamId","type":"uint256"},{"indexed":false,"internalType":"address","name":"_streamOwner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_streamId","type":"uint256"},{"indexed":false,"internalType":"address","name":"_owner","type":"address"},{"indexed":false,"internalType":"address","name":"_newOwner","type":"address"},{"indexed":false,"internalType":"bool","name":"_tokensTransferred","type":"bool"}],"name":"StreamTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_owner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"TokensSent","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getBalanceContract","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"receive","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"streamArray","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"streamBalances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"streamOwner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"streams","outputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_streamId","type":"uint256"},{"internalType":"address","name":"_newOwner","type":"address"}],"name":"transferStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"}];
 let createStreamContract = new web3.eth.Contract(createStreamAbi, createStreamAddress);
-//let streamTokenContract = new web3.eth.Contract(streamTokenAbi, streamTokenAddress);
-//console.log('Token Contract: ', streamTokenContract)
 console.log("Create Stream Contract: ", createStreamContract);
 
 // portis.onLogin((walletAddress, email, reputation) => {
@@ -447,6 +91,67 @@ console.log("Create Stream Contract: ", createStreamContract);
 // portis.onLogout(() => {
 //     console.log('User logged out');
 // });
+async function runSetup() {
+    console.group('Run Setup:')
+    // Detect MetaMask
+    if(typeof web3 !== 'undefined') {
+      // continue execution
+      console.log('Welcome!')
+      //await loadBlockchainData()
+
+      // test account
+      //const account = "0x6F7d7d68c3Eed4Df81CF5F97582deef8ABC51533";
+
+      const web3 = await loadWeb3()
+      //const account = await loadAccount(web3)
+      const account = await web3.eth.getAccounts()
+      console.log(account)
+      //this.checkAuthorization(account)
+    } else {
+      console.log('User does not have MetaMask installed')
+      window.alert('Please install MetaMask!')
+      // todo: don't show page content here...
+
+    }
+    console.groupEnd()
+}
+
+async function loadWeb3() {
+    console.group('Web3');
+    console.info('Loading Web3');
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable()
+      console.groupEnd();
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider)
+      console.groupEnd();
+    }
+    else {
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+      console.groupEnd();
+    }
+}
+
+async function checkAuthorization(account){
+    // ToTo: check against actual token holders
+    // Call a smart contract to fetch token holders
+    // Test accounts from Ganache
+    const tokenHolders = [
+      "0xb6498080D032a5cede8d03feA95b693596b87580"
+    ]
+
+    const authorized = tokenHolders.includes(account)
+    if(authorized) {
+      // todo: show website content
+      //window.alert("You're Authorized! :)")
+      console.log("You're Authorized! :)")
+    } else {
+      // todo: show login content
+      window.alert("You're not Authorized! :(")
+    }
+}
 
 async function signMessage () {
     const accounts = await web3.eth.getAccounts();
@@ -516,7 +221,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
     },
     paper: {
-        padding: '10px',
+        minWidth: 240,
+        marginLeft: '-17px',
         textAlign: 'center',
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #3f51b5',
@@ -533,16 +239,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function EnhancedTable(props) {
+function MyStreamsTable(props) {
 
-    function createRow(id, owner, deposit, payment, numberOfPayments, remainingPayments) {
-        return { id, owner, deposit, payment, numberOfPayments, remainingPayments };
+    function createRow(id, owner, deposit, payment, numberOfPayments, remainingPayments, netPresentValue) {
+        return { id, owner, deposit, payment, numberOfPayments, remainingPayments,netPresentValue };
     }
 
     const streams = [
-      createRow('0x123456', '0xd2cCea05436bf27aE49B01726075449F815B683e', 10000, 293.06, 36, 28),
-      createRow('0x654321', '0xd2cCea05436bf27aE49B01726075449F815B683e', 10000, 175.83, 60, 55),
-      createRow('0x132564', '0xd2cCea05436bf27aE49B01726075449F815B683e', 10000, 879.17, 12, 5)
+      createRow('0x123456', '0xd2cCea05436bf27aE49B01726075449F815B683e', 10000, 293, 36, 28, 8531)
     ]
 
     function descendingComparator(a, b, orderBy) {
@@ -575,9 +279,10 @@ function EnhancedTable(props) {
       { id: 'id', numeric: false, disablePadding: true, label: 'Id' },
       { id: 'owner', numeric: false, disablePadding: false, label: 'Owner' },
       { id: 'deposit', numeric: true, disablePadding: false, label: 'Deposit' },
-      { id: 'payment', numeric: true, disablePadding: false, label: 'Payment' },
-      { id: 'noPmts', numeric: true, disablePadding: false, label: 'No. Pmts' },
-      { id: 'remainingPmts', numeric: true, disablePadding: false, label: 'Pmts Remain'},
+      { id: 'payment', numeric: true, disablePadding: false, label: 'P AMT' },
+      { id: 'noPmts', numeric: true, disablePadding: false, label: 'NP' },
+      { id: 'remainingPmts', numeric: true, disablePadding: false, label: 'RP'},
+      { id: 'netPresentVal', numeric: true, disablePadding: false, label: 'NPV'}
     ];
 
     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
@@ -614,12 +319,13 @@ function EnhancedTable(props) {
                 .map((row, index) => {
                   return (
                     <TableRow>
-                      <TableCell align="right">{row.id}</TableCell>
-                      <TableCell align="right">{row.owner}</TableCell>
-                      <TableCell align="right">{row.deposit}</TableCell>
-                      <TableCell align="right">{row.payment}</TableCell>
-                      <TableCell align="right">{row.numberOfPayments}</TableCell>
-                  <TableCell align="right">{row.remainingPayments}</TableCell>
+                        <TableCell align="left">{row.id}</TableCell>
+                        <TableCell align="left">{row.owner}</TableCell>
+                        <TableCell align="right">{row.deposit}</TableCell>
+                        <TableCell align="right">{row.payment}</TableCell>
+                        <TableCell align="right">{row.numberOfPayments}</TableCell>
+                        <TableCell align="right">{row.remainingPayments}</TableCell>
+                        <TableCell align="right">{row.netPresentValue}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -650,24 +356,7 @@ const MyStreams = ({data}) => {
 
               </Paper>
               <Paper className={classes.paper} elevation={6}>
-                  <EnhancedTable />
-                    {/* <Grid container spacing={3}>
-                        <Grid item xs={12} xl={12}>
-                          <ul>
-                          {streams.map((stream, index) => {
-                              return (
-                              <li key={index}>
-                                Stream ID: {stream.streamId}
-                                Owner: {stream.owner}
-                                Deposit: {stream.deposit}
-                                Payment: {stream.payment}
-                                No of Pmts: {stream.numberOfPayments}
-                              </li>
-                              )
-                          })}
-                          </ul>
-                        </Grid>
-                    </Grid> */}
+                  <MyStreamsTable />                    
                 </Paper>
               </Grid>
         </React.Fragment>
@@ -744,26 +433,37 @@ const TransferStreamForm = ({props}) => {
               <Paper className={classes.paperHeading} elevation={3}></Paper>
               <Paper className={classes.paper} elevation={3}>
                     <Grid container spacing={3}>
-                        <Grid item xs={4}>
-                            <FormControl className={classes.formControl}>
-                                <InputLabel width='240' htmlFor="ownerAddress">Owner</InputLabel>
-                                <BootstrapInput id="ownerAddress" value={ownerAddress} />
+                        <Grid item xs={6}>
+                            <FormControl className={classes.formControl} style={{ minWidth: '450' }}>
+                                 {/*<InputLabel htmlFor="ownerAddress">Owner</InputLabel>
+                               <BootstrapInput id="ownerAddress" value={""} />  */}
                                 <FormHelperText style={{ color: '#FE6B8B' }}>
-                                    Current Owner
+                                    Current Owner ==> {ownerAddress}
                                 </FormHelperText>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={6}>
                             <FormControl className={classes.formControl}>
-                                <InputLabel htmlFor="demo-customized-textbox">New Owner</InputLabel>
-                                <BootstrapInput id="demo-customized-textbox" />
+                                <InputLabel htmlFor="new-owner-textbox">New Owner</InputLabel>
+                                <Tooltip title='Amount of your deposit' placement='top-start'>
+                                <BootstrapInput
+                                        id="new-owner-textbox"
+                                        value={'0xdDA0E4835D997518C7C4a6b479dA4e3F24Aa84da'}
+                                        variant="outlined"
+                                        color='primary'                                        
+                                        // startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                /></Tooltip>
                                 <FormHelperText style={{ color: '#FE6B8B' }}>
                                     New Owner
                                 </FormHelperText>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={4}>
-                            <FormControl className={classes.formControl}>
+                    </Grid>
+                    <div><br/></div>
+                    {/* second row */}
+                    <Grid container spacing={3}>
+                        <Grid item xs>
+                        <FormControl className={classes.formControl}>
                             <InputLabel htmlFor="streams">Stream Id</InputLabel>
                                 <NativeSelect
                                   id="streams"
@@ -780,15 +480,6 @@ const TransferStreamForm = ({props}) => {
                                 <FormHelperText style={{ color: '#FE6B8B' }}>
                                     Stream to transfer
                                 </FormHelperText>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
-                    <div><br/></div>
-                    {/* second row */}
-                    <Grid container spacing={3}>
-                        <Grid item xs>
-                            <FormControl className={classes.formControl}>
-
                             </FormControl>
                         </Grid>
                         <Grid item xs={6}>
@@ -851,7 +542,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
     async function createStreamWithContract() {
         // contact the wallet
-
+        await connectWallet();
         // get the eth amount from form in wei
         const amountInEth = amountConverted;
         console.log('Amount in Ether: ', amountInEth);
@@ -1139,7 +830,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
                 
             <Grid item xs={12}>
-                <Paper className={classes.paperHeading} elevation={3}>
+                <Paper className={classes.paper} elevation={3}>
                     <Grid item xs>
                     <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
                         {/* <InputLabel htmlFor="amountConverted" style={{ color: '#009be5' }}>
@@ -1285,7 +976,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                     <Grid item xs>
                        <Typography><br />
                            Maximum deposit is $1000<br />
-                           Minimum deposit is $10
+                           Minimum deposit is $100
                        </Typography>
 
                     </Grid>
@@ -1340,7 +1031,6 @@ function FullWidthTabs({account}) {
             <Tab label="Create Stream" {...a11yProps(0)} />
             <Tab label="Transfer Stream" {...a11yProps(1)} />
             <Tab label="My Stream(s)" {...a11yProps(2)} />
-            {/* <Tab label="Operators" {...a11yProps(3)} /> */}
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -1359,9 +1049,6 @@ function FullWidthTabs({account}) {
               {/* some panel here  */}
               <MyStreams />
           </TabPanel>
-          {/* <TabPanel value={value} index={3} >
-              <Operators />
-          </TabPanel> */}
         </SwipeableViews>
       </div>
     );

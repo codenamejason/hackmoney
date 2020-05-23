@@ -55,7 +55,6 @@ async function connectWallet() {
     await onboard.walletCheck();    
 }
 
-
 async function getAccounts () {
     const accounts = await web3.eth.getAccounts();
     const address = accounts[0];
