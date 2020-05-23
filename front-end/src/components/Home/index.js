@@ -8,7 +8,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import { Box, Paper, Link } from '@material-ui/core';
 
-
 function MainTabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -55,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ScrollableTabsButtonAuto({data}) {
+function ScrollableTabsButtonAuto({data, account}) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
   

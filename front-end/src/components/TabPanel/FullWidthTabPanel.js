@@ -33,8 +33,8 @@ var web3 = new Web3(Web3.givenProvider || "127.0.0.1:8545");
 //     console.log(accounts);
 // });
 
-const ethOracleAddress = '0x516E2b896A599f20EbB0Bd249cd643EBEb1C39E1';
-const ethOracleAbi = [{"constant":true,"inputs":[],"name":"getLatestPriceOfEthUsd","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_aggregator","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+const ethOracleAddress = '0x3B6510FE219c9f27663Be9ca50d14dF023a9351F';
+const ethOracleAbi = [{"constant":true,"inputs":[{"name":"_back","type":"uint256"}],"name":"getPreviousTimestamp","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getLatestAnswer","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_back","type":"uint256"}],"name":"getPreviousAnswer","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getLatestTimestamp","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_aggregator","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
 const ethPriceContract = new web3.eth.Contract(ethOracleAbi, ethOracleAddress);
 
 const streamTokenAddress = '0x4ec3e41ce1c658ae7e011de309a87184405f60fd';
@@ -436,8 +436,8 @@ const createStreamAddress = '0xa3C5DD1Bfc094869c7b32974834f5E14aE532Cd1';
 const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_streamOwner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getBalanceContract","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"receive","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"streamOwner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"}];
 
 let createStreamContract = new web3.eth.Contract(createStreamAbi, createStreamAddress);
-let streamTokenContract = new web3.eth.Contract(streamTokenAbi, streamTokenAddress);
-console.log('Token Contract: ', streamTokenContract)
+//let streamTokenContract = new web3.eth.Contract(streamTokenAbi, streamTokenAddress);
+//console.log('Token Contract: ', streamTokenContract)
 console.log("Create Stream Contract: ", createStreamContract);
 
 // portis.onLogin((walletAddress, email, reputation) => {
@@ -816,16 +816,17 @@ const TransferStreamForm = ({props}) => {
     )
 }
 
-const CreateStreamForm = ({ data, setValue }) => {
+const CreateStreamForm = ({ data, setValue, account }) => {
+    console.log('Account: ', account);
     //loadWeb3();
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [duration, setDuration] = useState(null);
+    const [duration, setDuration] = useState(0);
     const [productType, setProductType] = useState('IMMEDIATE');
-    const [amount, setAmount] = useState(null);
-    const [deferredDuration, setDeferredDuration] = useState(null);
+    const [amount, setAmount] = useState(0);
+    const [deferredDuration, setDeferredDuration] = useState(0);
     const [frequency, setFrequency] = useState(0);
-    const [payment, setPayment] = useState(null);
+    const [payment, setPayment] = useState(0);
     const [depositType, setDepositType] = useState('ETH');
     const [amountConverted, setAmountConverted] = useState(0);
     const [totalPayments, setTotalPayments] = useState(0);
@@ -841,23 +842,26 @@ const CreateStreamForm = ({ data, setValue }) => {
 
     const paymentTotal = payment * duration * frequency;
     const minimum = 100;
-    const maximum = 1000
+    const maximum = 1000;
+
+    const roundUp = (number, precision) => {
+        precision = Math.pow(10, precision);
+        return Math.ceil(number * precision) / precision;
+    }
 
     async function createStreamWithContract() {
         // contact the wallet
 
-
         // get the eth amount from form in wei
-        const amountInWei = amountConverted;
+        const amountInEth = amountConverted;
+        console.log('Amount in Ether: ', amountInEth);
+        console.log('Payment: ',  roundUp(payment.toFixed(0), 2));
 
-
-
-
-        await createStreamContract.methods.createStream(amount, duration, frequency, payment.toFixed(0))
-            .send({ from: '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e', value: amountInWei })
+        await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
+            .send({ from: '0xd2cCea05436bf27aE49B01726075449F815B683e', value: web3.utils.toWei('.048', 'ether') })
             .then((error, result) => {
                 if(error){
-                    console.error(error);;
+                    console.error(error);
                 }
                 console.log(result);
                 setOpen(false);
@@ -869,18 +873,16 @@ const CreateStreamForm = ({ data, setValue }) => {
         });
     }
 
+    // Price Feed for Eth
     (async function getEthPrice() {
         let priceOfEth = 0;
-        priceOfEth = await ethPriceContract.methods.getLatestPriceOfEthUsd().call();
+        priceOfEth = await ethPriceContract.methods.getLatestAnswer().call();
         setCurrentEthPrice(priceOfEth);
-
-        let amtCnvtd =  0;
-
-
-        console.log(amtCnvtd);
         setAmountConverted(amount / currentEthPrice);
         console.log(`Current Eth price: ${priceOfEth}`);
     })();
+
+    // Price Feed for Dai
 
 
     const handleOpen = (event, value) =>{
@@ -897,7 +899,9 @@ const CreateStreamForm = ({ data, setValue }) => {
         // anythin else we want to do here??
     };
 
-    //myflashloancontract();
+    const getInterestRate = (duration) => {
+        
+    }
 
     const handleFrequencyChange = (event, newValue) => {
         const frequency = event.target.value;
@@ -905,11 +909,19 @@ const CreateStreamForm = ({ data, setValue }) => {
         console.log(frequency);
         // need to refresh the rest ...
         let pmt = (amount / duration) / frequency;
-        let interest = pmt * .0675; // 6.75% PA
+        let interest
+        if(duration == 1){
+            interest = pmt * .0675; // 6.75% PA
+        } else if(duration == 3){
+            interest = pmt * .0875; // 8.75% PA
+        } else if(duration == 5) {
+            interest = pmt * .1075; // 10.75% PA
+        }
+        
         pmt = pmt + interest;
-        setPayment(pmt);
-        setTotalPayments(frequency * payment * duration);    
 
+        setPayment(pmt);
+        setTotalPayments(frequency * payment * duration);
     };
 
     const handlePaymentChange = (event, newValue) => {
@@ -923,7 +935,15 @@ const CreateStreamForm = ({ data, setValue }) => {
         const amount = event.target.value;
         setAmount(event.target.value);
         let pmt = (amount / duration) / frequency;
-        let interest = pmt * .0675; // 6.75% PA
+        let interest
+        if(duration == 1){
+            interest = pmt * .0675; // 6.75% PA
+        } else if(duration == 3){
+            interest = pmt * .0875; // 8.75% PA
+        } else if(duration == 5) {
+            interest = pmt * .1075; // 10.75% PA
+        }
+        
         pmt = pmt + interest;
         setPayment(pmt);
 
@@ -973,7 +993,15 @@ const CreateStreamForm = ({ data, setValue }) => {
         setDuration(duration);
         console.log(duration);
         let pmt = (amount / duration) / frequency;
-        let interest = pmt * .0675; // 6.75% PA
+        let interest
+        if(duration == 1){
+            interest = pmt * .0675; // 6.75% PA
+        } else if(duration == 3){
+            interest = pmt * .0875; // 8.75% PA
+        } else if(duration == 5) {
+            interest = pmt * .1075; // 10.75% PA
+        }
+        
         pmt = pmt + interest;
         setPayment(pmt);
         setTotalPayments(payment * frequency * duration);
@@ -1150,7 +1178,7 @@ const CreateStreamForm = ({ data, setValue }) => {
                     <Tooltip title='Your payment amount' placement='top-start'>                     
                         <BootstrapInput
                             id="payment"
-                            value={payment == null ? 0 : payment.toFixed(2)}
+                            value={payment == null ? 0 : payment.toFixed(0)}
                             variant="outlined"
                             color='primary'
                             disabled
@@ -1257,7 +1285,7 @@ const CreateStreamForm = ({ data, setValue }) => {
                     <Grid item xs>
                        <Typography><br />
                            Maximum deposit is $1000<br />
-                           Minimum deposit is $100
+                           Minimum deposit is $10
                        </Typography>
 
                     </Grid>
@@ -1285,7 +1313,7 @@ const CreateStreamForm = ({ data, setValue }) => {
 /**
  * Full width tabs
  */
-function FullWidthTabs() {
+function FullWidthTabs({account}) {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
@@ -1321,7 +1349,7 @@ function FullWidthTabs() {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0}>
-             <CreateStreamForm setValue={setValue} />
+             <CreateStreamForm setValue={setValue} account={account} />
           </TabPanel>
           <TabPanel value={value} index={1}>
               {/* some panel here  */}
