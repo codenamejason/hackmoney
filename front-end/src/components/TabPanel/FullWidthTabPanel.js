@@ -119,7 +119,34 @@ async function connectWallet() {
 //const accounts = await provider.enable();
 // register address for all transactions that occur on the user's account
 //const { emitter } = notify.account(accounts[0])
-
+let ethereum = window.ethereum;
+// window.addEventListener('load', async () => {
+//     try { await ethereum.enable(); } catch (error) {}
+// });
+window.addEventListener('load', async () => {
+    // Modern dapp browsers...
+    if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+            // Request account access if needed
+            await ethereum.enable();
+            // Acccounts now exposed
+            //web3.eth.sendTransaction({/* ... */});
+        } catch (error) {
+            // User denied account access...
+        }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider);
+        // Acccounts always exposed
+        //web3.eth.sendTransaction({/* ... */});
+    }
+    // Non-dapp browsers...
+    else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+});
 
 const ethOracleAddress = '0x3B6510FE219c9f27663Be9ca50d14dF023a9351F'; // Ropsten
 const ethOracleAbi = [{"constant":true,"inputs":[{"name":"_back","type":"uint256"}],"name":"getPreviousTimestamp","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getLatestAnswer","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_back","type":"uint256"}],"name":"getPreviousAnswer","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getLatestTimestamp","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_aggregator","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
@@ -1385,7 +1412,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         //swapEthForDai();
         // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
-            .send({ from: userAccount, value: web3.utils.toWei('.4844022476264629', 'ether') })           
+            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei('.4844022476264629', 'ether') })           
             .then((error, result) => {
                 
                 setBackdrop(true);
