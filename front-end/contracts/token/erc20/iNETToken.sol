@@ -1,12 +1,58 @@
-pragma solidity  >=0.4.22 <0.7.0;
+pragma solidity ^0.6.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract iNETToken is ERC20 {
-    address[] public defaultOperators;
+contract iNETToken {
+    string  public name = "InsureNET Token";
+    string  public symbol = "iNET";
+    string  public standard = "InsureNET Token v1.0";
+    uint256 public totalSupply;
 
-    constructor() public ERC20("iNET Token", "iNET") {
-        // 1 Billion Tokens minted at creation
-        _mint(msg.sender, 1000000000000000000000000000);
+    event Transfer(
+        address indexed _from,
+        address indexed _to,
+        uint256 _value
+    );
+
+    event Approval(
+        address indexed _owner,
+        address indexed _spender,
+        uint256 _value
+    );
+
+    mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance;
+
+    constructor (uint256 _initialSupply) public {
+        balanceOf[msg.sender] = _initialSupply;
+        totalSupply = _initialSupply;
+    }
+
+    function transfer(address _to, uint256 _value) public payable returns (bool success) {
+        require(balanceOf[msg.sender] >= _value, "Not enough Ether");
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+
+    }
+
+
+    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(_value <= balanceOf[_from]);
+        require(_value <= allowance[_from][msg.sender]);
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        allowance[_from][msg.sender] -= _value;
+        emit Transfer(_from, _to, _value);
+
+        return true;
     }
 }

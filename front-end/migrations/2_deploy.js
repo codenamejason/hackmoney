@@ -5,6 +5,8 @@ const iNETToken = artifacts.require('iNETToken')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
 //const PriceOracle = artifacts.require('OracleExample')
 const DaiFaucet = artifacts.require('DaiFaucet');
+const JarToken = artifacts.require('JarToken');
+const TransferContract = artifacts.require('TransferContract');
 require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider, environment: 'truffle' });
 
 //const { singletons } = require('@openzeppelin/test-helpers');
