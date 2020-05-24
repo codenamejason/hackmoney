@@ -34,7 +34,7 @@ let web3
 web3 = new Web3(Web3.givenProvider);// || "http://localhost:8545");// "https://ropsten.infura.io/v3/1ad03ac212da4523b6c8337eace81a14");
 
 
-console.log('Account: ',getAccounts());
+//console.log('Account: ',getAccounts());
 
 const factoryAbi = legos.uniswap.factory.abi;
 const factoryAddress = legos.uniswap.factory.address;
@@ -62,10 +62,12 @@ const exchangeContract = new web3.eth.Contract(EXCHANGE_ABI, EXCHANGE_ADDRESS);
 
 // set the users email if we know if or want to know it...
 //portis.setDefaultEmail('satoshi@portis.io');
-
-// web3.eth.getAccounts((error, accounts) => {
-//     console.log(accounts);
-// });
+var userAccount
+web3.eth.getAccounts((error, accounts) => {
+    console.log(accounts);
+    userAccount = accounts[0]
+    console.log(userAccount)
+});
 
 const onboard = Onboard({
     dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
@@ -92,23 +94,25 @@ async function connectWallet() {
     await onboard.walletCheck();    
 }
 
-async function getAccounts () {
-    const accounts = await web3.eth.getAccounts();
-    const address = accounts[0];
 
-    //const sign = await web3.eth.personal.sign('Connect to Income JAR', accounts[0]);
+// async function getAccounts () {
+//     const accounts = await web3.eth.getAccounts();
+//     const address = accounts[0];
 
-    // web3.eth.sendTransaction({
-    //     from: '0xd2cCea05436bf27aE49B01726075449F815B683e',
-    //     to: '0xBe89CFCc5303870Fe9eCAeBDBf12C1183A3CC228',
-    //     value: web3.utils.toWei('0.011', 'ether')
-    // }).on('transactionHash', (hash) => {
-    //     notify.hash(hash);
-    // });
-    console.log(accounts)
+//     //const sign = await web3.eth.personal.sign('Connect to Income JAR', userAccount);
 
-    return accounts;
-}
+//     // web3.eth.sendTransaction({
+//     //     from: '0xd2cCea05436bf27aE49B01726075449F815B683e',
+//     //     to: '0xBe75fE8c84E90394c0A6B41053DE3689De63FB00',
+//     //     value: web3.utils.toWei('0.011', 'ether')
+//     // }).on('transactionHash', (hash) => {
+//     //     notify.hash(hash);
+//     // });
+//     console.log(accounts)
+
+//     return accounts;
+// }
+
 
 // BlockNative Notify on account
 // Etherum
@@ -1280,6 +1284,7 @@ const TransferStreamForm = ({ props }) => {
 const CreateStreamForm = ({ data, setValue, account }) => {
     let accounts = web3.eth.getAccounts();
     console.log('Account: ', accounts[0]);
+    
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [duration, setDuration] = useState(0);
@@ -1305,7 +1310,6 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     const paymentTotal = payment * duration * frequency;
     const minimum = 100;
     const maximum = 1000;
-
     const roundUp = (number, precision) => {
         precision = Math.pow(10, precision);
         return Math.ceil(number * precision) / precision;
@@ -1325,7 +1329,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     const SETTINGS = {
         gasLimit: 6000000, // Override gas settings: https://github.com/ethers-io/ethers.js/issues/469
         gasPrice: web3.utils.toWei('50', 'Gwei'),
-        from: accounts[0], //'0xd2cCea05436bf27aE49B01726075449F815B683e', // Use your account here
+        from: userAccount, //'0xd2cCea05436bf27aE49B01726075449F815B683e', // Use your account here
         value: web3.utils.toWei('0.048', 'Ether') // Amount of Ether to Swap
     }
     console.log("Settings", SETTINGS)
@@ -1381,7 +1385,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         //swapEthForDai();
         // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
-            .send({ from: '0xd2cCea05436bf27aE49B01726075449F815B683e', value: web3.utils.toWei('.4844022476264629', 'ether') })           
+            .send({ from: userAccount, value: web3.utils.toWei('.4844022476264629', 'ether') })           
             .then((error, result) => {
                 
                 setBackdrop(true);
@@ -1396,15 +1400,15 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
                 // transfer the stream tokens here..
                 // approve 
-                jarToken20Contract.methods.approve('0xd2cCea05436bf27aE49B01726075449F815B683e', '5') //web3.utils.toWei('.01', 'ether'))
-                    .call({ from: '0xd2cCea05436bf27aE49B01726075449F815B683e' })
+                jarToken20Contract.methods.approve(account, '5') //web3.utils.toWei('.01', 'ether'))
+                    .call({ from: userAccount })
                     .then(() => {
                         console.log("Approved");
                     });
 
                 // transfer
-                jarToken20Contract.methods.transfer('0xBe89CFCc5303870Fe9eCAeBDBf12C1183A3CC228', '5')
-                    .call({ from: '0xd2cCea05436bf27aE49B01726075449F815B683e' })
+                jarToken20Contract.methods.transfer(userAccount, '5')
+                    .call({ from: userAccount })
                     .then((hash) => {
                         notify.hash(hash)
                         console.log("Transferred: ", hash);
@@ -1864,7 +1868,9 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 /**
  * Full width tabs
  */
-function FullWidthTabs({account}) {
+function FullWidthTabs() {
+
+
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
@@ -1899,7 +1905,7 @@ function FullWidthTabs({account}) {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0}>
-             <CreateStreamForm setValue={setValue} account={account} />
+             <CreateStreamForm setValue={setValue} account={userAccount} />
           </TabPanel>
           <TabPanel value={value} index={1}>
               {/* some panel here  */}
@@ -1907,7 +1913,7 @@ function FullWidthTabs({account}) {
           </TabPanel>
           <TabPanel value={value} index={2} >
               {/* some panel here  */}
-              <MyStreams account={'0xd2cCea05436bf27aE49B01726075449F815B683e'} />
+              <MyStreams account={userAccount} />
           </TabPanel>
         </SwipeableViews>
       </div>
