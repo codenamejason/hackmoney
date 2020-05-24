@@ -72,15 +72,12 @@ function ScrollableTabsButtonAuto({data, account}) {
             textColor="primary"
             variant="scrollable"
             scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
+            aria-label="scrollable tabls"
           >
             <Tab label={data.one.name} {...a11yProps(0)} />
             <Tab label={data.two.name} {...a11yProps(1)} />
             <Tab label={data.three.name} {...a11yProps(2)} />
             <Tab label={data.four.name} {...a11yProps(3)} />
-            {/* <Tab label={data.five.name} {...a11yProps(4)} />
-            <Tab label={data.six.name} {...a11yProps(5)} />
-            <Tab label={data.seven.name} {...a11yProps(6)} /> */}
           </Tabs>
         </AppBar>
         <MainTabPanel value={value} index={0}>
@@ -304,16 +301,7 @@ const Home = (props) => {
         },
         four: {
             name: "Streams"
-        }//,
-        // five: {
-        //     name: "Safety"
-        // },
-        // six: {
-        //     name: "FAQ"
-        // },
-        // seven: {
-        //     name: "Streams"
-        // }
+        }
     }
 
     return (

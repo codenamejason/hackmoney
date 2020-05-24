@@ -29,7 +29,8 @@
     "@testing-library/user-event": "^7.1.2",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "ethereumjs-tx": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
