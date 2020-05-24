@@ -69,7 +69,7 @@ const exchangeContract = new web3.eth.Contract(EXCHANGE_ABI, EXCHANGE_ADDRESS);
 
 const onboard = Onboard({
     dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
-    networkId: 1,
+    networkId: 3,
     darkMode: true,
     subscriptions: {
         wallet: wallet => {
@@ -96,7 +96,7 @@ async function getAccounts () {
     const accounts = await web3.eth.getAccounts();
     const address = accounts[0];
 
-    const sign = await web3.eth.personal.sign('Connect to Income JAR', accounts[0]);
+    //const sign = await web3.eth.personal.sign('Connect to Income JAR', accounts[0]);
 
     // web3.eth.sendTransaction({
     //     from: '0xd2cCea05436bf27aE49B01726075449F815B683e',
@@ -935,7 +935,7 @@ function MyStreamsTable(props) {
       { id: 'payment', numeric: true, disablePadding: false, label: 'Payment' },
       { id: 'noPmts', numeric: true, disablePadding: false, label: 'Duration' },
       { id: 'remainingPmts', numeric: true, disablePadding: false, label: 'Frequency'},
-      { id: 'netPresentVal', numeric: true, disablePadding: false, label: 'Date'}
+      { id: 'netPresentVal', numeric: true, disablePadding: false, label: 'NPV'}
     ];
 
     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
@@ -949,6 +949,7 @@ function MyStreamsTable(props) {
     const [depositAmt, setDepositAmt] = useState(0);
     const [dateCreated, setDateCreated] = useState(0);
     const [streamPmt, setStreamPmt] = useState(0);
+    const [streamValue, setStreamValue] = useState(0);
     const [frequency, setFrequency] = useState(0);
     const [streamOwner, setstreamOwner] = useState(null);
     const [backdrop, setBackdrop] = useState(false);
@@ -973,7 +974,7 @@ function MyStreamsTable(props) {
                 setStreamPmt(res.payment);
                 setFrequency(res.frequency);
                 setstreamOwner(res.streamOwner);
-                
+                setStreamValue(res.streamValue);
                 setUserStreams(res);
                 setBackdrop(false);
             });
@@ -1010,7 +1011,7 @@ function MyStreamsTable(props) {
                         <TableCell align="right">{streamPmt}</TableCell>
                         <TableCell align="right">{streamLength}</TableCell>
                         <TableCell align="right">{frequency}</TableCell>
-                        <TableCell align="right">{dateCreated}</TableCell>
+                        <TableCell align="right">{web3.utils.fromWei(web3.utils.toBN(streamValue), 'ether')}</TableCell>
                     </TableRow>                    
                 </TableBody>
             </Table>
@@ -1028,7 +1029,7 @@ function MyStreamsTableWithCheckbox(props) {
         { id: 'payment', numeric: true, disablePadding: false, label: 'Payment' },
         { id: 'noPmts', numeric: true, disablePadding: false, label: 'Duration' },
         { id: 'remainingPmts', numeric: true, disablePadding: false, label: 'Frequency'},
-        { id: 'netPresentVal', numeric: true, disablePadding: false, label: 'Date'}
+        { id: 'netPresentVal', numeric: true, disablePadding: false, label: 'NPV'}
     ];
 
     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
@@ -1043,6 +1044,7 @@ function MyStreamsTableWithCheckbox(props) {
     const [dateCreated, setDateCreated] = useState(0);
     const [streamPmt, setStreamPmt] = useState(0);
     const [frequency, setFrequency] = useState(0);
+    const [streamValue, setStreamValue] = useState(0);
     const [streamOwner, setstreamOwner] = useState(null);
     const [backdrop, setBackdrop] = useState(false);
     const [stream, setUserStreams] = useState();
@@ -1071,7 +1073,7 @@ function MyStreamsTableWithCheckbox(props) {
                 setStreamPmt(res.payment);
                 setFrequency(res.frequency);
                 setstreamOwner(res.streamOwner);
-                
+                setStreamValue(res.streamValue);                
                 setUserStreams(res);
                 setBackdrop(false);
             });
@@ -1116,7 +1118,7 @@ function MyStreamsTableWithCheckbox(props) {
                         <TableCell align="right">{streamPmt}</TableCell>
                         <TableCell align="right">{streamLength}</TableCell>
                         <TableCell align="right">{frequency}</TableCell>
-                        <TableCell align="right">{dateCreated}</TableCell>
+                        <TableCell align="right">{web3.utils.fromWei(web3.utils.toBN(streamValue), 'ether')}</TableCell>
                     </TableRow>                    
                 </TableBody>
             </Table>
@@ -1227,6 +1229,7 @@ const TransferStreamForm = ({ props }) => {
 
     const handleFormSubmit = (prop) => (event) => {
         setFormValues({ ...formValues, [prop]: event.target.value });
+        props.setValue(3)
     };
 
     return (
@@ -1240,7 +1243,7 @@ const TransferStreamForm = ({ props }) => {
                         <Grid item xs={6}>
                         <FormControl className={classes.formControl} style={{ minWidth: 420 }}>
                                 <InputLabel htmlFor="new-owner-textbox">New Owner</InputLabel>
-                                <Tooltip title='Amount of your deposit' placement='top-start'>
+                                <Tooltip title='Who do you want to send to' placement='top-start'>
                                 <BootstrapInput
                                         id="new-owner-textbox"
                                         value={newOwner}
@@ -1376,9 +1379,9 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         console.log('Payment: ',  roundUp(payment.toFixed(0), 2));
 
         //swapEthForDai();
-
+        // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
-            .send({ from: '0xd2cCea05436bf27aE49B01726075449F815B683e', value: web3.utils.toWei('.01', 'ether') })
+            .send({ from: '0xd2cCea05436bf27aE49B01726075449F815B683e', value: web3.utils.toWei('.4844022476264629', 'ether') })           
             .then((error, result) => {
                 
                 setBackdrop(true);
@@ -1428,11 +1431,12 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     // Price Feed for Eth
     (async function getEthPrice() {
         let priceOfEth = 0;
-        priceOfEth = await ethPriceContract.methods.getLatestAnswer().call();
-        setCurrentEthPrice(priceOfEth);
+        priceOfEth = await ethPriceContract.methods.getLatestAnswer().call().then((res) => setCurrentEthPrice(res));
+        
         setAmountConverted(amount / currentEthPrice);
+        console.log(`Amount converted ${amountConverted.toFixed(18)}`)
         console.log(`Current Eth price: ${priceOfEth}`);
-    })(setTimeout(15000));
+    })(setTimeout(5000));
 
     // Price Feed for Dai
 
@@ -1465,9 +1469,9 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         if(duration == 1){
             interest = pmt * .0675; // 6.75% PA
         } else if(duration == 3){
-            interest = pmt * .0875; // 8.75% PA
+            interest = pmt * .2861; // 8.75% PA
         } else if(duration == 5) {
-            interest = pmt * .1075; // 10.75% PA
+            interest = pmt * .6662; // 10.75% PA
         }
         
         pmt = pmt + interest;
@@ -1491,9 +1495,9 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         if(duration == 1){
             interest = pmt * .0675; // 6.75% PA
         } else if(duration == 3){
-            interest = pmt * .0875; // 8.75% PA
+            interest = pmt * .2861; // 8.75% PA
         } else if(duration == 5) {
-            interest = pmt * .1075; // 10.75% PA
+            interest = pmt * .6662; // 10.75% PA
         }
         
         pmt = pmt + interest;
@@ -1522,10 +1526,6 @@ const CreateStreamForm = ({ data, setValue, account }) => {
               setTotalPayments(pmt * 1);
               break;
         }
-
-
-       
-
         console.log(amount);
     };
 
@@ -1549,9 +1549,9 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         if(duration == 1){
             interest = pmt * .0675; // 6.75% PA
         } else if(duration == 3){
-            interest = pmt * .0875; // 8.75% PA
+            interest = pmt * .2861; // 8.75% PA
         } else if(duration == 5) {
-            interest = pmt * .1075; // 10.75% PA
+            interest = pmt * .6662; // 10.75% PA
         }
         
         pmt = pmt + interest;
@@ -1609,30 +1609,29 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     let deferredTime
     if(productType == 'DEFERRED'){
         deferredTime =  <React.Fragment>
-                        <FormControl>
-                        <InputLabel htmlFor="deferredDuration" style={{ color: '#009be5' }}>
-                          Deferred Duration in Years
-                        </InputLabel>
-                        <Select
-                            style={{ color: '#009be5' }}
-                            native
-                            value={deferredDuration}
-                            onChange={handleDeferredDurationChange}
-                            inputProps={{
-                                name: 'deferredDuration',
-                                id: 'deferredDuration',
-                            }}
-                        >
-                            <option aria-label="None" value="Select Duration" />
-                            <option value={1}>One</option>
-                            <option value={3}>Three</option>
-                            <option value={5}>Five</option>
-                        </Select>
-                        <FormHelperText style={{ color: '#FE6B8B' }}>helper text</FormHelperText>
-                        </FormControl>
+                            <FormControl>
+                                <InputLabel htmlFor="deferredDuration" style={{ color: '#009be5' }}>
+                                    Deferred Duration in Years
+                                </InputLabel>
+                                <Select
+                                    style={{ color: '#009be5' }}
+                                    native
+                                    value={deferredDuration}
+                                    onChange={handleDeferredDurationChange}
+                                    inputProps={{
+                                        name: 'deferredDuration',
+                                        id: 'deferredDuration',
+                                    }}
+                                >
+                                    <option aria-label="None" value="Select Duration" />
+                                    <option value={1}>One</option>
+                                    <option value={3}>Three</option>
+                                    <option value={5}>Five</option>
+                                </Select>
+                                <FormHelperText style={{ color: '#FE6B8B' }}>helper text</FormHelperText>
+                            </FormControl>
                         </React.Fragment>
     };
-
 
     function createData(duration, frequency, amount) {
       return { duration, frequency, amount };
@@ -1700,7 +1699,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                         <Tooltip title='Amount of your deposit' placement='top-start'>
                         <BootstrapInput
                                 id="amountConverted"
-                                value={amountConverted == null ? 0 : amountConverted.toFixed(18)}
+                                value={amountConverted}
                                 variant="outlined"
                                 color='primary'
                                 disabled
@@ -1904,7 +1903,7 @@ function FullWidthTabs({account}) {
           </TabPanel>
           <TabPanel value={value} index={1}>
               {/* some panel here  */}
-              <TransferStreamForm />
+              <TransferStreamForm setValue={setValue}/>
           </TabPanel>
           <TabPanel value={value} index={2} >
               {/* some panel here  */}
