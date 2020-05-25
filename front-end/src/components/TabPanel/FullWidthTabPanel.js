@@ -990,7 +990,7 @@ function MyStreamsTable(props) {
     const getStreamsForUser = () => {
         let acct = web3.eth.getAccounts().then(console.log);
 
-        createStreamContract.methods.getStreams('0xd2cCea05436bf27aE49B01726075449F815B683e').call()
+        createStreamContract.methods.getStreams(userAccount).call()
             .then((res, err) => {                
                 setBackdrop(true);
                 if (err){
@@ -1089,7 +1089,7 @@ function MyStreamsTableWithCheckbox(props) {
     const getStreamsForUser = () => {
         let acct = web3.eth.getAccounts().then(console.log);
 
-        createStreamContract.methods.getStreams('0xd2cCea05436bf27aE49B01726075449F815B683e').call()
+        createStreamContract.methods.getStreams(userAccount).call()
             .then((res, err) => {                
                 setBackdrop(true);
                 if (err){
