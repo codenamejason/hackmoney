@@ -8,7 +8,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import { Box, Paper, Link } from '@material-ui/core';
 
-
 function MainTabPanel(props) {
     const { children, value, index, ...other } = props;
   
@@ -55,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ScrollableTabsButtonAuto({data}) {
+function ScrollableTabsButtonAuto({data, account}) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
   
@@ -73,15 +72,12 @@ function ScrollableTabsButtonAuto({data}) {
             textColor="primary"
             variant="scrollable"
             scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
+            aria-label="scrollable tabls"
           >
             <Tab label={data.one.name} {...a11yProps(0)} />
             <Tab label={data.two.name} {...a11yProps(1)} />
             <Tab label={data.three.name} {...a11yProps(2)} />
             <Tab label={data.four.name} {...a11yProps(3)} />
-            {/* <Tab label={data.five.name} {...a11yProps(4)} />
-            <Tab label={data.six.name} {...a11yProps(5)} />
-            <Tab label={data.seven.name} {...a11yProps(6)} /> */}
           </Tabs>
         </AppBar>
         <MainTabPanel value={value} index={0}>
@@ -95,7 +91,7 @@ function ScrollableTabsButtonAuto({data}) {
                     <ul>
                         <li>Amount you want to deposit</li>
                         <li>Length of the stream ( 1, 3 or 5 years)</li>
-                        <li>Payment frequency (monthly, quarterly, or annually</li>
+                        <li>Payment frequency (monthly, quarterly, or annually)</li>
                     </ul>
                 </Typography>
                 <Typography className={classes.typography} paragraph align='left'>
@@ -141,7 +137,7 @@ function ScrollableTabsButtonAuto({data}) {
                     <ul>
                         <li>Deposit amount</li>
                         <li>Length of income - 1 | 3 | 5 years</li>
-                        <li>Payment period - monthly | quarterly | annual</li>
+                        <li>Payment period - monthly | quarterly | annualy</li>
                     </ul>
               </Typography>
               <Typography className={classes.typography} paragraph align='left'>
@@ -305,16 +301,7 @@ const Home = (props) => {
         },
         four: {
             name: "Streams"
-        }//,
-        // five: {
-        //     name: "Safety"
-        // },
-        // six: {
-        //     name: "FAQ"
-        // },
-        // seven: {
-        //     name: "Streams"
-        // }
+        }
     }
 
     return (

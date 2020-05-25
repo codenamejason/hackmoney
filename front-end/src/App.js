@@ -5,8 +5,8 @@ import AppBar from './components/AppBar/index';
 import Home from './components/Home/index';
 //import { Drizzle } from 'dirzzle';
 import web3 from 'web3';
-//import SetProtocol from 'setprotocol.js';
-// import contract(s) for drizzle or whatever...
+// import SetProtocol from 'setprotocol.js';
+// import contract(s)
 const IncomeStreamCreator = "../build/abis/IncomeStreamCreator.json";
 const PriceOracle = './build/abis/OracleExample.json'
 
@@ -111,9 +111,6 @@ console.log(provider)
 //     console.log("Name: " + address);
 //     // "registrar.firefly.eth"
 // });
-
-
-
 
 
 function App() {
