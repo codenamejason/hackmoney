@@ -554,7 +554,7 @@ const jarToken777Abi = [
 ];
 const jarToken777Contract = new web3.eth.Contract(jarToken777Abi, jarToken777Address);
 
-const jarToken20Address = '0x751859466524E8172e630E22E9Ab58209D075362';
+const jarToken20Address = '0x751859466524e8172e630e22e9ab58209d075362';
 const jarToken20Abi = [
 	{
 		"inputs": [
@@ -1401,9 +1401,8 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
     // Call the contract on-chain and create the new stream
     async function createStreamWithContract() {
-        // contact the wallet
-        //await connectWallet();
-        //await loadWeb3();
+        var count = await web3.eth.getTransactionCount(userAccount);
+        console.log(`Number of tx so far: ${count}`);
         // get the eth amount from form in wei
         const amountInEth = amountConverted;
         console.log('Amount in Ether: ', amountInEth);
@@ -1412,7 +1411,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         //swapEthForDai();
         // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
-            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei('.4844022476264629', 'ether') })           
+            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei('.0484', 'ether') })           
             .then((error, result) => {
                 
                 setBackdrop(true);
@@ -1450,7 +1449,6 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                     //     console.log(confirmationNumber, ' ', receipt)
                     // })
                     // .on('error', console.error);
-
 
                 setOpen(false); // close the modal
                 setBackdrop(false)
