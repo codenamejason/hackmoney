@@ -11,8 +11,8 @@
 
 # production
 /build
-/contracts
-/migrations
+#/contracts
+#/migrations
 
 /src/abis
 

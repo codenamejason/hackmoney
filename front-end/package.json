@@ -6,6 +6,7 @@
     "@chainlink/contracts": "0.0.4",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
+    "@opengsn/gsn": "0.9.0",
     "@portis/web3": "^2.0.0-beta.55",
     "@studydefi/money-legos": "^2.1.0",
     "babel-polyfill": "^6.26.0",
@@ -30,14 +31,16 @@
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
-    "ethereumjs-tx": "^2.1.2"
+    "ethereumjs-tx": "^2.1.2",
+    "ethereum-waffle": "2.5.1"
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=4096 start",
     "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "preinstall": "rm -rf node_modules/erc1820/node_modules_websocket/.git"
+    "preinstall": "rm -rf node_modules/erc1820/node_modules_websocket/.git",
+    "waffle-build": "waffle"
   },
   "eslintConfig": {
     "extends": "react-app"

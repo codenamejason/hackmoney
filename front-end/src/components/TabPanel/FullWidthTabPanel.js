@@ -153,8 +153,8 @@ const ethOracleAbi = [{"constant":true,"inputs":[{"name":"_back","type":"uint256
 let ethPriceContract = new web3.eth.Contract(ethOracleAbi, ethOracleAddress);
 console.log(`Eth price oracle contract ${ethPriceContract}`);
 
-const createStreamAddress = '0x0e43Df5f5B00409831926f761C8Da6bC52E2Ad0f'; // Ropsten
-const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_streamId","type":"uint256"},{"indexed":false,"internalType":"address","name":"_streamOwner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_streamId","type":"uint256"},{"indexed":false,"internalType":"address","name":"_owner","type":"address"},{"indexed":false,"internalType":"address","name":"_newOwner","type":"address"},{"indexed":false,"internalType":"bool","name":"_tokensTransferred","type":"bool"}],"name":"StreamTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_owner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"TokensSent","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"},{"indexed":false,"internalType":"address","name":"_user","type":"address"}],"name":"WithdrawMade","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getAllStreams","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBalanceContract","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_streamId","type":"uint256"}],"name":"getStream","outputs":[{"components":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"internalType":"struct IncomeStreamCreator.Stream","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_owner","type":"address"}],"name":"getStreams","outputs":[{"components":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"internalType":"struct IncomeStreamCreator.Stream","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"streamAccounts","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"streamBalances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"streamOwner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"streams","outputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"streamsArray","outputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_streamId","type":"uint256"},{"internalType":"address","name":"_newOwner","type":"address"}],"name":"transferStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"stateMutability":"payable","type":"receive"}];
+const createStreamAddress = '0x813690E1a4a574Dc7582E542a5F01e4A3EEb5b20'; //'0x043FA43418C899e5004e1FEf0b4Ba359cdB87299'; // Ropsten
+const createStreamAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_streamId","type":"uint256"},{"indexed":true,"internalType":"address","name":"_streamOwner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_streamAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamLength","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamPayment","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"_streamFrequency","type":"uint256"}],"name":"StreamCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_streamId","type":"uint256"},{"indexed":false,"internalType":"address","name":"_owner","type":"address"},{"indexed":false,"internalType":"address","name":"_newOwner","type":"address"},{"indexed":false,"internalType":"bool","name":"_tokensTransferred","type":"bool"}],"name":"StreamTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_owner","type":"address"},{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"TokensSent","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"},{"indexed":false,"internalType":"address","name":"_user","type":"address"}],"name":"WithdrawMade","type":"event"},{"inputs":[],"name":"MEMBER_HASH","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"uint256","name":"_duration","type":"uint256"},{"internalType":"uint256","name":"_frequency","type":"uint256"},{"internalType":"uint256","name":"_payment","type":"uint256"}],"name":"createStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getAll","outputs":[{"components":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"internalType":"struct IncomeStreamCreator.Stream[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAllStreams","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBalanceContract","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getMemberCount","outputs":[{"internalType":"uint256","name":"memberCount","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_streamId","type":"uint256"}],"name":"getStream","outputs":[{"components":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"internalType":"struct IncomeStreamCreator.Stream","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getStreamCount","outputs":[{"internalType":"uint256","name":"totalStreams","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_memberAddress","type":"address"}],"name":"isMember","outputs":[{"internalType":"bool","name":"isMember","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"knownMembers","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"memberAccounts","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"members","outputs":[{"internalType":"address","name":"memberAddress","type":"address"},{"internalType":"bytes32","name":"email","type":"bytes32"},{"internalType":"bytes32","name":"memberData","type":"bytes32"},{"internalType":"uint256","name":"balance","type":"uint256"},{"internalType":"bool","name":"active","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minDeposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"minWaitingPeriod","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_memberAddress","type":"address"},{"internalType":"bytes32","name":"_email","type":"bytes32"},{"internalType":"bytes32","name":"_memberData","type":"bytes32"}],"name":"newMember","outputs":[{"internalType":"uint256","name":"rowNumber","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address payable","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"priceToRegister","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"streamAccounts","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"streamBalances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"streams","outputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"streamsArray","outputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_streamId","type":"uint256"},{"internalType":"address","name":"_newOwner","type":"address"}],"name":"transferStream","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_rowNumber","type":"uint256"},{"internalType":"address","name":"_memberAddress","type":"address"},{"internalType":"bytes32","name":"_memberData","type":"bytes32"}],"name":"updateMember","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"userData","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"userStreams","outputs":[{"internalType":"uint256","name":"streamId","type":"uint256"},{"internalType":"address","name":"streamOwner","type":"address"},{"internalType":"uint256","name":"streamValue","type":"uint256"},{"internalType":"uint256","name":"duration","type":"uint256"},{"internalType":"uint256","name":"frequency","type":"uint256"},{"internalType":"uint256","name":"payment","type":"uint256"},{"internalType":"uint256","name":"depositAmt","type":"uint256"},{"internalType":"uint256","name":"dateCreated","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"withdrawAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"payable","type":"function"},{"stateMutability":"payable","type":"receive"}];
 let createStreamContract = new web3.eth.Contract(createStreamAbi, createStreamAddress);
 console.log("Create Stream Contract: ", createStreamContract);
 
@@ -990,7 +990,7 @@ function MyStreamsTable(props) {
     const getStreamsForUser = () => {
         let acct = web3.eth.getAccounts().then(console.log);
 
-        createStreamContract.methods.getStreams(userAccount).call()
+        createStreamContract.methods.streamsArray(0).call()
             .then((res, err) => {                
                 setBackdrop(true);
                 if (err){
@@ -1009,7 +1009,32 @@ function MyStreamsTable(props) {
                 setUserStreams(res);
                 setBackdrop(false);
             });
-    };    
+    };
+
+    const getStreamsForUser2 = () => {
+        let acct = web3.eth.getAccounts().then(console.log);
+
+        createStreamContract.methods.streamsArray(0).call()
+            .then((res, err) => {                
+                setBackdrop(true);
+                if (err){
+                    console.error(err);
+                    setBackdrop(false);
+                }                
+                console.log(res);
+                setStreamId(res.streamId);
+                setStreamLength(res.duration);
+                setDepositAmt(res.depositAmt);
+                setDateCreated(res.dateCreated);
+                setStreamPmt(res.payment);
+                setFrequency(res.frequency);
+                setstreamOwner(res.streamOwner);
+                setStreamValue(res.streamValue);
+                setUserStreams(res);
+                setBackdrop(false);
+            });
+    };
+
 
     return (
         <React.Fragment>
@@ -1043,9 +1068,18 @@ function MyStreamsTable(props) {
                         <TableCell align="right">{streamLength}</TableCell>
                         <TableCell align="right">{frequency}</TableCell>
                         <TableCell align="right">{web3.utils.fromWei(web3.utils.toBN(streamValue), 'ether')}</TableCell>
-                    </TableRow>                    
+                    </TableRow>
+                    {/* {stream.map((item) => {
+                        return (
+                            <TableRow>
+                                <TableCell>item.streamId</TableCell>
+                            </TableRow>
+                        );
+                    })} */}
+                                
                 </TableBody>
             </Table>
+            
         </React.Fragment>
     );
 }
@@ -1089,7 +1123,7 @@ function MyStreamsTableWithCheckbox(props) {
     const getStreamsForUser = () => {
         let acct = web3.eth.getAccounts().then(console.log);
 
-        createStreamContract.methods.getStreams(userAccount).call()
+        createStreamContract.methods.getStream(0).call()
             .then((res, err) => {                
                 setBackdrop(true);
                 if (err){
@@ -1108,6 +1142,8 @@ function MyStreamsTableWithCheckbox(props) {
                 setUserStreams(res);
                 setBackdrop(false);
             });
+
+            
     };    
 
     return (
@@ -1411,7 +1447,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         //swapEthForDai();
         // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
-            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei('.0484', 'ether') })           
+            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei('0.524', 'ether') })           
             .then((error, result) => {
                 
                 setBackdrop(true);
@@ -1420,35 +1456,26 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                     console.error(error);
                     setBackdrop(false)
                 }
-                notify.hash(result)
+                //notify.hash(result)
                 // Success amigo
                 console.log(result);
 
                 // transfer the stream tokens here..
                 // approve 
-                jarToken20Contract.methods.approve(account, '5') //web3.utils.toWei('.01', 'ether'))
+                jarToken20Contract.methods.approve(userAccount, '534')
                     .call({ from: userAccount })
-                    .then(() => {
-                        console.log("Approved");
+                    .then((result) => {
+                        console.log("Approved", result);
+                        notify.hash(result)
                     });
 
                 // transfer
-                jarToken20Contract.methods.transfer(userAccount, '5')
+                jarToken20Contract.methods.transfer(userAccount, '534')
                     .call({ from: userAccount })
                     .then((hash) => {
                         notify.hash(hash)
                         console.log("Transferred: ", hash);
-                    })
-                    // .on('transactionHash', function(hash){
-                    //     console.log("Transferred: ", hash);
-                    // })
-                    // .on('receipt', function(receipt){
-                    //     console.log(receipt)
-                    // })
-                    // .on('confirmation', function(confirmationNumber, receipt){
-                    //     console.log(confirmationNumber, ' ', receipt)
-                    // })
-                    // .on('error', console.error);
+                    });
 
                 setOpen(false); // close the modal
                 setBackdrop(false)
@@ -1460,10 +1487,10 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     // Price Feed for Eth
     (async function getEthPrice() {
         let priceOfEth = 0;
-        priceOfEth = await ethPriceContract.methods.getLatestAnswer().call().then((res) => setCurrentEthPrice(res));
-        
-        setAmountConverted(amount / currentEthPrice);
-        console.log(`Amount converted ${amountConverted.toFixed(18)}`)
+        await ethPriceContract.methods.getLatestAnswer().call().then((res) => setCurrentEthPrice(res));
+        console.log('Price Of ETH', web3.utils.fromWei(web3.utils.toBN(currentEthPrice)));
+        setAmountConverted(((Number(amount)) / web3.utils.fromWei(web3.utils.toBN(currentEthPrice))).toFixed(0));
+        console.log(`Amount converted ${amountConverted}`)
         console.log(`Current Eth price: ${priceOfEth}`);
     })(setTimeout(5000));
 
@@ -1518,7 +1545,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
     const handleAmountChange = (event, newValue) => {
         const amount = event.target.value;
-        setAmount(event.target.value);
+        
         let pmt = (amount / duration) / frequency;
         let interest
         if(duration == 1){
@@ -1555,6 +1582,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
               setTotalPayments(pmt * 1);
               break;
         }
+        setAmount(amount);
         console.log(amount);
     };
 
@@ -1673,7 +1701,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     // createStreamWithContract
     return (
         <React.Fragment>
-            <Modal
+            <Modal style
                   aria-labelledby="create-stream-confirmation"
                   aria-describedby="create stream confirmation"
                   className={classes.modal}
