@@ -1,10 +1,12 @@
 //const StreamToken = artifacts.require('StreamToken')
-const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
-//const iNETToken = artifacts.require('iNETToken')
+//const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
+const iNETToken = artifacts.require('iNETToken')
 //const Flashloan = artifacts.require('FlashLoan')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
 //const PriceOracle = artifacts.require('OracleExample')
 const DaiFaucet = artifacts.require('DaiFaucet');
+const JarToken = artifacts.require('JarToken');
+const TransferContract = artifacts.require('TransferContract');
 require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider, environment: 'truffle' });
 
 //const { singletons } = require('@openzeppelin/test-helpers');
@@ -21,8 +23,8 @@ module.exports = async function (deployer, network, accounts) {
 
     //await deployer.deploy(StreamTokenReceiver, streamToken.address);
 
-    //await deployer.deploy(iNETToken)
-    // const iNetToken = await iNETToken.deployed()
+    await deployer.deploy(iNETToken)
+    //const iNetToken = await iNETToken.deployed()
 
     // Flashloan testing
     //await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)

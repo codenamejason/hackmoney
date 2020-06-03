@@ -55,7 +55,6 @@ async function connectWallet() {
     await onboard.walletCheck();    
 }
 
-
 async function getAccounts () {
     const accounts = await web3.eth.getAccounts();
     const address = accounts[0];
@@ -101,7 +100,7 @@ export default function HideAppBar(props) {
         <AppBar>
           <Toolbar>
             <Typography variant="h6">
-                Income JAR
+                Income Stream
             </Typography>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <Button 
