@@ -115,7 +115,7 @@ contract TransferContract is Ownable {
     /**  
     * @dev allow contract to receive funds  
     */  
-    fallback() external payable {}  
+    //fallback() external payable {}  
       
     /**  
     * @dev withdraw funds from this contract  

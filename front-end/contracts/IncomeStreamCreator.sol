@@ -1,6 +1,9 @@
-pragma solidity ^0.6.8;
+//pragma solidity ^0.6.8;
 pragma experimental ABIEncoderV2;
 
+/**
+*   @dev DateTimeAPI Interface
+*/
 interface DateTimeAPI {
         /*
          *  Abstract contract for interfacing with the DateTime contract.
@@ -16,18 +19,21 @@ interface DateTimeAPI {
         function getWeekday(uint timestamp)external view returns (uint8);
 }
 
-
+/**
+* @dev IncomeStreamCreator Contract
+*/
 contract IncomeStreamCreator {
     // State variables
     address payable public owner;
-    //address payable public streamOwner;
     uint256 public minWaitingPeriod = 29;
-    uint256 public minDeposit = 99;
-    uint256 public maxDeposit = 1001;
-    uint256 public priceToRegister = .25 ether;
-    bytes32 public MEMBER_HASH = keccak256("iNET_MEMBER_HASH");
-    bytes32 public userData = keccak256("some user data to be overwritten sometime in the future.");
+    //uint256 public minDepositUSD = 100;
+    //uint256 public maxDepositUSD = 10000;
+    uint256 public minDepositETH = .5 ether;
+    uint256 public maxDepositETH = 42 ether; // calculate later using current eth price*
+    //uint256 public priceToRegister = .25 ether;
+    //bytes32 public userData = keccak256("some user data to be overwritten sometime in the future.");
     
+    // Structs
     struct Stream {
         uint256 streamId;
         address streamOwner;
@@ -47,18 +53,19 @@ contract IncomeStreamCreator {
         bool active;
     }
     
-    
+    // More state variables
     Stream[] public streamsArray;
-    Member[] public members;
+    Member[] public membersArray;
     address[] public memberAccounts;
     address[] public streamAccounts;
     
-    // counter
-    uint256 streamCount;
-    uint256 memberCount;
-
-    // mappings mapping(_KeyType => _ValueType)
+    // Mappings
+    uint256 public streamCount;
+    mapping(uint256 => Stream) public userStreams;
     mapping(address => Stream) public streams;
+    mapping(uint => string) public names;
+    
+    uint256 public memberCount;
     mapping(address => bool) public knownMembers;
     mapping(address => uint256) public streamBalances;
     
@@ -82,7 +89,8 @@ contract IncomeStreamCreator {
     
     event TokensSent(
         address indexed _owner,
-        uint256 _amount
+        uint256 _amount,
+        uint256 _streamId
     );
     
     event WithdrawMade(
@@ -102,12 +110,44 @@ contract IncomeStreamCreator {
         _;
     }
     
-    function isMember(address _memberAddress) public view returns(bool isMember) {
-        return knownMembers[_memberAddress];
+    //function updateMaxUsdPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+    //    maxDepositUSD = _newPrice;
+    //    updated = true;
+    //    return updated;
+    //}
+    
+    //function updateMinUsdPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+    //    minDepositUSD = _newPrice;
+    //    updated = true;
+    //    return updated;
+    //}
+    
+    function updateMaxEthPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+        maxDepositETH = _newPrice;
+        updated = true;
+        return updated;
     }
     
-    function getMemberCount() public view returns(uint memberCount) {
-        return members.length;
+    function updateMinUEthrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+        minDepositETH = _newPrice;
+        updated = true;
+        return updated;
+    }
+    
+    //function updateMemberRegistrationPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+    //    priceToRegister = _newPrice;
+    //    updated = true;
+    //    return updated;
+    //}
+    
+    function isMember(address _memberAddress) public view returns(bool _isMember) {
+        _isMember = knownMembers[_memberAddress];
+        return _isMember;
+    }
+    
+    function getMemberCount() public view returns(uint _memberCount) {
+        _memberCount = membersArray.length;
+        return _memberCount;
     }
     
     function newMember(address _memberAddress, bytes32 _email, bytes32 _memberData) public returns(uint256 rowNumber) {
@@ -119,39 +159,35 @@ contract IncomeStreamCreator {
         member.memberData = _memberData;
         member.active = true;
         knownMembers[_memberAddress] = true;
-        members.push(member);
+        membersArray.push(member);
         
-        return members.length - 1;
+        return membersArray.length - 1;
     }
     
     function updateMember(uint256 _rowNumber, address _memberAddress, bytes32 _memberData) public returns(bool success) {
         require(isMember(_memberAddress), "Must be a member to update");
-        require(members[_rowNumber].memberAddress != _memberAddress, "Address must align with the row number passed in.");
-        members[_rowNumber].memberData = _memberData;
+        require(membersArray[_rowNumber].memberAddress != _memberAddress, "Address must align with the row number passed in.");
+        membersArray[_rowNumber].memberData = _memberData;
         
         return true;
     }
 
-    function getStreamCount() public view returns(uint256 totalStreams) {
-        totalStreams = streamCount;
-        return totalStreams;
+    function getStreamCount() public view returns(uint256 _totalStreams) {
+        _totalStreams = streamCount;
+        return _totalStreams;
     }
 
     function getStream(uint256 _streamId) public view returns(Stream memory) {
           return streamsArray[_streamId];
     }
-   
-    //function getStreams(address _owner) public view returns(Stream[] memory) {
-    //     return streams[_owner];
-    //}
-   
-    //function getAll() public view returns (address[] memory){
-    //    address[] memory ret = new address[](streamCount);
-    //    for (uint i = 0; i < streamCount; i++) {
-    //    ret[i] = streamAccounts[i];
-    //}
-    //    return ret;
-    //}
+    
+    function getAll() public view returns (Stream[] memory){
+        Stream[] memory ret = new Stream[](streamCount);
+        for (uint i = 0; i < streamCount; i++) {
+            ret[i] = streamsArray[i];
+        }
+        return ret;
+    }
     
    
    
@@ -166,12 +202,13 @@ contract IncomeStreamCreator {
         uint256 _payment
     ) public payable {
         // make sure they are within our constraints
-        require(_amount >= minDeposit, "Must be above 10 to participate.");
-        require(_amount <= maxDeposit, "Must be below 1000 to participat.");
+        require(_amount >= minDepositETH, "Must be above 10 to participate.");
+        require(_amount <= maxDepositETH, "Must be below 1000 to participat.");
         // create a new entity/stream
         Stream memory stream;
         // set its params
-        stream.streamId = streamCount++;
+        uint256 streamId = streamCount++;
+        stream.streamId = streamId;
         stream.streamOwner = msg.sender;
         // This will be an enhanced calculation later on
         stream.streamValue = msg.value;
@@ -187,22 +224,22 @@ contract IncomeStreamCreator {
 
         
         // send the streams tokens to the owner
-        sendOwnerStreamTokens(msg.sender, _payment * _frequency * _duration);
+        sendOwnerStreamTokens(msg.sender, _payment * _frequency * _duration, streamId);
         
         
         // Notify of success
-        emit StreamCreated(streamCount, msg.sender, _amount, _duration, _payment, _frequency);
+        emit StreamCreated(streamId, msg.sender, _amount, _duration, _payment, _frequency);
         //return stream;
     }
     
     
-    function sendOwnerStreamTokens(address payable _owner, uint256 _payment) internal {
+    function sendOwnerStreamTokens(address payable _owner, uint256 _payment, uint256 _streamId) internal {
         // send tokens representing the income stream to owner
         
         
         
         
-        emit TokensSent(_owner, _payment);
+        emit TokensSent(_owner, _payment, _streamId);
     }
     
     
