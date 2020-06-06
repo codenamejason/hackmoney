@@ -1433,7 +1433,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         console.log('Amount in Ether: ', amountInEth);
         console.log('Payment: ',  roundUp(payment.toFixed(0), 2));
 
-        swapEthForDai();
+        //swapEthForDai();
         // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
             .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei('0.524', 'ether') })           
