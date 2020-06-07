@@ -3,10 +3,10 @@
 Hack Money Hackathon - DeFi
 
 Willing to make an income from a one time small 
-Investment. We are a professional enterprise which
-A long service in the insurance industry.
+Investment. We are a professional enterprise's with
+long service in the insurance industry.
 
-The offering is for an initial investment, contract we 
+The offering is for an initial investment, with contract we 
 Can provide return of funds over a negotiated time period.
 
 The app itself is easy to use and allows nominated amounts.
