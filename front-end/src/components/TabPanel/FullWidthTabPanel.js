@@ -20,6 +20,8 @@ import Notify from 'bnc-notify'
 import Web3 from 'web3';
 import Portis from '@portis/web3';
 import uniswap from "@studydefi/money-legos/uniswap"
+import portisUtils from '../../utils/portis.js';
+import blockUtils from '../../utils/blockchain.js';
 //const ethers = require('ethers');
 var Tx = require('ethereumjs-tx');
 //let provider = new ethers.getDefaultProvider('ropsten')
@@ -790,84 +792,13 @@ const inetTokenAbi = [];
 const transferContractAddress = '';
 const transferContractAbi = [];
 
-// portis.onLogin((walletAddress, email, reputation) => {
-//     console.log(walletAddress, email, reputation);
-// });
+portis.onLogin((walletAddress, email, reputation) => {
+    console.log(walletAddress, email, reputation);
+});
+portis.onLogout(() => {
+    console.log('User logged out');
+});
 
-// portis.onLogout(() => {
-//     console.log('User logged out');
-// });
-async function runSetup() {
-    console.group('Run Setup:')
-    // Detect MetaMask
-    if(typeof web3 !== 'undefined') {
-      // continue execution
-      console.log('Welcome!')
-      //await loadBlockchainData()
-
-      // test account
-      //const account = "0x6F7d7d68c3Eed4Df81CF5F97582deef8ABC51533";
-
-      //const web3 = await loadWeb3()
-      //const account = await loadAccount(web3)
-      const account = await web3.eth.getAccounts()
-      console.log(account)
-      //this.checkAuthorization(account)
-    } else {
-      console.log('User does not have MetaMask installed')
-      window.alert('Please install MetaMask!')
-      // todo: don't show page content here...
-
-    }
-    console.groupEnd()
-}
-
-async function loadWeb3() {
-    console.group('Web3');
-    console.info('Loading Web3');
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum)
-      await window.ethereum.enable()
-      console.groupEnd();
-    }
-    else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider)
-      console.groupEnd();
-    }
-    else {
-      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-      console.groupEnd();
-    }
-}
-
-async function checkAuthorization(account){
-    // ToTo: check against actual token holders
-    // Call a smart contract to fetch token holders
-    // Test accounts from Ganache
-    const tokenHolders = [
-      "0xb6498080D032a5cede8d03feA95b693596b87580"
-    ]
-
-    const authorized = tokenHolders.includes(account)
-    if(authorized) {
-      // todo: show website content
-      //window.alert("You're Authorized! :)")
-      console.log("You're Authorized! :)")
-    } else {
-      // todo: show login content
-      window.alert("You're not Authorized! :(")
-    }
-}
-
-async function signMessage () {
-    const accounts = await web3.eth.getAccounts();
-    print(`Wallet address: ${accounts[0].toLowerCase()}`);
-  
-    const message = "Welcome to Income Stream!";
-    const signedMessage = await web3.eth.sign(message, accounts[0]);
-    print(`Signed message: ${signedMessage}`);
-};
-  
 function print(str) {
     const p = document.createElement("p");
     p.innerText = str;
@@ -1369,7 +1300,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
     // Minimum tokens to swap
     const MIN_TOKENS = 1
-    log(chalk.greenBright("Min Tokens to receive: ", MIN_TOKENS))
+    //log(chalk.greenBright("Min Tokens to receive: ", MIN_TOKENS))
 
     // Set Deadline 1 minute from now
     const moment = require('moment') // import moment.js library
@@ -1393,28 +1324,28 @@ const CreateStreamForm = ({ data, setValue, account }) => {
             // Check Ether balance BEFORE swap
             balance = await web3.eth.getBalance(SETTINGS.from)
             balance = web3.utils.fromWei(balance, 'Ether')
-            console.log("Ether Balance Before Tx:", balance)
+            //console.log("Ether Balance Before Tx:", balance)
         
             // Check Dai balance BEFORE swap
             balance = await daiContract.methods.balanceOf(SETTINGS.from).call()
             balance = web3.utils.fromWei(balance, 'Ether')
-            log(chalk.yellow("Dai Balance Before Tx:", balance))
+            //log(chalk.yellow("Dai Balance Before Tx:", balance))
         
             // Perform Swap
-            console.log('Performing swap...')
+            //console.log('Performing swap...')
             let result
             result = await exchangeContract.methods.ethToTokenSwapInput(MIN_TOKENS, DEADLINE).send(SETTINGS)
-            log(chalk`Successful Swap: {bold.hex('#2AD8D8') https://ropsten.etherscan.io/tx/${result.transactionHash}}`)
+            //log(chalk`Successful Swap: {bold.hex('#2AD8D8') https://ropsten.etherscan.io/tx/${result.transactionHash}}`)
         
             // Check Ether balance AFTER swap
             balance = await web3.eth.getBalance(SETTINGS.from)
             balance = web3.utils.fromWei(balance, 'Ether')
-            console.log("Ether Balance After Swap:", balance)
+            //console.log("Ether Balance After Swap:", balance)
         
             // Check Dai balance AFTER swap
             balance = await daiContract.methods.balanceOf(SETTINGS.from).call()
             balance = web3.utils.fromWei(balance, 'Ether')
-            log(chalk.yellow("Dai Balance After Swap:", balance))
+            //log(chalk.yellow("Dai Balance After Swap:", balance))
       
         }
         catch(error) {
@@ -1429,14 +1360,14 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         var count = await web3.eth.getTransactionCount(userAccount);
         console.log(`Number of tx so far: ${count}`);
         // get the eth amount from form in wei
-        const amountInEth = amountConverted;
+        const amountInEth = amountConverted.toString();
         console.log('Amount in Ether: ', amountInEth);
         console.log('Payment: ',  roundUp(payment.toFixed(0), 2));
 
         //swapEthForDai();
         // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
-            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei('0.524', 'ether') })           
+            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei(amountInEth) })           
             .then((error, result) => {                
                 setBackdrop(true);
                 if(error){
@@ -1453,13 +1384,13 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                     .call({ from: userAccount })
                     .then((result) => {
                         console.log("Approved", result);
-                        notify.hash(result)
+                        //notify.hash(result)
                     });
                 // transfer
                 jarToken20Contract.methods.transfer(userAccount, '534')
                     .call({ from: userAccount })
                     .then((hash) => {
-                        notify.hash(hash)
+                        //notify.hash(hash)
                         console.log("Transferred: ", hash);
                     });
                 setOpen(false); // close the modal
@@ -1469,12 +1400,17 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         });
     }
 
+    function insertDecimal(number) {
+        return (number / 100000000).toFixed(4);
+    }
+
     // Price Feed for Eth
     (async function getEthPrice() {
         let priceOfEth = 0;
         await ethPriceContract.methods.getLatestAnswer().call().then((res) => setCurrentEthPrice(res));
-        console.log('Price Of ETH', web3.utils.fromWei(web3.utils.toBN(currentEthPrice)));
-        setAmountConverted(((Number(amount)) / web3.utils.fromWei(web3.utils.toBN(currentEthPrice))).toFixed(0));
+        var ethPrice = insertDecimal(currentEthPrice);
+        console.log('Price Of ETH', ethPrice);
+        setAmountConverted(((Number(amount)) / ethPrice));
         console.log(`Amount converted ${amountConverted}`)
         console.log(`Current Eth price: ${priceOfEth}`);
     })(setTimeout(5000));
