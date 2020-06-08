@@ -1413,7 +1413,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         setAmountConverted(((Number(amount)) / ethPrice));
         console.log(`Amount converted ${amountConverted}`)
         console.log(`Current Eth price: ${priceOfEth}`);
-    })(setTimeout(5000));
+    })(setTimeout(15000));
 
     // ToDo: Price Feed for Dai
 

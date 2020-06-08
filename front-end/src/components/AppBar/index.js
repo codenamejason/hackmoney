@@ -3,37 +3,30 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
-import Web3 from "web3";
-import Onboard from 'bnc-onboard'
-import Notify from 'bnc-notify'
-import { Paper, Grid, Button } from '@material-ui/core';
 
-const HDWalletProvider = require("truffle-hdwallet-provider");
-let web3
+// const HDWalletProvider = require("truffle-hdwallet-provider");
+// let web3
 
-const onboard = Onboard({
-    dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
-    networkId: 1,
-    darkMode: true,
-    subscriptions: {
-        wallet: wallet => {
-            web3 = new Web3(wallet.provider)
-            console.log(`${wallet.name} is now connected!`)
-        }
-    }
-});
+// const onboard = Onboard({
+//     dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
+//     networkId: 1,
+//     darkMode: true,
+//     subscriptions: {
+//         wallet: wallet => {
+//             web3 = new Web3(wallet.provider)
+//             console.log(`${wallet.name} is now connected!`)
+//         }
+//     }
+// });
 
-const notify = Notify({
-    dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
-    networkId: 1,
-    darkMode: true,
-    system: 'ethereum',
-});
+// const notify = Notify({
+//     dappId: '8e84cd42-1282-4e65-bcd0-da4f7b6ad7a4',
+//     networkId: 1,
+//     darkMode: true,
+//     system: 'ethereum',
+// });
 
 // const { emitter, result } = notify.transaction({
 //   estimateGas: Function,
@@ -50,23 +43,23 @@ const notify = Notify({
 //   }
 // })
 
-async function connectWallet() {
-    await onboard.walletSelect();
-    await onboard.walletCheck();    
-}
+// async function connectWallet() {
+//     await onboard.walletSelect();
+//     await onboard.walletCheck();    
+// }
 
-async function getAccounts () {
-    const accounts = await web3.eth.getAccounts();
-    const address = accounts[0];
+// async function getAccounts () {
+//     const accounts = await web3.eth.getAccounts();
+//     const address = accounts[0];
 
-    web3.eth.sendTransaction({
-        from: '',
-        to: '',
-        value: ''
-    }).on('transactionHash', (hash) => {
-        notify.hash(hash);
-    });
-}
+//     web3.eth.sendTransaction({
+//         from: '',
+//         to: '',
+//         value: ''
+//     }).on('transactionHash', (hash) => {
+//         notify.hash(hash);
+//     });
+// }
 
 
 
@@ -93,7 +86,7 @@ HideOnScroll.propTypes = {
   window: PropTypes.func,
 };
 
-export default function HideAppBar(props) {
+const HideAppBar = (props) => {
   return (
     <React.Fragment>
       <HideOnScroll {...props}>
@@ -103,12 +96,12 @@ export default function HideAppBar(props) {
                 Income Stream
             </Typography>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <Button 
+            {/* <Button 
                 onClick={connectWallet}
                 variant="outlined"    
             >
                 Connect Wallet
-            </Button>
+            </Button> */}
           </Toolbar>
         </AppBar>
       </HideOnScroll>
@@ -116,3 +109,5 @@ export default function HideAppBar(props) {
     </React.Fragment>
   );
 }
+
+export default HideAppBar;
