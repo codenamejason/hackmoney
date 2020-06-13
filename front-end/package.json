@@ -2,6 +2,11 @@
   "name": "income-stream",
   "version": "0.1.01",
   "private": true,
+  "author": {
+    "name": "Jason Romero",
+    "email": "jaxcoder@outlook.com",
+    "url": "https://github.com/codenamejason/hackmoney"
+  },
   "dependencies": {
     "@chainlink/contracts": "0.0.4",
     "@material-ui/core": "^4.9.13",
@@ -43,8 +48,7 @@
     "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "preinstall": "rm -rf node_modules/erc1820/node_modules_websocket/.git",
-    "waffle-build": "waffle"
+    "preinstall": "rm -rf node_modules/erc1820/node_modules_websocket/.git"
   },
   "eslintConfig": {
     "extends": "react-app"

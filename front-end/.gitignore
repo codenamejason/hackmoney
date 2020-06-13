@@ -31,3 +31,4 @@ yarn-error.log*
 
 .solhint.json
 
+truffle-config.js

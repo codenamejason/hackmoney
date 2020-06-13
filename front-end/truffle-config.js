@@ -6,8 +6,8 @@ require('chai/register-should');
 const infuraProjectID = process.env.INFURA_PROJECT_ID;
 
 // Locan Ganache Mnemonic
-const mnemonic = 'evoke club entry catalog unveil truly run lyrics melt property main noise'; // funded accounts[0]
-const maintest = 'gap cage shrug cake general simple cable air raw vessel dignity reduce'; // funded accounts[0]
+const mnemonic = 'evoke club entry catalog unveil truly run lyrics melt property main noise';
+const maintest = 'gap cage shrug cake general simple cable air raw vessel dignity reduce';
 const ganache = 'outside bridge shrimp above piece myth acquire doll void filter fit reject';
 const rop = 'process eternal ill spawn purpose replace solve humble mimic nothing element portion';
 /**

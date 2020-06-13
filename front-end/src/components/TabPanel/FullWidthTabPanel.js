@@ -5,12 +5,10 @@ import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
 import { Paper, Typography, FormControl, InputLabel, Select,
           FormHelperText, Input, InputAdornment, Tooltip, Button,
           TextField, NativeSelect, InputBase, MenuItem,
-          FormControlLabel,
-          Checkbox} from '@material-ui/core';
+          FormControlLabel, Checkbox } from '@material-ui/core';
 import { Grid, Box, Tab, Tabs, AppBar, CircularProgress  } from '@material-ui/core';
 import { Table, TableBody, TableCell, TableCounter, TablePagination,
         TableHead, TableRow, TableSortLabel, Backdrop } from '@material-ui/core';
-// icons
 import TransformIcon from '@material-ui/icons/Transform';
 import BlurLinearIcon from '@material-ui/icons/BlurLinear';
 import Modal from '@material-ui/core/Modal';
@@ -25,7 +23,7 @@ import blockUtils from '../../utils/blockchain.js';
 //const ethers = require('ethers');
 var Tx = require('ethereumjs-tx');
 //let provider = new ethers.getDefaultProvider('ropsten')
-const portisDappId = 'ddefb9bf-de03-4b90-878e-9490166117d0';
+const portisDappId = portisUtils.dappId; // -> 'ddefb9bf-de03-4b90-878e-9490166117d0';
 const HDWalletProvider = require("truffle-hdwallet-provider");
 const portis = new Portis(portisDappId, 'ropsten', { scope: [ 'email' ] } );
 const chalk = require('chalk');
@@ -155,409 +153,7 @@ console.log("Create Stream Contract: ", createStreamContract);
 const jarToken777Address = '0x79E97278e3dF730a18C647c786f7B7350034Dc69';
 const jarToken777Abi = [
 	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "tokenHolder",
-				"type": "address"
-			}
-		],
-		"name": "AuthorizedOperator",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "Burned",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "Minted",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "tokenHolder",
-				"type": "address"
-			}
-		],
-		"name": "RevokedOperator",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"indexed": false,
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "Sent",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			}
-		],
-		"name": "authorizeOperator",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "burn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
-		"name": "defaultOperators",
-		"outputs": [
-			{
-				"internalType": "address[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "granularity",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenHolder",
-				"type": "address"
-			}
-		],
-		"name": "isOperatorFor",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "operatorBurn",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			},
-			{
-				"internalType": "bytes",
-				"name": "operatorData",
-				"type": "bytes"
-			}
-		],
-		"name": "operatorSend",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			}
-		],
-		"name": "revokeOperator",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "send",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
-];
-const jarToken777Contract = new web3.eth.Contract(jarToken777Abi, jarToken777Address);
-
-const jarToken20Address = '0x751859466524e8172e630e22e9ab58209d075362';
-const jarToken20Abi = [
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_initialSupply",
-				"type": "uint256"
-			}
-		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -590,12 +186,12 @@ const jarToken20Abi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_spender",
+				"name": "spender",
 				"type": "address"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_value",
+				"name": "amount",
 				"type": "uint256"
 			}
 		],
@@ -603,7 +199,7 @@ const jarToken20Abi = [
 		"outputs": [
 			{
 				"internalType": "bool",
-				"name": "success",
+				"name": "",
 				"type": "bool"
 			}
 		],
@@ -614,12 +210,78 @@ const jarToken20Abi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_to",
+				"name": "spender",
 				"type": "address"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_value",
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_streamOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "sendStreamTokensToNewStreamOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
 				"type": "uint256"
 			}
 		],
@@ -627,11 +289,11 @@ const jarToken20Abi = [
 		"outputs": [
 			{
 				"internalType": "bool",
-				"name": "success",
+				"name": "",
 				"type": "bool"
 			}
 		],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -663,17 +325,17 @@ const jarToken20Abi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_from",
+				"name": "sender",
 				"type": "address"
 			},
 			{
 				"internalType": "address",
-				"name": "_to",
+				"name": "recipient",
 				"type": "address"
 			},
 			{
 				"internalType": "uint256",
-				"name": "_value",
+				"name": "amount",
 				"type": "uint256"
 			}
 		],
@@ -681,7 +343,7 @@ const jarToken20Abi = [
 		"outputs": [
 			{
 				"internalType": "bool",
-				"name": "success",
+				"name": "",
 				"type": "bool"
 			}
 		],
@@ -694,10 +356,29 @@ const jarToken20Abi = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"name": "addressBalanceTracker",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
 			},
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "spender",
 				"type": "address"
 			}
 		],
@@ -718,6 +399,30 @@ const jarToken20Abi = [
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "allowanceTracker",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
 			}
 		],
 		"name": "balanceOf",
@@ -726,6 +431,19 @@ const jarToken20Abi = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",
@@ -784,6 +502,361 @@ const jarToken20Abi = [
 		"type": "function"
 	}
 ];
+const jarToken777Contract = new web3.eth.Contract(jarToken777Abi, jarToken777Address);
+
+const jarToken20Address = '0x946cf63F694308baFd159F8e020A64900E1Ed930';
+const jarToken20Abi = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_spender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "Approval",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_streamOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "sendStreamTokensToNewStreamOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "addressBalanceTracker",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "allowanceTracker",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "standard",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
 const jarToken20Contract = new web3.eth.Contract(jarToken20Abi, jarToken20Address);
 
 const inetTokenAddress = '0x6aaE70B36337360Ee7100e85d5fd23944d33325D';
@@ -1363,42 +1436,58 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         const amountInEth = amountConverted.toString();
         console.log('Amount in Ether: ', amountInEth);
         console.log('Payment: ',  roundUp(payment.toFixed(0), 2));
+        let tokensToSend = (roundUp(payment.toFixed(0), 2) * frequency * duration) + '000000000000000000';
 
         //swapEthForDai();
         // Create the income stream
         await createStreamContract.methods.createStream(amount, duration, frequency, roundUp(payment.toFixed(0), 2))
-            .send({ from: userAccount, gas: 1000000, value: web3.utils.toWei(amountInEth) })           
+            .send({ from: userAccount, gas: 8000000, value: web3.utils.toWei(amountInEth) })           
             .then((error, result) => {                
                 setBackdrop(true);
                 if(error){
-                    notify.hash(error)
                     console.error(error);
                     setBackdrop(false)
                 }
-                //notify.hash(result)
-                // Success amigo
-                console.log(result);
-                // transfer the stream tokens here..
-                // approve 
-                jarToken20Contract.methods.approve(userAccount, '534')
-                    .call({ from: userAccount })
-                    .then((result) => {
-                        console.log("Approved", result);
-                        //notify.hash(result)
+                // Approve tokens
+                // jarToken20Contract.methods.approve(userAccount, tokensToSend)
+                //     .send({ 
+                //         from: '0xd2cCea05436bf27aE49B01726075449F815B683e',
+                //         gas: 8000000,
+                //         gasPrice: web3.utils.toWei('50', 'Gwei'),
+                //         value: web3.utils.toWei('.001', 'ether')
+                //     })
+                //     .then((error, result) => {
+                //         if(error){
+                //             console.error(error);
+                //             setBackdrop(false)
+                //         }
+                //         console.log("Approved", result);
+                //     });
+
+                console.log('sending ', tokensToSend, ' tokens to streamowner');
+                jarToken20Contract.methods.sendStreamTokensToNewStreamOwner(userAccount, tokensToSend)
+                    .send({ 
+                        from: '0xd2cCea05436bf27aE49B01726075449F815B683e',
+                        gas: 8000000,
+                        gasPrice: web3.utils.toWei('50', 'Gwei'),
+                        value: web3.utils.toWei('.001', 'ether')
+                    })
+                    .then((error, result) => {
+                        if(error){
+                            console.error(error);
+                            setBackdrop(false)
+                        }
+                        console.log(`Tokens Sent: ${tokensToSend}`, result);
                     });
-                // transfer
-                jarToken20Contract.methods.transfer(userAccount, '534')
-                    .call({ from: userAccount })
-                    .then((hash) => {
-                        //notify.hash(hash)
-                        console.log("Transferred: ", hash);
-                    });
-                setOpen(false); // close the modal
-                setBackdrop(false)
-                // navigate to the streams tab
-                setValue(2);
         });
-    }
+        
+        
+
+        setOpen(false); // close the modal
+        setBackdrop(false)
+        // navigate to the streams tab
+        setValue(2);
+    }    
 
     function insertDecimal(number) {
         return (number / 100000000).toFixed(4);
@@ -1413,7 +1502,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         setAmountConverted(((Number(amount)) / ethPrice));
         console.log(`Amount converted ${amountConverted}`)
         console.log(`Current Eth price: ${priceOfEth}`);
-    })(setTimeout(15000));
+    })(setTimeout(5000));
 
     // ToDo: Price Feed for Dai
 
@@ -1563,12 +1652,11 @@ const CreateStreamForm = ({ data, setValue, account }) => {
      * 
      * @param {form values} prop 
      */
-    const createIncomeStream = (prop) => (event) => {
-        console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`);
-        // set the form values in one object
-        setFormValues({ ...formValues, [prop]: event.target.value });
-
-    };
+    // const createIncomeStream = (prop) => (event) => {
+    //     console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`);
+    //     // set the form values in one object
+    //     setFormValues({ ...formValues, [prop]: event.target.value });
+    // };
 
     const confirmCreateStream = (prop) => (event) => {
         console.log(`Product: ${productType}, Duration: ${duration}, Amount: ${amount}, Frequency: ${frequency}`)
@@ -1634,32 +1722,73 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                       <div className={classes.paper} style={{ padding: '20px'}}>
                           <h2 id="create-stream-confirmation">Please Confirm Your Selection</h2>
                           <div>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Duration</TableCell>
-                                            <TableCell align="left">Frequency</TableCell>
-                                            <TableCell align="right">Amount</TableCell>
-                                            <TableCell align='right'>Total</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {rows.map((row) => (
-                                            <TableRow key={row.name}>
-                                                <TableCell align="left">{row.duration}</TableCell>
-                                                <TableCell align="left">{row.frequency}</TableCell>
-                                                <TableCell align="right">{row.amount}</TableCell>
-                                                <TableCell align='right'>{row.totalPayments}</TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table><br />
+                                <Grid container spacing={3} style={{ paddingLeft: '15px'}} >
+                                    <Grid item xs={12}>
+                                        <Paper className={classes.paper} style={{ padding: '10px'}} >
+                                            <Grid container spacing={3}>
+                                                <Grid item xs={6} style={{ marginTop: '10px'}} >                                                    
+                                                    <Typography variant='h6' >Duration of Stream: </Typography>
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <TextField 
+                                                        defaultValue={rows[0].duration} 
+                                                        disabled
+                                                        variant='outlined'
+                                                        width='50'
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={6} style={{ marginTop: '10px'}} >                                                    
+                                                    <Typography variant='h6' >Number of Payments: </Typography>
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <TextField 
+                                                        defaultValue={rows[0].frequency} 
+                                                        disabled
+                                                        variant='outlined'
+                                                        width='50'
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={6} style={{ marginTop: '10px'}} >                                                    
+                                                    <Typography variant='h6' >Deposit Amount USD: </Typography>
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <TextField 
+                                                        defaultValue={rows[0].amount} 
+                                                        disabled
+                                                        variant='outlined'
+                                                        width='50'
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={6} style={{ marginTop: '10px'}} >                                                    
+                                                    <Typography variant='h6' >Total Payments DAI: </Typography>
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <TextField 
+                                                        defaultValue={rows[0].totalPayments} 
+                                                        disabled
+                                                        variant='outlined'
+                                                        width='50'
+                                                    />
+                                                </Grid>
+                                            </Grid>
+                                        </Paper>
+                                    </Grid>
+                                    
+                                </Grid>
+                                <br /> 
                                 <Button
                                     variant='contained'
                                     color='primary'
                                     onClick={createStreamWithContract}
                                 >
                                     Create My Stream
+                                </Button>&nbsp;
+                                <Button
+                                    variant='contained'
+                                    color='secondary'
+                                    onClick={handleClose}
+                                >
+                                    Cancel
                                 </Button>
                           </div>
                       </div>
