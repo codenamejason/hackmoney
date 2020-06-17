@@ -7,8 +7,10 @@ const { legos } = require("@studydefi/money-legos");
 const factoryAbi = legos.uniswap.factory.abi;
 const factoryAddress = legos.uniswap.factory.address;
 log(chalk.blue('Factory Address: ', factoryAddress));
-const factoryContract = new web3.eth.Contract(factoryAbi, '0x9c83dce8ca20e9aaf9d3efc003b2ea62abc08351');
+const factoryContract = new web3.eth.Contract(factoryAbi, '0xb8BD918c672FDEB005B38Fa9E4B6bB8cECD7b9C9');
 
+const erc777abi = legos.erc777.abi;
+const erc777address = legos.erc777.address;
 
 
 // Ropsten DAI Token: https://ropsten.etherscan.io/token/0xaD6D458402F60fD3Bd25163575031ACDce07538D

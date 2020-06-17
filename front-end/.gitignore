@@ -24,10 +24,11 @@
 .env.test.local
 .env.production.local
 .env
-
+/src/.env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 .solhint.json
 
+truffle-config.js

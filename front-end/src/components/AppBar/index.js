@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
-
+import CardMedia from '@material-ui/core/CardMedia';
 // const HDWalletProvider = require("truffle-hdwallet-provider");
 // let web3
 
@@ -92,8 +92,12 @@ const HideAppBar = (props) => {
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
+          {/* <img
+              src="../images/ij-logo.jpg"
+              title="Company Logo"
+          /> */}
             <Typography variant="h6">
-                Income Stream
+                Income JAR
             </Typography>
             &nbsp;&nbsp;&nbsp;&nbsp;
             {/* <Button 

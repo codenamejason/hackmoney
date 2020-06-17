@@ -1,9 +1,54 @@
-//pragma solidity ^0.6.8;
+pragma solidity ^0.6.8;
 pragma experimental ABIEncoderV2;
 
-/**
-*   @dev DateTimeAPI Interface
-*/
+import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+
+contract JarToken is ERC20 {
+    string  public standard = "Income JAR Stream Token v1.0";
+
+    event Transfer(
+        address indexed _from,
+        address indexed _to,
+        uint256 _value
+    );
+
+    event Approval(
+        address indexed _owner,
+        address indexed _spender,
+        uint256 _value
+    );
+
+    mapping(address => uint256) public addressBalanceTracker;
+    mapping(address => mapping(address => uint256)) public allowanceTracker;
+
+    constructor ()
+        ERC20("JAR Stream Token v1", "JAR")
+        public {
+        _mint(msg.sender, 1000000000000000000000000); // -> 1 Million
+    }
+    
+    modifier onlyOwner {
+        require(msg.sender == 0xd2cCea05436bf27aE49B01726075449F815B683e, "Must be owner to use this");
+        _;
+    }
+    
+    // Any added funtionality ->
+    function sendStreamTokensToNewStreamOwner(address _streamOwner, uint256 _amount)
+        public
+        onlyOwner
+    {
+        _mint(_streamOwner, _amount);
+    }
+    
+    function sendTokensToPartner(address _to, uint256 _amount)
+        public
+        onlyOwner
+    {
+        _mint(_to, _amount);
+    }
+    
+}
+
 interface DateTimeAPI {
         /*
          *  Abstract contract for interfacing with the DateTime contract.
@@ -19,21 +64,20 @@ interface DateTimeAPI {
         function getWeekday(uint timestamp)external view returns (uint8);
 }
 
-/**
-* @dev IncomeStreamCreator Contract
-*/
+
 contract IncomeStreamCreator {
     // State variables
-    address payable public owner;
+    address payable public owner = 0xd2cCea05436bf27aE49B01726075449F815B683e;
+    address payable public streamOwner;
     uint256 public minWaitingPeriod = 29;
-    //uint256 public minDepositUSD = 100;
-    //uint256 public maxDepositUSD = 10000;
-    uint256 public minDepositETH = .5 ether;
-    uint256 public maxDepositETH = 42 ether; // calculate later using current eth price*
-    //uint256 public priceToRegister = .25 ether;
-    //bytes32 public userData = keccak256("some user data to be overwritten sometime in the future.");
+    uint256 public minDeposit = 99;
+    uint256 public maxDeposit = 1001;
+    uint256 public priceToRegister = .25 ether;
+    bytes32 public MEMBER_HASH = keccak256("iNET_MEMBER_HASH");
+    bytes32 public userData;
     
-    // Structs
+    JarToken token;
+    
     struct Stream {
         uint256 streamId;
         address streamOwner;
@@ -46,34 +90,26 @@ contract IncomeStreamCreator {
     }
     
     struct Member {
-        address memberAddress;
         bytes32 email;
-        bytes32 memberData;
         uint256 balance;
         bool active;
     }
     
-    // More state variables
     Stream[] public streamsArray;
-    Member[] public membersArray;
-    address[] public memberAccounts;
     address[] public streamAccounts;
     
-    // Mappings
-    uint256 public streamCount;
-    mapping(uint256 => Stream) public userStreams;
+    // counter
+    uint256 streamCount;
+
+    // mappings mapping(_KeyType => _ValueType)
     mapping(address => Stream) public streams;
-    mapping(uint => string) public names;
-    
-    uint256 public memberCount;
-    mapping(address => bool) public knownMembers;
     mapping(address => uint256) public streamBalances;
     
 
     // Events
     event StreamCreated(
         uint256 _streamId,
-        address indexed _streamOwner,
+        address _streamOwner,
         uint256 _streamAmount,
         uint256 _streamLength,
         uint256 _streamPayment,
@@ -88,9 +124,8 @@ contract IncomeStreamCreator {
     );
     
     event TokensSent(
-        address indexed _owner,
-        uint256 _amount,
-        uint256 _streamId
+        address _owner,
+        uint256 _amount
     );
     
     event WithdrawMade(
@@ -101,7 +136,7 @@ contract IncomeStreamCreator {
     // Constructor
     constructor() public 
     {
-        owner = msg.sender;
+        // do stuff if we need to...
     }
     
     
@@ -109,91 +144,18 @@ contract IncomeStreamCreator {
         require(msg.sender == owner, "You need to be the owner.");
         _;
     }
-    
-    //function updateMaxUsdPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
-    //    maxDepositUSD = _newPrice;
-    //    updated = true;
-    //    return updated;
-    //}
-    
-    //function updateMinUsdPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
-    //    minDepositUSD = _newPrice;
-    //    updated = true;
-    //    return updated;
-    //}
-    
-    function updateMaxEthPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
-        maxDepositETH = _newPrice;
-        updated = true;
-        return updated;
-    }
-    
-    function updateMinUEthrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
-        minDepositETH = _newPrice;
-        updated = true;
-        return updated;
-    }
-    
-    //function updateMemberRegistrationPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
-    //    priceToRegister = _newPrice;
-    //    updated = true;
-    //    return updated;
-    //}
-    
-    function isMember(address _memberAddress) public view returns(bool _isMember) {
-        _isMember = knownMembers[_memberAddress];
-        return _isMember;
-    }
-    
-    function getMemberCount() public view returns(uint _memberCount) {
-        _memberCount = membersArray.length;
-        return _memberCount;
-    }
-    
-    function newMember(address _memberAddress, bytes32 _email, bytes32 _memberData) public returns(uint256 rowNumber) {
-        require(isMember(_memberAddress), "must not already be a member");
-        Member memory member;
-        member.memberAddress = _memberAddress;
-        member.email = _email;
-        member.balance = 0;
-        member.memberData = _memberData;
-        member.active = true;
-        knownMembers[_memberAddress] = true;
-        membersArray.push(member);
-        
-        return membersArray.length - 1;
-    }
-    
-    function updateMember(uint256 _rowNumber, address _memberAddress, bytes32 _memberData) public returns(bool success) {
-        require(isMember(_memberAddress), "Must be a member to update");
-        require(membersArray[_rowNumber].memberAddress != _memberAddress, "Address must align with the row number passed in.");
-        membersArray[_rowNumber].memberData = _memberData;
-        
-        return true;
-    }
 
-    function getStreamCount() public view returns(uint256 _totalStreams) {
-        _totalStreams = streamCount;
-        return _totalStreams;
-    }
-
-    function getStream(uint256 _streamId) public view returns(Stream memory) {
-          return streamsArray[_streamId];
-    }
-    
-    function getAll() public view returns (Stream[] memory){
-        Stream[] memory ret = new Stream[](streamCount);
-        for (uint i = 0; i < streamCount; i++) {
-            ret[i] = streamsArray[i];
-        }
-        return ret;
-    }
-    
+   function getStream(uint256 _streamId) public view returns(Stream memory) {
+      return streamsArray[_streamId];
+   }
    
+   function getStreams(address _owner) public view returns(Stream memory) {
+      return streams[_owner];
+   }
    
-    function getAllStreams() public view returns(address[] memory) {
-        return streamAccounts;
-    }
+   function getAllStreams() public view returns(address[] memory) {
+       return streamAccounts;
+   }
     
     function createStream(
         uint256 _amount,
@@ -202,20 +164,18 @@ contract IncomeStreamCreator {
         uint256 _payment
     ) public payable {
         // make sure they are within our constraints
-        require(_amount >= minDepositETH, "Must be above 10 to participate.");
-        require(_amount <= maxDepositETH, "Must be below 1000 to participat.");
+        require(_amount >= minDeposit, "Must be above 10 to participate.");
+        require(_amount <= maxDeposit, "Must be below 1000 to participat.");
         // create a new entity/stream
         Stream memory stream;
         // set its params
-        uint256 streamId = streamCount++;
-        stream.streamId = streamId;
-        stream.streamOwner = msg.sender;
-        // This will be an enhanced calculation later on
-        stream.streamValue = msg.value;
+        stream.streamId = streamCount++;
+        stream.streamOwner = msg.sender; // -> the owner of the stream
+        stream.streamValue = msg.value; // -> need to convert this do DAI
         stream.duration = _duration;
         stream.frequency = _frequency;
         stream.depositAmt = _amount;
-        //stream.dateCreated = block.timestamp;
+        stream.dateCreated = block.timestamp;
         stream.payment = _payment;
         
         streamsArray.push(stream);
@@ -224,22 +184,21 @@ contract IncomeStreamCreator {
 
         
         // send the streams tokens to the owner
-        sendOwnerStreamTokens(msg.sender, _payment * _frequency * _duration, streamId);
+        token.sendStreamTokensToNewStreamOwner(msg.sender, (_payment * _frequency * _duration));
         
         
         // Notify of success
-        emit StreamCreated(streamId, msg.sender, _amount, _duration, _payment, _frequency);
+        emit StreamCreated(streamCount, msg.sender, _amount, _duration, _payment, _frequency);
         //return stream;
     }
     
     
-    function sendOwnerStreamTokens(address payable _owner, uint256 _payment, uint256 _streamId) internal {
+    function sendOwnerStreamTokens(address payable _owner, uint256 _payment) internal {
         // send tokens representing the income stream to owner
         
         
         
-        
-        emit TokensSent(_owner, _payment, _streamId);
+        emit TokensSent(_owner, _payment);
     }
     
     
@@ -273,4 +232,3 @@ contract IncomeStreamCreator {
         owner.transfer(address(this).balance);
     }
 }
-

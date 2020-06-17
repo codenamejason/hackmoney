@@ -6,10 +6,6 @@ require('chai/register-should');
 const infuraProjectID = process.env.INFURA_PROJECT_ID;
 
 // Locan Ganache Mnemonic
-const mnemonic = 'evoke club entry catalog unveil truly run lyrics melt property main noise'; // funded accounts[0]
-const maintest = 'gap cage shrug cake general simple cable air raw vessel dignity reduce'; // funded accounts[0]
-const ganache = 'outside bridge shrimp above piece myth acquire doll void filter fit reject';
-const rop = 'process eternal ill spawn purpose replace solve humble mimic nothing element portion';
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -79,7 +75,7 @@ module.exports = {
 
         ropsten: {
             provider: () => new HDWalletProvider(
-                'outside bridge shrimp above piece myth acquire doll void filter fit reject',//process.env.DEV_MNEMONIC,
+                process.env.DEV_MNEMONIC,
                 `https://ropsten.infura.io/v3/${infuraProjectID}`),
             network_id: 3, // eslint-disable-line camelcase
             gas: 5500000, // Ropsten has a lower block limit than mainnet
