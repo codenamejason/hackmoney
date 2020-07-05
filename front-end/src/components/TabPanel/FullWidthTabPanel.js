@@ -20,20 +20,20 @@ import Portis from '@portis/web3';
 import uniswap from "@studydefi/money-legos/uniswap"
 import portisUtils from '../../utils/portis.js';
 import blockUtils from '../../utils/blockchain.js';
-import { DEV_MNEMONIC, INFURA_PROJECT_ID, PRIVATE_KEY } from '../../.env'
+require('dotenv').config();
 const ethers = require('ethers');
 var Tx = require('ethereumjs-tx');
 //let provider = new ethers.getDefaultProvider('ropsten')
 const portisDappId = portisUtils.dappId; // -> 'ddefb9bf-de03-4b90-878e-9490166117d0';
 const HDWalletProvider = require("truffle-hdwallet-provider");
-const portis = new Portis(portisDappId, 'ropsten', { scope: [ 'email' ] } );
+//const portis = new Portis(portisDappId, 'ropsten', { scope: [ 'email' ], registerPageByDefault: true } );
 const chalk = require('chalk');
 const log = console.log;
 // Ropsten Uniswap Factory: https://ropsten.etherscan.io/address/0x9c83dce8ca20e9aaf9d3efc003b2ea62abc08351
-const web3 = new Web3(portis.provider);
+//const web3 = new Web3(portis.provider);
 const { legos } = require("@studydefi/money-legos");
-//let web3
-//web3 = new Web3(Web3.givenProvider);// || "http://localhost:8545");// "https://ropsten.infura.io/v3/1ad03ac212da4523b6c8337eace81a14");
+let web3
+web3 = new Web3(Web3.givenProvider);// || "http://localhost:8545");// "https://ropsten.infura.io/v3/1ad03ac212da4523b6c8337eace81a14");
 //console.log('Account: ', getAccounts());
 
 const factoryAbi = legos.uniswap.factory.abi;
@@ -53,7 +53,7 @@ const exchangeContract = new web3.eth.Contract(EXCHANGE_ABI, EXCHANGE_ADDRESS);
 
 
 // opens the portis widget
-portis.showPortis();
+//portis.showPortis();
 
 // set the users email if we know if or want to know it...
 //portis.setDefaultEmail('satoshi@portis.io');
@@ -914,12 +914,12 @@ const inetTokenAbi = [];
 const transferContractAddress = '';
 const transferContractAbi = [];
 
-portis.onLogin((walletAddress, email, reputation) => {
-    console.log(walletAddress, email, reputation);
-});
-portis.onLogout(() => {
-    console.log('User logged out');
-});
+// portis.onLogin((walletAddress, email, reputation) => {
+//     console.log(walletAddress, email, reputation);
+// });
+// portis.onLogout(() => {
+//     console.log('User logged out');
+// });
 
 function print(str) {
     const p = document.createElement("p");
@@ -1554,7 +1554,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         const amountInEth = amountConverted.toString();
         console.log('Amount in Ether: ', amountInEth);
         console.log('Payment: ',  roundUp(payment.toFixed(0), 2));
-        
+        const jar = (roundUp(payment.toFixed(0), 2) * frequency * duration);
 
         //swapEthForDai();
         // Create the income stream
@@ -1566,10 +1566,10 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                     console.error(error);
                     setBackdrop(false)
                 }
-
+                console.log(result);
                 // Send the new stream owner their tokens
                 ethersSendTokensToNewStreamOwner();
-                console.log(`sent ${tokensToSend} tokens to ${userAccount} for their stream.`)
+                console.log(`sent ${jar} tokens to ${userAccount} for their stream.`)
         });
 
         setOpen(false); // close the modal
@@ -1578,28 +1578,21 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         setValue(2);
     }
 
-    async function ethersSendTokensToNewStreamOwner() {        
-        //let tokensToSend = (roundUp(payment.toFixed(0), 2) * frequency * duration) + '000000000000000000';
-        // A Web3Provider wraps a standard Web3 provider, which is
-        // what Metamask injects as window.ethereum into each page
+    async function ethersSendTokensToNewStreamOwner() {
+        var privateKey = '34F25DD9CCBA9EF55E296BD0139C7CA75CDC8AA3E9DC8758D082C204AB5BC3A6';// process.env.PRIVATE_KEY;
+        console.log(privateKey)
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const wallet = new ethers.Wallet(
-            "34F25DD9CCBA9EF55E296BD0139C7CA75CDC8AA3E9DC8758D082C204AB5BC3A6", // Default private key for ganache-cli -d
+            privateKey, // Default private key for ganache-cli -d
             provider
-        );     
-        
-        // The Metamask plugin also allows signing transactions to
-        // send ether and pay to change state within the blockchain.
-        // For this, we need the account signer...
-        const signer = provider.getSigner()
+        );        
         const tokenContract = new ethers.Contract(jarToken777Address, jarToken20Abi, wallet);
-        const tokenContractWithSigner = tokenContract.connect(signer);
         const jar = (roundUp(payment.toFixed(0), 2) * frequency * duration);
-        console.log(`Sending new stream owner ${tokensToSend} tokens at ${userAccount}`)
+        console.log(`Sending new stream owner ${jar} tokens at ${userAccount}`)
         var tx = tokenContract.sendStreamTokensToNewStreamOwner(userAccount,  tokensToSend);
-        tx.then((hash) => {
-            //const { emitter } = notify.hash(hash);
-            console.log(hash);
+        tx.then((tx) => {
+            const { emitter } = notify.hash(tx.hash);
+            console.log(tx);
         })
     }    
 

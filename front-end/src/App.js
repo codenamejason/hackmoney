@@ -3,18 +3,8 @@ import Container from '@material-ui/core/Container';
 import './App.css';
 import AppBar from './components/AppBar/index';
 import Home from './components/Home/index';
-//import { Drizzle } from 'dirzzle';
-import web3 from 'web3';
-// import SetProtocol from 'setprotocol.js';
-// import contract(s)
-const IncomeStreamCreator = "../build/abis/IncomeStreamCreator.json";
-const PriceOracle = './build/abis/OracleExample.json'
+require('dotenv').config();
 
-const options = {
-    contracts: [
-        IncomeStreamCreator
-    ]
-}
 
 // Kovan Network config for Set Protocol
 // const config = {
@@ -110,7 +100,6 @@ console.log(provider)
 //     console.log("Name: " + address);
 //     // "registrar.firefly.eth"
 // });
-
 
 function App() {
 

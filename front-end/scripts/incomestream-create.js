@@ -1,3 +1,4 @@
+import { ChainId, Token, TokenAmount, Pair, Trade, TradeType, Route } from '@uniswap/sdk'
 const chalk = require('chalk');
 const log = console.log;
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
@@ -148,7 +149,7 @@ const StreamCreatorAbi = [{
     }
 ];
 
-const streamCreatorContractAddress = '0x77bcf90ffa34e4b0624e8257d58c97a4d3dab299';
+const streamCreatorContractAddress = '0x77Bcf90fFA34e4B0624E8257D58C97a4D3dAB299';
 
 
 const streamCreatorContract = new web3.eth.Contract(StreamCreatorAbi, streamCreatorContractAddress);
@@ -158,4 +159,11 @@ log(chalk.blue('Contract abi loaded...'));
 
 log(streamCreatorContract);
 
-let incomeStream = streamCreatorContract.methods.createStream().call();
+let data = '0x';
+
+let incomeStream = streamCreatorContract.methods.createStream().send({
+    from: '0x',
+    value: '0x00',
+    data: data
+});
+
