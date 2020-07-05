@@ -34,11 +34,7 @@ contract TransferContract is Ownable {
     mapping(address => uint[]) public transactionIndexesToSender;
      
   
-    /**  
-    * @dev list of all supported tokens for transfer  
-    * @param string token symbol  
-    * @param address contract address of token  
-    */  
+    //  
     mapping(bytes32 => address) public tokens;  
 
     /**  

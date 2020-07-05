@@ -1,54 +1,12 @@
 pragma solidity ^0.6.8;
 pragma experimental ABIEncoderV2;
+/**
+ *Submitted for verification at Etherscan.io on 2020-06-16
+*/
 
-import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-
-contract JarToken is ERC20 {
-    string  public standard = "Income JAR Stream Token v1.0";
-
-    event Transfer(
-        address indexed _from,
-        address indexed _to,
-        uint256 _value
-    );
-
-    event Approval(
-        address indexed _owner,
-        address indexed _spender,
-        uint256 _value
-    );
-
-    mapping(address => uint256) public addressBalanceTracker;
-    mapping(address => mapping(address => uint256)) public allowanceTracker;
-
-    constructor ()
-        ERC20("JAR Stream Token v1", "JAR")
-        public {
-        _mint(msg.sender, 1000000000000000000000000); // -> 1 Million
-    }
-    
-    modifier onlyOwner {
-        require(msg.sender == 0xd2cCea05436bf27aE49B01726075449F815B683e, "Must be owner to use this");
-        _;
-    }
-    
-    // Any added funtionality ->
-    function sendStreamTokensToNewStreamOwner(address _streamOwner, uint256 _amount)
-        public
-        onlyOwner
-    {
-        _mint(_streamOwner, _amount);
-    }
-    
-    function sendTokensToPartner(address _to, uint256 _amount)
-        public
-        onlyOwner
-    {
-        _mint(_to, _amount);
-    }
-    
-}
-
+/**
+*   @dev DateTimeAPI Interface
+*/
 interface DateTimeAPI {
         /*
          *  Abstract contract for interfacing with the DateTime contract.
@@ -64,20 +22,17 @@ interface DateTimeAPI {
         function getWeekday(uint timestamp)external view returns (uint8);
 }
 
-
+/**
+* @dev IncomeStreamCreator Contract
+*/
 contract IncomeStreamCreator {
     // State variables
-    address payable public owner = 0xd2cCea05436bf27aE49B01726075449F815B683e;
-    address payable public streamOwner;
-    uint256 public minWaitingPeriod = 29;
-    uint256 public minDeposit = 99;
-    uint256 public maxDeposit = 1001;
-    uint256 public priceToRegister = .25 ether;
-    bytes32 public MEMBER_HASH = keccak256("iNET_MEMBER_HASH");
-    bytes32 public userData;
+    address payable public owner;
+    uint256 public minWaitingPeriod = 15; // -> about two weeks
+    uint256 public minDepositETH = .49 ether;
+    uint256 public maxDepositETH = 42.1 ether; // calculate later using current eth price*
     
-    JarToken token;
-    
+    // Structs
     struct Stream {
         uint256 streamId;
         address streamOwner;
@@ -89,27 +44,22 @@ contract IncomeStreamCreator {
         uint256 dateCreated;
     }
     
-    struct Member {
-        bytes32 email;
-        uint256 balance;
-        bool active;
-    }
-    
+    // More state variables
     Stream[] public streamsArray;
     address[] public streamAccounts;
     
-    // counter
-    uint256 streamCount;
-
-    // mappings mapping(_KeyType => _ValueType)
+    // Mappings
+    uint256 public streamCount;
+    mapping(uint256 => Stream) public userStreams;
     mapping(address => Stream) public streams;
+    mapping(uint => string) public names;
+    
     mapping(address => uint256) public streamBalances;
     
-
     // Events
     event StreamCreated(
         uint256 _streamId,
-        address _streamOwner,
+        address indexed _streamOwner,
         uint256 _streamAmount,
         uint256 _streamLength,
         uint256 _streamPayment,
@@ -124,8 +74,9 @@ contract IncomeStreamCreator {
     );
     
     event TokensSent(
-        address _owner,
-        uint256 _amount
+        address indexed _owner,
+        uint256 _amount,
+        uint256 _streamId
     );
     
     event WithdrawMade(
@@ -136,7 +87,7 @@ contract IncomeStreamCreator {
     // Constructor
     constructor() public 
     {
-        // do stuff if we need to...
+        owner = msg.sender;
     }
     
     
@@ -144,18 +95,39 @@ contract IncomeStreamCreator {
         require(msg.sender == owner, "You need to be the owner.");
         _;
     }
+    
+    function updateMaxEthPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+        maxDepositETH = _newPrice;
+        updated = true;
+        return updated;
+    }
+    
+    function updateMinUEthrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+        minDepositETH = _newPrice;
+        updated = true;
+        return updated;
+    }
+    
+    function getStreamCount() public view returns(uint256 _totalStreams) {
+        _totalStreams = streamCount;
+        return _totalStreams;
+    }
 
-   function getStream(uint256 _streamId) public view returns(Stream memory) {
-      return streamsArray[_streamId];
-   }
+    function getStream(uint256 _streamId) public view returns(Stream memory) {
+          return streamsArray[_streamId];
+    }
+    
+    function getAll() public view returns (Stream[] memory){
+        Stream[] memory ret = new Stream[](streamCount);
+        for (uint i = 0; i < streamCount; i++) {
+            ret[i] = streamsArray[i];
+        }
+        return ret;
+    }
    
-   function getStreams(address _owner) public view returns(Stream memory) {
-      return streams[_owner];
-   }
-   
-   function getAllStreams() public view returns(address[] memory) {
-       return streamAccounts;
-   }
+    function getAllStreams() public view returns(address[] memory) {
+        return streamAccounts;
+    }
     
     function createStream(
         uint256 _amount,
@@ -164,18 +136,20 @@ contract IncomeStreamCreator {
         uint256 _payment
     ) public payable {
         // make sure they are within our constraints
-        require(_amount >= minDeposit, "Must be above 10 to participate.");
-        require(_amount <= maxDeposit, "Must be below 1000 to participat.");
+        //require(_amount > minDepositETH, "Must be above .49 to participate.");
+        require(_amount < maxDepositETH, "Must be below 42.1 to participat.");
         // create a new entity/stream
         Stream memory stream;
         // set its params
-        stream.streamId = streamCount++;
-        stream.streamOwner = msg.sender; // -> the owner of the stream
-        stream.streamValue = msg.value; // -> need to convert this do DAI
+        uint256 streamId = streamCount++;
+        stream.streamId = streamId;
+        stream.streamOwner = msg.sender;
+        // This will be an enhanced calculation later on
+        stream.streamValue = msg.value;
         stream.duration = _duration;
         stream.frequency = _frequency;
         stream.depositAmt = _amount;
-        stream.dateCreated = block.timestamp;
+        //stream.dateCreated = block.timestamp;
         stream.payment = _payment;
         
         streamsArray.push(stream);
@@ -184,27 +158,31 @@ contract IncomeStreamCreator {
 
         
         // send the streams tokens to the owner
-        token.sendStreamTokensToNewStreamOwner(msg.sender, (_payment * _frequency * _duration));
+        sendOwnerStreamTokens(msg.sender, _payment * _frequency * _duration, streamId);
         
         
         // Notify of success
-        emit StreamCreated(streamCount, msg.sender, _amount, _duration, _payment, _frequency);
+        emit StreamCreated(streamId, msg.sender, _amount, _duration, _payment, _frequency);
         //return stream;
     }
     
     
-    function sendOwnerStreamTokens(address payable _owner, uint256 _payment) internal {
+    function sendOwnerStreamTokens(address payable _owner, uint256 _payment, uint256 _streamId) public payable {
+        //require(_payment >= minDepositETH, "Must be above 10 to participate.");
+        //require(_payment <= maxDepositETH, "Must be below 1000 to participat.");
         // send tokens representing the income stream to owner
+        // swap the eth for stream tokens @ 1 JAR = 1 DAI rate
         
         
-        
-        emit TokensSent(_owner, _payment);
+        emit TokensSent(_owner, _payment, _streamId);
     }
     
     
     function transferStream(uint256 _streamId, address _newOwner) public payable {
         require(_streamId >= 0, "Your id is not a positive integer.");
         require(_newOwner != msg.sender, "Cannot transfer to your self.");
+        
+        // transfer stream logic here...
         
         emit StreamTransferred(_streamId, msg.sender, _newOwner, true);
     }
