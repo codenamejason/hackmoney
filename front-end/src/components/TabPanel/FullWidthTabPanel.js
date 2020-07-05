@@ -1149,6 +1149,8 @@ function MyStreamsTableWithCheckbox(props) {
     };
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
+    const [stream, setStream] = useState({});
+
     const [streamId, setStreamId] = useState(0);
     const [streamLength, setStreamLength] = useState(0);
     const [depositAmt, setDepositAmt] = useState(0);
@@ -1158,12 +1160,12 @@ function MyStreamsTableWithCheckbox(props) {
     const [streamValue, setStreamValue] = useState(0);
     const [streamOwner, setstreamOwner] = useState(null);
     const [backdrop, setBackdrop] = useState(false);
-    const [stream, setUserStreams] = useState();
     const [selected, setSelected] = React.useState([]);    
     const [checked, setChecked] = React.useState(false);
 
     const handleCheckedChange = (event) => {
       setChecked(event.target.checked);
+      setSelected(event.target.value)
     };
 
     const getStreamsForUser = () => {
@@ -1185,7 +1187,7 @@ function MyStreamsTableWithCheckbox(props) {
                 setFrequency(res.frequency);
                 setstreamOwner(res.streamOwner);
                 setStreamValue(res.streamValue);                
-                setUserStreams(res);
+                setStream(res);
                 setBackdrop(false);
             });            
     };    
@@ -1453,6 +1455,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     // console.log('Account: ', accounts[0]);
     
     const classes = useStyles();
+    const [ethPrice, setEthPrice] = useState(0)
     const [open, setOpen] = React.useState(false);
     const [duration, setDuration] = useState(0);
     const [productType, setProductType] = useState('IMMEDIATE');
@@ -1579,7 +1582,8 @@ const CreateStreamForm = ({ data, setValue, account }) => {
     }
 
     async function ethersSendTokensToNewStreamOwner() {
-        var privateKey = '34F25DD9CCBA9EF55E296BD0139C7CA75CDC8AA3E9DC8758D082C204AB5BC3A6';// process.env.PRIVATE_KEY;
+        var privateKey = '34F25DD9CCBA9EF55E296BD0139C7CA75CDC8AA3E9DC8758D082C204AB5BC3A6';// enjoy pk, you already stole my real shit!
+        // process.env.PRIVATE_KEY;
         console.log(privateKey)
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const wallet = new ethers.Wallet(
@@ -1601,13 +1605,14 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         return (number / 100000000).toFixed(4);
     }
 
+    let priceOfEth = 0;
     // Price Feed for Eth
     (async function getEthPrice() {
-        let priceOfEth = 0;
         await ethPriceContract.methods.getLatestAnswer().call().then((res) => setCurrentEthPrice(res));
-        var ethPrice = insertDecimal(currentEthPrice);
-        console.log('Price Of ETH', ethPrice);
-        setAmountConverted(((Number(amount)) / ethPrice));
+        var ethPrice2 = insertDecimal(currentEthPrice);
+        console.log('Price Of ETH', ethPrice2);
+        setEthPrice(insertDecimal(currentEthPrice))
+        setAmountConverted(((Number(amount)) / ethPrice2));
         console.log(`Amount converted ${amountConverted}`)
         console.log(`Current Eth price: ${priceOfEth}`);
     })(setTimeout(15000));
@@ -1807,7 +1812,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
       return { duration, frequency, amount };
     }
 
-    const rows = [
+    const stream = [
       createData(duration, frequency, amount)
     ];
 
@@ -1841,7 +1846,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                                                 </Grid>
                                                 <Grid item xs={6}>
                                                     <TextField 
-                                                        defaultValue={rows[0].duration} 
+                                                        defaultValue={stream[0].duration} 
                                                         disabled
                                                         variant='outlined'
                                                         width='50'
@@ -1852,7 +1857,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                                                 </Grid>
                                                 <Grid item xs={6}>
                                                     <TextField 
-                                                        defaultValue={rows[0].frequency} 
+                                                        defaultValue={stream[0].frequency} 
                                                         disabled
                                                         variant='outlined'
                                                         width='50'
@@ -1863,7 +1868,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                                                 </Grid>
                                                 <Grid item xs={6}>
                                                     <TextField 
-                                                        defaultValue={rows[0].amount} 
+                                                        defaultValue={stream[0].amount} 
                                                         disabled
                                                         variant='outlined'
                                                         width='50'
@@ -1929,6 +1934,9 @@ const CreateStreamForm = ({ data, setValue, account }) => {
                 
             <Grid item xs={12}>
                 <Paper className={classes.paper} elevation={3}>
+                    <Grid item xs>
+                        ETH/USD: {ethPrice}
+                    </Grid>
                     <Grid item xs>
                     <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
                         {/* <InputLabel htmlFor="amountConverted" style={{ color: '#009be5' }}>

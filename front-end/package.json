@@ -46,7 +46,7 @@
   },
   "scripts": {
     "start": "react-scripts --max_old_space_size=8192 start",
-    "build": "react-scripts --max_old_space_size=8192 build",
+    "build": "react-scripts build",
     "build-env": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
