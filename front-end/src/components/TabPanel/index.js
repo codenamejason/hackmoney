@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-// material-ui
-import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import React from 'react';
 import FullWidthTabs from './FullWidthTabPanel';
 
 const TabPanel = (props) => {
