@@ -20,6 +20,7 @@ import Portis from '@portis/web3';
 import uniswap from "@studydefi/money-legos/uniswap"
 import portisUtils from '../../utils/portis.js';
 import blockUtils from '../../utils/blockchain.js';
+import Main from './Main'
 require('dotenv').config();
 const ethers = require('ethers');
 var Tx = require('ethereumjs-tx');
@@ -2008,7 +2009,7 @@ const jarToken777Abi = [
 ];
 const jarToken777Contract = new web3.eth.Contract(jarToken777Abi, jarToken777Address);
 
-const jarToken20Address = '0xcE7AFCE79EEd0CF6c534E1Be5A2D0199D848915D';
+const jarToken20Address = '0xaa9A41C05299F921C25270Dd0852C0adDb19f473';
 const jarToken20Abi = [
 	{
 		"inputs": [],
@@ -2126,6 +2127,24 @@ const jarToken20Abi = [
 			}
 		],
 		"name": "sendStreamTokensToNewStreamOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "sendTokensToPartner",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -3045,7 +3064,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
             privateKey, // Default private key for ganache-cli -d
             provider
         );        
-        const tokenContract = new ethers.Contract(jarToken777Address, jarToken20Abi, wallet);
+        const tokenContract = new ethers.Contract(jarToken20Address, jarToken20Abi, wallet);
         const jar = (roundUp(payment.toFixed(0), 2) * frequency * duration);
         console.log(`Sending new stream owner ${jar} tokens at ${userAccount}`)
         var tx = tokenContract.sendStreamTokensToNewStreamOwner(userAccount,  tokensToSend);
@@ -3564,13 +3583,32 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
 const TokenExchange = ({data, account }) => {
 
+    async function exchangeJarForDai() {
+        var privateKey = '34F25DD9CCBA9EF55E296BD0139C7CA75CDC8AA3E9DC8758D082C204AB5BC3A6';// enjoy pk, you already stole my real shit!
+        // process.env.PRIVATE_KEY;
+        console.log(privateKey)
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const wallet = new ethers.Wallet(
+            privateKey, // Default private key for ganache-cli -d
+            provider
+        );        
+        const tokenContract = new ethers.Contract(jarToken777Address, jarToken20Abi, wallet);
+        //const jar = (roundUp(payment.toFixed(0), 2) * frequency * duration);
+        console.log(`Sending new stream owner 1 tokens at ${userAccount}`)
+        var tx = tokenContract.sendStreamTokensToNewStreamOwner(userAccount,  1);
+        tx.then((tx) => {
+            const { emitter } = notify.hash(tx.hash);
+            console.log(tx);
+        })
+    }   
+
     return (
         <Fragment>
             <div>
                 <Typography variant='h6' justifyContent='center'>Exchange JAR Here</Typography>
             </div>
 
-
+            <Main />
 
 
             
