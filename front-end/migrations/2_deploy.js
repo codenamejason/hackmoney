@@ -1,12 +1,10 @@
 const JARToken = artifacts.require('JARToken')
 //const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
-const iNETToken = artifacts.require('iNETToken')
 //const Flashloan = artifacts.require('FlashLoan')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
 //const PriceOracle = artifacts.require('OracleExample')
 const DaiFaucet = artifacts.require('DaiFaucet');
-const JarToken = artifacts.require('JarToken');
-const TransferContract = artifacts.require('TransferContract');
+const JARSwap = artifacts.require('JARSwap');
 require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider, environment: 'truffle' });
 
 const { singletons } = require('@openzeppelin/test-helpers');
@@ -17,7 +15,13 @@ module.exports = async function (deployer, network, accounts) {
         await singletons.ERC1820Registry(accounts[0]);
     }
     
-    await deployer.deploy(Simple777Token);
+    await deployer.deploy(JARToken);
+    const token = await JARToken.deployed();
+
+    await deployer.deploy(JARSwap, token.address);
+
+    await token.transfer(JARSwap.address, '100000000000000000000000000')
+
 
     /**
     * @dev deployments
@@ -26,11 +30,8 @@ module.exports = async function (deployer, network, accounts) {
 
     //await deployer.deploy(StreamToken);
     //const streamToken = await StreamToken.deployed()
-
     //await deployer.deploy(StreamTokenReceiver, streamToken.address);
 
-    await deployer.deploy(iNETToken)
-    //const iNetToken = await iNETToken.deployed()
 
     // Flashloan testing
     //await deployer.deploy(Flashloan, lendingPoolAddressesProviderAddress)

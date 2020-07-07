@@ -5,7 +5,6 @@ require('dotenv').config();
 require('chai/register-should');
 const infuraProjectID = process.env.INFURA_PROJECT_ID;
 
-// Locan Ganache Mnemonic
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -51,7 +50,13 @@ module.exports = {
             // eslint-disable-next-line camelcase
             network_id: '*', // Any network (default: none)
         },
-
+        matic: {
+            provider: () => new HDWalletProvider('evoke club entry catalog unveil truly run lyrics melt property main noise', `https://rpc-mumbai.matic.today`),
+            network_id: 80001,
+            confirmations: 2,
+            timeoutBlocks: 200,
+            skipDryRun: true
+          },
         // Another network with more advanced options...
         // advanced: {
         // port: 8777,             // Custom port
