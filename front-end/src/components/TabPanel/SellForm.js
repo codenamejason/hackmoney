@@ -43,12 +43,12 @@ const SellForm = (props) => {
           </div>
         </div><br />
         <div className="mb-5">
-          <span>Exchange Rate ~ 1 JAR = 1 DAI</span>
+          <span>Redemtion Rate ~ 1 JAR = 1 DAI</span>
         </div><br /><br />
         <Button
             variant='contained'
             color='secondary'        
-        >Exchange</Button>
+        >Redeem</Button>
     </div>
     );
 

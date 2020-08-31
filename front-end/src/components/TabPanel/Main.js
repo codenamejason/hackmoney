@@ -70,7 +70,7 @@ const Main = (props) => {
     return (
       <div id="content" className={classes.root}>
         <br />
-        <div className="d-flex justify-content-between mb-3">
+        {/* <div className="">
           <Button
               variant='contained'
               color='primary'
@@ -80,7 +80,7 @@ const Main = (props) => {
             >
             Buy
           </Button>
-          <span className="text-muted">&nbsp;</span>
+          <span className="">&nbsp;</span>
           <Button
               variant='contained'
               color='secondary'
@@ -90,10 +90,10 @@ const Main = (props) => {
             >
             Sell
           </Button>
-        </div>
+        </div> */}
         <br />
-        <div className="card mb-4" >
-          <div className="card-body">
+        <div className="" >
+          <div className="">
             {content}
           </div><br />
         </div><br />

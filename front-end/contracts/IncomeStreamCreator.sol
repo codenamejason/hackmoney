@@ -129,6 +129,8 @@ contract IncomeStreamCreator {
         return streamAccounts;
     }
     
+   
+    
     function createStream(
         uint256 _amount,
         uint256 _duration,
@@ -149,7 +151,7 @@ contract IncomeStreamCreator {
         stream.duration = _duration;
         stream.frequency = _frequency;
         stream.depositAmt = _amount;
-        //stream.dateCreated = block.timestamp;
+        stream.dateCreated = block.timestamp;
         stream.payment = _payment;
         
         streamsArray.push(stream);
