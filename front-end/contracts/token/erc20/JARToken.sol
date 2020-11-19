@@ -4,7 +4,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract JarSToken is ERC20 {
     string  public standard = "Income JAR Stream Token v1.0";
-
+    address public _owner;
     event Transfer(
         address indexed _from,
         address indexed _to,
@@ -20,14 +20,16 @@ contract JarSToken is ERC20 {
     mapping(address => uint256) public addressBalanceTracker;
     mapping(address => mapping(address => uint256)) public allowanceTracker;
 
-    constructor ()
+    constructor (address owner)
         ERC20("JAR Stream Token v1", "JAR")
-        public {
+        public 
+    {
+        _owner = owner;
         _mint(msg.sender, 1000000000000000000000000); // -> 1 Million
     }
     
     modifier onlyOwner {
-        require(msg.sender == 0xd2cCea05436bf27aE49B01726075449F815B683e, "Must be owner to use this");
+        require(msg.sender == _owner, "Must be owner to use this");
         _;
     }
     

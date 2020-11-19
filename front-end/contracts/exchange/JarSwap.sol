@@ -8,12 +8,12 @@ contract JarSwap {
     uint public rate = 1;
     address private owner;
 
-     event TokensPurchased(
-        address account,
-        address token,
-        uint amount,
-        uint rate
-    );
+  event TokensPurchased(
+    address account,
+    address token,
+    uint amount,
+    uint rate
+  );
 
   event TokensSold(
     address account,
@@ -30,9 +30,9 @@ contract JarSwap {
         _;
     }
 
-    constructor () public {
+    constructor (address _owner) public {
         //token = _token;
-        owner = msg.sender;
+        owner =  _owner;
     }
 
     // function mintTokens() public payable {
