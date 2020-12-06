@@ -25,13 +25,13 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         textAlign: 'center',
         color: '#9400d3',
-        backgroundColor: '#282c00'
+        backgroundColor: '#48A5BE'
       },
     paper: {
       padding: theme.spacing(1),
       textAlign: 'center',
       color: '#9400d3',
-      backgroundColor: '#282c34'
+      backgroundColor: '#48A5BE'
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -42,29 +42,6 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.up('sm')]: {
         display: 'block',
       },
-    },
-    search: {
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
-      },
-      marginLeft: 0,
-      width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-      },
-    },
-    searchIcon: {
-      padding: theme.spacing(0, 2),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
     inputRoot: {
       color: 'inherit',
@@ -83,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     tabPanel: {
-        backgroundColor: '#282c34',
+        backgroundColor: '#306E7E',
     }
   }));
 
@@ -212,7 +189,30 @@ function CreateStreamForm({data}) {
                                 </FormControl>
                             </Grid>
                             <Grid item xs>
-                                {deferredTime}
+                            <FormControl>                                    
+                                    <InputLabel htmlFor='frequency' style={{ color: '#009be5' }}>
+                                        Frequency
+                                    </InputLabel>
+                                    <Select 
+                                            style={{ color: '#009be5' }}
+                                            native
+                                            value={frequecny}
+                                            onChange={handleFrequencyChange}
+                                            inputProps={{
+                                            name: 'frequency',
+                                            id: 'age-native-helper',
+                                            }}
+                                    >
+                                            <option aria-label="None" value="" />
+                                            <option value={'WW'}>Weekly</option>
+                                            <option value={'MM'}>Monthly</option>.
+                                            <option value={'QQ'}>Quarterly</option>
+                                            <option value={'YY'}>Anually</option>
+                                    </Select>
+                                    <FormHelperText style={{ color: '#FE6B8B' }}>
+                                        How often do you want your payments?
+                                    </FormHelperText>
+                                </FormControl>  
                             </Grid>
                             <Grid item xs>
                                 <FormControl>
@@ -263,30 +263,7 @@ function CreateStreamForm({data}) {
                                 </FormControl>                 
                             </Grid>
                             <Grid item xs={6}>
-                                <FormControl>                                    
-                                    <InputLabel htmlFor='frequency' style={{ color: '#009be5' }}>
-                                        Frequency
-                                    </InputLabel>
-                                    <Select 
-                                            style={{ color: '#009be5' }}
-                                            native
-                                            value={frequecny}
-                                            onChange={handleFrequencyChange}
-                                            inputProps={{
-                                            name: 'frequency',
-                                            id: 'age-native-helper',
-                                            }}
-                                    >
-                                            <option aria-label="None" value="" />
-                                            <option value={'WW'}>Weekly</option>
-                                            <option value={'MM'}>Monthly</option>.
-                                            <option value={'QQ'}>Quarterly</option>
-                                            <option value={'YY'}>Anually</option>
-                                    </Select>
-                                    <FormHelperText style={{ color: '#FE6B8B' }}>
-                                        How often do you want your payments?
-                                    </FormHelperText>
-                                </FormControl>  
+                                
                             
                             </Grid>
                             <Grid item xs>                            
