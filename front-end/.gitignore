@@ -18,6 +18,7 @@ config.json
 
 /src/abis
 
+truffle-config.js
 
 # misc
 .DS_Store

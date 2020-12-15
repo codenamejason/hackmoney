@@ -41,7 +41,7 @@ require('dotenv').config();
 const ethers = require('ethers');
 
 let address = '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e'
-let provider = new ethers.getDefaultProvider('ropsten')
+let provider = new ethers.getDefaultProvider('rinkeby')
 console.log(provider)
 //.providers.Web3Provider(web3.currentProvider);
 // provider.getBalance(address).then((balance) => {

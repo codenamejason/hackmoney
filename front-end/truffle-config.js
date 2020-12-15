@@ -51,7 +51,7 @@ module.exports = {
             network_id: '*', // Any network (default: none)
         },
         matic: {
-            provider: () => new HDWalletProvider('evoke club entry catalog unveil truly run lyrics melt property main noise', `https://rpc-mumbai.matic.today`),
+            provider: () => new HDWalletProvider(process.env.REACT_APP_mnemonic, `https://rpc-mumbai.matic.today`),
             network_id: 80001,
             confirmations: 2,
             timeoutBlocks: 200,
@@ -69,8 +69,8 @@ module.exports = {
 
         rinkeby: {
             provider: () => new HDWalletProvider(
-                process.env.DEV_MNEMONIC,
-                `https://rinkeby.infura.io/v3/${infuraProjectID}`),
+                'outside bridge shrimp above piece myth acquire doll void filter fit reject',
+                `https://rinkeby.infura.io/v3/5c19088a9f804202b4fe954c029de555`),
             network_id: 4, // eslint-disable-line camelcase
             gas: 5500000, // Ropsten has a lower block limit than mainnet
             confirmations: 2, // # of confs to wait between deployments. (default: 0)
@@ -114,7 +114,7 @@ module.exports = {
     },
     contracts_directory: './contracts/',
     migrations_directory: './migrations/',
-    //contracts_build_directory: './src/abis/',
+    contracts_build_directory: './src/abis/',
 
     // Configure your compilers
     compilers: {

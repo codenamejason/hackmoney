@@ -2,7 +2,7 @@
 const { expectEvent, singletons, constants } = require('@openzeppelin/test-helpers');
 const { ZERO_ADDRESS } = constants;
 
-const StreamToken = artifacts.require('StreamToken')
+const StreamToken = artifacts.require('./iNETToken.sol')
 
 contract('StreamToken', function ([_, registryFunder, creator, operator]) {
   beforeEach(async function () {

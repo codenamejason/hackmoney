@@ -1,32 +1,32 @@
-const JARToken = artifacts.require('JARToken')
+//const JARToken = artifacts.require('JARToken')
 //const StreamTokenReceiver = artifacts.require('StreamTokenReceiver')
 //const Flashloan = artifacts.require('FlashLoan')
 const IncomeStreamCreator = artifacts.require('IncomeStreamCreator');
 //const PriceOracle = artifacts.require('OracleExample')
-const DaiFaucet = artifacts.require('DaiFaucet');
-const JARSwap = artifacts.require('JARSwap');
+//const DaiFaucet = artifacts.require('DaiFaucet');
+//const JARSwap = artifacts.require('JARSwap');
 require('@openzeppelin/test-helpers/configure')({ provider: web3.currentProvider, environment: 'truffle' });
 
 const { singletons } = require('@openzeppelin/test-helpers');
 
 module.exports = async function (deployer, network, accounts) {
     if (network === 'development') {
-        // In a test environment an ERC777 token requires deploying an ERC1820 registry
-        await singletons.ERC1820Registry(accounts[0]);
+    //     // In a test environment an ERC777 token requires deploying an ERC1820 registry
+    //     await singletons.ERC1820Registry(accounts[0]);
     }
     
-    await deployer.deploy(JARToken);
-    const token = await JARToken.deployed();
+    //await deployer.deploy(JARToken);
+    //const token = await JARToken.deployed();
 
-    await deployer.deploy(JARSwap, token.address);
+    //await deployer.deploy(JARSwap, token.address);
 
-    await token.transfer(JARSwap.address, '100000000000000000000000000')
+    //await token.transfer(JARSwap.address, '100000000000000000000000000')
 
 
     /**
     * @dev deployments
     */
-    await deployer.deploy(DaiFaucet);
+    //await deployer.deploy(DaiFaucet);
 
     //await deployer.deploy(StreamToken);
     //const streamToken = await StreamToken.deployed()

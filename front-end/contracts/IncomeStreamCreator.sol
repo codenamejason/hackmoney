@@ -29,7 +29,7 @@ contract IncomeStreamCreator {
     // State variables
     address payable public owner;
     uint256 public minWaitingPeriod = 15; // -> about two weeks
-    uint256 public minDepositETH = .49 ether;
+    uint256 public minDepositETH = .1 ether;
     uint256 public maxDepositETH = 42.1 ether; // calculate later using current eth price*
     
     // Structs
