@@ -139,7 +139,7 @@ contract IncomeStreamCreator {
     ) public payable {
         // make sure they are within our constraints
         //require(_amount > minDepositETH, "Must be above .49 to participate.");
-        require(_amount < maxDepositETH, "Must be below 42.1 to participat.");
+        require(_amount < maxDepositETH, "Must be below 42.1 to participate.");
         // create a new entity/stream
         Stream memory stream;
         // set its params
@@ -151,7 +151,7 @@ contract IncomeStreamCreator {
         stream.duration = _duration;
         stream.frequency = _frequency;
         stream.depositAmt = _amount;
-        stream.dateCreated = block.timestamp;
+        stream.dateCreated = now;
         stream.payment = _payment;
         
         streamsArray.push(stream);

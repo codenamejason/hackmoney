@@ -880,7 +880,7 @@ getWeb3().then((accounts) => {
             "stateMutability": "view",
             "type": "function"
         }
-    ], '0x5A3C50D35d62Cd43400208E064E81495d3b426CA');
+    ], '0x20d6e498D99EF0Fc72F8CdF4832c5006346a25Ef');
     console.info(contractInstance);
     
     const streamContract = new web3.eth.Contract([
@@ -1589,7 +1589,7 @@ getWeb3().then((accounts) => {
             "stateMutability": "view",
             "type": "function"
         }
-    ], '0x5A3C50D35d62Cd43400208E064E81495d3b426CA');
+    ], '0x20d6e498D99EF0Fc72F8CdF4832c5006346a25Ef');
     console.info(streamContract);
 
     streamContract.methods.getAll().call().then((res) => {

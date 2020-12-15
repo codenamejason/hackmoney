@@ -44,13 +44,13 @@ let address = '0x51Caa385AB6363F6dF543BaEbe9501F057A8638e'
 let provider = new ethers.getDefaultProvider('rinkeby')
 console.log(provider)
 //.providers.Web3Provider(web3.currentProvider);
-// provider.getBalance(address).then((balance) => {
+provider.getBalance(address).then((balance) => {
 
-//     // balance is a BigNumber (in wei); format is as a sting (in ether)
-//     let etherString = ethers.utils.formatEther(balance);
+    // balance is a BigNumber (in wei); format is as a sting (in ether)
+    let etherString = ethers.utils.formatEther(balance);
 
-//     console.log("Balance: " + etherString);
-// });
+    console.log("Balance: " + etherString);
+});
 
 // provider.getTransactionCount(address).then((transactionCount) => {
 //     console.log("Total Transactions Ever Sent: " + transactionCount);
@@ -72,34 +72,6 @@ console.log(provider)
 //     console.log(block);
 // });
 
-// // Block Hash
-// let blockHash = "0x7a1d0b010393c8d850200d0ec1e27c0c8a295366247b1bd6124d496cf59182ad";
-// provider.getBlock(blockHash).then((block) => {
-//     console.log(block);
-// });
-
-// // See: https://ropsten.etherscan.io/tx/0xa4ddad980075786c204b45ab8193e543aec4411bd94894abef47dc90d4d3cc01
-
-// let transactionHash = "0xa4ddad980075786c204b45ab8193e543aec4411bd94894abef47dc90d4d3cc01"
-
-// provider.getTransaction(transactionHash).then((transaction) => {
-//     console.log(transaction);
-// });
-
-// provider.getTransactionReceipt(transactionHash).then((receipt) => {
-//     console.log(receipt);
-// });
-
-// provider.resolveName("registrar.firefly.eth").then(function(address) {
-//     console.log("Address: " + address);
-//     // "0x6fC21092DA55B392b045eD78F4732bff3C580e2c"
-// });
-
-// address = "0x6fC21092DA55B392b045eD78F4732bff3C580e2c";
-// provider.lookupAddress(address).then(function(address) {
-//     console.log("Name: " + address);
-//     // "registrar.firefly.eth"
-// });
 
 function App() {
 
