@@ -26,23 +26,23 @@ contract Member {
     mapping(address => bool) public knownMembers;
     mapping(uint => string) public names;
 
-    function updateMemberRegistrationPrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+    function updateMemberRegistrationPrice(uint256 _newPrice) public onlyOwner returns (bool) {
        priceToRegister = _newPrice;
        updated = true;
        return updated;
     }
     
-    function isMember(address _memberAddress) public view returns(bool _isMember) {
+    function isMember(address _memberAddress) public view returns(bool) {
        _isMember = knownMembers[_memberAddress];
        return _isMember;
     }
     
-    function getMemberCount() public view returns(uint _memberCount) {
+    function getMemberCount() public view returns(uint) {
        _memberCount = membersArray.length;
        return _memberCount;
     }
     
-    function newMember(address _memberAddress, bytes32 _email, bytes32 _memberData) public returns(uint256 rowNumber) {
+    function newMember(address _memberAddress, bytes32 _email, bytes32 _memberData) public returns(uint256) {
        require(isMember(_memberAddress), "must not already be a member");
        Member memory member;
        member.memberAddress = _memberAddress;
@@ -55,7 +55,7 @@ contract Member {
        return membersArray.length - 1;
     }
     
-    function updateMember(uint256 _rowNumber, address _memberAddress, bytes32 _memberData) public returns(bool success) {
+    function updateMember(uint256 _rowNumber, address _memberAddress, bytes32 _memberData) public returns(bool) {
        require(isMember(_memberAddress), "Must be a member to update");
        require(membersArray[_rowNumber].memberAddress != _memberAddress, "Address must align with the row number passed in.");
        membersArray[_rowNumber].memberData = _memberData;

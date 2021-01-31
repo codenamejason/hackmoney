@@ -30,7 +30,7 @@ contract IncomeStreamCreator {
     address payable public owner;
     uint256 public minWaitingPeriod = 15; // -> about two weeks
     uint256 public minDepositETH = .1 ether;
-    uint256 public maxDepositETH = 42.1 ether; // calculate later using current eth price*
+    uint256 public maxDepositETH = 402.1 ether; // calculate later using current eth price*
     
     // Structs
     struct Stream {
@@ -102,7 +102,7 @@ contract IncomeStreamCreator {
         return updated;
     }
     
-    function updateMinUEthrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
+    function updateMinEthrice(uint256 _newPrice) public onlyOwner returns (bool updated) {
         minDepositETH = _newPrice;
         updated = true;
         return updated;
@@ -125,9 +125,9 @@ contract IncomeStreamCreator {
         return ret;
     }
    
-    function getAllStreams() public view returns(address[] memory) {
-        return streamAccounts;
-    }
+    // function getAllStreams() public view returns(address[] memory) {
+    //     return streamAccounts;
+    // }
     
    
     
@@ -139,7 +139,7 @@ contract IncomeStreamCreator {
     ) public payable {
         // make sure they are within our constraints
         //require(_amount > minDepositETH, "Must be above .49 to participate.");
-        require(_amount < maxDepositETH, "Must be below 42.1 to participate.");
+        require(_amount < maxDepositETH, "Must be below 402.1 to participate.");
         // create a new entity/stream
         Stream memory stream;
         // set its params

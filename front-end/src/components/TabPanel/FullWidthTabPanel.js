@@ -2673,14 +2673,14 @@ function MyStreamsTableWithCheckbox(props) {
                 setStreams(res)
             })
 
-        createStreamContract.methods.getAllStreams().call()
-            .then((res, err) => {
-                if (err){
-                    console.error(err);
-                    setBackdrop(false);
-                }                
-                console.log(res);
-            })
+        // createStreamContract.methods.getAllStreams().call()
+        //     .then((res, err) => {
+        //         if (err){
+        //             console.error(err);
+        //             setBackdrop(false);
+        //         }                
+        //         console.log(res);
+        //     })
 
         createStreamContract.methods.getBalanceContract().call()
             .then((res, err) => {
@@ -2974,7 +2974,7 @@ const CreateStreamForm = ({ data, setValue, account }) => {
 
     const paymentTotal = payment * duration * frequency;
     const minimum = 100;
-    const maximum = 1000;
+    const maximum = 100000;
     const roundUp = (number, precision) => {
         precision = Math.pow(10, precision);
         return Math.ceil(number * precision) / precision;
@@ -2997,12 +2997,12 @@ const CreateStreamForm = ({ data, setValue, account }) => {
         from: userAccount,
         value: web3.utils.toWei('0.001', 'Ether') // Amount of Ether to Swap
     }
-    const SETTINGS2 = {
-        gasLimit: 6000000, // Override gas settings: https://github.com/ethers-io/ethers.js/issues/469
-        gasPrice: web3.utils.toWei('50', 'Gwei'),
-        from: '0xd2cCea05436bf27aE49B01726075449F815B683e', // Use your account here
-        value: web3.utils.toWei('0.01', 'Ether') // Amount of Ether to Swap
-    }
+    // const SETTINGS2 = {
+    //     gasLimit: 6000000, // Override gas settings: https://github.com/ethers-io/ethers.js/issues/469
+    //     gasPrice: web3.utils.toWei('50', 'Gwei'),
+    //     from: '0xd2cCea05436bf27aE49B01726075449F815B683e', // Use your account here
+    //     value: web3.utils.toWei('0.01', 'Ether') // Amount of Ether to Swap
+    // }
     //console.log("Settings", SETTINGS)
     let tokensToSend = (roundUp(payment.toFixed(0), 2) * frequency * duration) + '000000000000000000';
     
